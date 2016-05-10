@@ -1,0 +1,9 @@
+- Nella pagina servizi distinguiamo quelli a pagamento e non oppure lo facciamo nella pagina 
+tariffe o in entrambe?
+- Va bene l'indirizzo dell B&B inadout o volete utilizzarne un altro?
+- La descrizione chi siamo va in base all'indirizzo e l'ho fatta abbastanza velocemente come il resto dei testi
+perchè non sapevo esattamente ancora cosa scrivere
+- Ho lasciato vuoto il content della pagina Prenotazioni per il momento
+- La pagina galleria alla fine la gestiamo con i due link? Per il momento ho caricato delle foto nella pagina.
+- Le foto che ho caricato in galleria le ho prese da B&B inadout ma ne ho messe alcune a dimensione originale
+e alcune con la cornice rossa in base a come volete visualizzarle con il CSS

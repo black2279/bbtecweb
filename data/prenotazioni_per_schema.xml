@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prenotazioni xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.bb.com"
+	xsi:schemaLocation="http://www.bb.com prenotazioni.xsd">
+
+<!--- Esempio Prenotazione 
+	<prenotazione id="34892529858">
+		<dataArrivo>15/10/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>2</adulti>
+		<tipoCamera>Doppia</tipoCamera>
+	</prenotazione>
+-->
+
+
+</prenotazioni>
+	

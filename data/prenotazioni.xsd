@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    xmlns="http://www.bb.com"
+    targetNamespace="http://www.bb.com"
+    elementFormDefault="qualified">
+	
+	
+<xsd:element name="prenotazioni" type="TLista">
+			<xsd:unique name="numero-prenotazione-unico">
+			  <xsd:selector xpath=".//*" /> <!-- Seleziona il nodo corrente e controlla tutti i nodi con attributo id al fine di essere univoci -->
+			  <xsd:field xpath="@id" />
+		    </xsd:unique>	
+</xsd:element>
+    
+<xsd:complexType name="TLista" >
+	<xsd:sequence>
+		<xsd:element name="prenotazione" maxOccurs="unbounded" type="TPrenotazione" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="TPrenotazione">
+	<xsd:sequence>
+		<xsd:element name="dataArrivo" type="xsd:string"/>
+		<xsd:element name="notti" type="xsd:integer"/>
+		<xsd:element name="adulti" type="xsd:integer" />
+		<xsd:element name="tipoCamera" type="xsd:string" />
+	</xsd:sequence>
+	<xsd:attribute name="id" type="xsd:integer" use="required"/>
+</xsd:complexType>
+
+</xsd:schema>
