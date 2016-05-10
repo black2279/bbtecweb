@@ -1,0 +1,16 @@
+Tutte le pagine -> scegliere i colori e sistemare il footer in moto tale da tenerlo in fondo alla pagina
+
+Home -> scegliere l'immagine per la Home (io ne ho scelta una a caso) e ridimensionarla in modo tale da rendere la home 
+senza barra di scroll (possibilmente).
+
+Chi siamo -> scegliere il testo.
+
+Galleria -> decidere come sistemare le immagini
+
+Servizi -> decidere come gestire i servizi
+
+Tariffe -> scegliere il testo e cosa scriverci esattamente
+
+Prenotazioni -> Cristian
+
+Contatti -> decidere come posizionare gli elementi

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<prenotazioni>
+	<prenotazione id="0">
+		<dataArrivo>25/12/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>2</adulti>
+		<tipoCamera>doppia</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="1">
+		<dataArrivo>25/12/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>2</adulti>
+		<tipoCamera>doppia</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="2">
+		<dataArrivo>25/01/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="3">
+		<dataArrivo>25/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>3</adulti>
+		<tipoCamera>singoladoppia</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="4">
+		<dataArrivo>26/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="5">
+		<dataArrivo>26/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="6">
+		<dataArrivo>26/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="7">
+		<dataArrivo>26/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="8">
+		<dataArrivo>27/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="9">
+		<dataArrivo>01/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="10">
+		<dataArrivo>02/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="11">
+		<dataArrivo>25/12/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="12">
+		<dataArrivo>25/12/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="13">
+		<dataArrivo>25/12/2015</dataArrivo>
+		<notti>2</notti>
+		<adulti>1</adulti>
+		<tipoCamera>singola</tipoCamera>
+	</prenotazione>
+
+	<prenotazione id="14">
+		<dataArrivo>28/02/2016</dataArrivo>
+		<notti>2</notti>
+		<adulti>2</adulti>
+		<tipoCamera>doppia</tipoCamera>
+	</prenotazione>
+</prenotazioni>
