@@ -24,8 +24,16 @@
 		<xsd:element name="notti" type="xsd:integer"/>
 		<xsd:element name="adulti" type="xsd:integer" />
 		<xsd:element name="tipoCamera" type="xsd:string" />
+        <xsd:element name="prezzo" type="PrezzoT"/>
 	</xsd:sequence>
 	<xsd:attribute name="id" type="xsd:integer" use="required"/>
+</xsd:complexType>
+
+<xsd:complexType name="PrezzoT">
+        <xsd:choice>
+            <xsd:element name="singola" type="xsd:integer"/>
+            <xsd:element name="doppia" type="xsd:integer"/>
+    </xsd:choice>    
 </xsd:complexType>
 
 </xsd:schema>

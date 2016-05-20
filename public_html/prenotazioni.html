@@ -17,7 +17,8 @@
 <body>
 <div id="wrapper">
 <div id="header">
-<h1>Bed and Breakfast Navona - Roma</h1>
+    <img src="img/Logo-bn.png" alt="logo B&B" id="logo">
+<!--<h1>Bed and Breakfast Navona - Roma</h1>-->
 </div>
 
 <div id="menu">
@@ -39,46 +40,59 @@
 </div>
 
 <div id="breadcrumb">
-<p>Ti trovi qui &gt;&gt; <a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Prenotazioni</p>
+<p>Ti trovi qui :<a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Prenotazioni</p>
 </div>
 
 <div id="content">
 <h1>Prenotazioni</h1>
 
-	<form method="post" action="cgi-bin/prenota.cgi">
+	<form method="post" action="cgi-bin/disponibilita.pl">
 		<fieldset>
-			<legend>Prenotazione</legend>
+			<!--<legend>Prenotazione</legend>-->
+            <p>
 			<label for="dataArrivo">Data Arrivo </label>
-			<input type="text" name="dataArrivo" id="dataArrivo" maxlength="10">
-			<label for="notti">Notti </label>
-			<input type="text" name="notti" id="notti" maxlength="1">
-			<label for="adulti">Adulti </label>
+			<input type="text" name="dataArrivo" id="dataArrivo" maxlength="10" placeholder="gg/mm/aaaa">
+            <label for="dataPartenza">Data Partenza </label>
+            <input type="text" name="dataPartenza" id="dataPartenza" maxlength="10" placeholder="gg/mm/aaaa">
+			<!--<label for="notti">Notti </label>
+			<input type="text" name="notti" id="notti" maxlength="1">-->
+			<!--<label for="adulti">Adulti </label>
 			<input type="text" name="adulti" id="adulti" maxlength="1">
 			<label for="tipoCamera">Tipo Camera </label>
 			<select name="tipoCamera" id="tipoCamera">
 				<option value="singola" >Singola</option>
 				<option value="doppia">Doppia</option>
 				<option value="singoladoppia">Singola + Doppia</option>
-			</select>
+			</select>-->
+            </p>
+            <label for="numeroCamere">Numero Camere </label>
+            <input type="text" name="numeroCamere" id="numeroCamere" maxlength="1">
+            <!--<select name="numeroCamere" id="numeroCamere">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+            </select>-->
+            <label for="adulti">Adulti </label>
+			<input type="text" name="adulti" id="adulti" maxlength="1">
+            <p><input type="checkbox" name="parcheggio" value="true"/> Voglio usufruire del parcheggio coperto convenzionato (5€/giorno).</p>
+            <p><input type="checkbox" name="pulizia" value="true"/> Pulizia giornaliera della camera (2€/giorno).</p>
+            <p><input type="checkbox" name="navettaaereo" value="true"/> Servizio navetta Fiumicino - Hotel : 30€</p>
+            <p><input type="checkbox" name="navettatreno" value="true"/> Servizio navetta Stazione Termini - Hotel : 30€</p>
 
-			<fieldset>
-			<legend>Bottoni</legend>
-			<input type="reset" value="Reset" /><input type="submit" id="prenota" value="Prenota" />
-			</fieldset>
+            <input type="reset" value="Reset" />&nbsp;<input type="submit" id="prenota" value="Prenota" />
 
 		</fieldset>
 
 	</form>
 	<form method="post" action="cgi-bin/ricerca_prenotazioni.pl">
 		<fieldset>
-			<legend>Ricerca Prenotazione</legend>
+			<!--<legend>Ricerca Prenotazione</legend>-->
 			<label for="numeroPrenotazione">Numero Prenotazione</label>
 			<input type="text" name="numeroPrenotazione" id="numeroPrenotazione" />
 
-			<fieldset>
-			<legend>Bottoni</legend>
-			<input type="reset" value="Reset" /><input type="submit" id="ricerca" value="Ricerca" />
-			</fieldset>
+			<input type="reset" value="Reset" />&nbsp;<input type="submit" id="ricerca" value="Ricerca" />
+
 
 		</fieldset>
 	</form>
