@@ -1,5 +1,4 @@
 #!/usr/bin/perl
-use DateTime;
 use strict;
 use warnings;
 use CGI;
@@ -77,12 +76,10 @@ print "</div>";
 sub Disp{
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
 print "<h2>La tua prenotazione \n</h2>";
-print "<div id=\"richiesta\">";
-print "<p>Data Arrivo ".$dataarrivo."\n</p>";
-print "<p>Data Partenza ".$datapartenza."\n</p>";
-print "<p>Adulti ".$adulti."\n</p>";
-print "<p>Numero Camere ".$numerocamere."\n</p>";
-# print "</div>";
+print "Data Arrivo ".$dataarrivo."\n";
+print "Data Partenza ".$datapartenza."\n";
+print "Adulti ".$adulti."\n";
+print "Numero Camere ".$numerocamere."\n";
 # my $doppie = int($numerocamere / 2);
 # my $singole = int($numerocamere % 2);
 my $exdoppie="";
@@ -104,108 +101,32 @@ if($singole != 0){
     }
     }
 
-print "<p>La tua prenotazione comprende: $exdoppie $exsingole.</p>";
-print "</div>"
+print "La tua prenotazione comprende: $exdoppie $exsingole.";
 #print "Totale €: ".$prezzo->textContent."\n";
 #print "</div>";
 }
 
 sub Servizi{
-  print "Servizi";
 my ($parcheggio,$pulizia,$navettaaereo, $navettatreno)=@_;
-  print "<div id = \"dettagli\">";
-  print "<p>Hai richiesto anche: </p>";
    if($parcheggio eq "true"){
-   print "<p>- Parcheggio</p>";
+   print "Hai richiesto il parcheggio";
    }
    if($pulizia eq "true"){
-   print "<p>- Pulizia Quotidiana</p>";
+   print "Hai richiesto la pulizia quotidiana";
    }
    if($navettaaereo eq "true"){
-   print "<p>- Navetta dall'Aeroporto</p>";
+   print "Hai richiesto la navetta dall'aeroporto";
    }
    if($navettatreno eq "true"){
-   print "<p>Navetta dalla Stazione</p>";
+   print "Hai richiesto la navetta dalla stazione";
    }
-   #print "</div>";
 }
+
 sub Prezzi{
-  print "<div id = \"dettprezzi\">";
-    my($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno,$diff)=@_;
-          my $prdoppie = "0";
-          my $prsingole = "0";
-          my $prparcheggio = "0";
-          my $prpulizia = "0";
-          my $prnavettaaereo = "0";
-          my $prnavettatreno = "0";
-      if($doppie > 0){
-          $prdoppie = (30*$doppie);
-          if($doppie == 1){
-          print "<p>$doppie camera doppia &nbsp; 30 x $doppie = &euro; $prdoppie.</p>";
-          }
-          else{
-            print "<p>$doppie camere doppie &nbsp; 30 x $doppie = &euro; $prdoppie.</p>";
-          }
-          }
-      if($singole > 0){
-          $prsingole = (20*$singole);
-          if($singole == 1){
-          print "<p>$singole camera singola &nbsp; 20 x $singole = &euro; $prsingole.</p>";
-          }
-          else{
-          print "<p>$singole camere singole &nbsp; 20 x $singole = &euro; $prsingole.</p>";
-          }
-          }
-      if($parcheggio eq "true"){
-        my $prpark = "5";
-          $prparcheggio = $prpark*$diff;
-        print "<p>Parcheggio coperto = &euro; $prpark x $diff giorni = &euro; $prparcheggio</p>";
-      }
-      if($pulizia eq "true"){
-        my $prpul = "2";
-          $prpulizia = $prpul*$diff;
-        print "<p>Pulizia quotidiana = &euro; $prpul x $diff giorni = &euro; $prpulizia</p>";
-      }
-      if($navettaaereo eq "true"){
-          $prnavettaaereo = "30";
-        print "<p>Navetta B&B Navona - Aeroporto Fiumicino = &euro; $prnavettaaereo</p>";
-      }
-
-      if($navettatreno eq "true"){
-          $prnavettatreno = "30";
-        print "<p>Navetta B&B Navona - Stazione Termini = &euro; $prnavettatreno</p>";
-      }
-      my $totale = $prdoppie + $prsingole + $prparcheggio + $prpulizia + $prnavettaaereo + $prnavettatreno;
-      print "<p>Totale &euro; $totale</p>";
-      print "</div>";
+    my($doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno)=@_;
+    if ($doppie > 0) {
+      print "$doppie camere doppie &nbsp; 30 x $doppie = ".(30*$doppie).".";
     }
-
-sub DiffData{
-  my ($dataarrivo,$datapartenza)=@_;
-  $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
-  my $dt1 = DateTime->new(
-      year       => $3,
-      month      => $2,
-      day        => $1,
-      hour       => 00,
-      minute     => 00,
-      second     => 00,
-      nanosecond => 000000000,
-      time_zone  => 'Europe/Rome',
-  );
-  $datapartenza =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
-  my $dt2 = DateTime->new(
-      year       => $3,
-      month      => $2,
-      day        => $1,
-      hour       => 00,
-      minute     => 00,
-      second     => 00,
-      nanosecond => 000000000,
-      time_zone  => 'Europe/Rome',
-  );
-  my $duration = $dt1->delta_days($dt2);
-  return $duration->days;
 }
 
 sub EndHtml{

@@ -123,8 +123,6 @@ if(!isvaliddate($datapartenza)){
   }
 }
 
-
-
 #if ($notti !~ /\d/){
 #	$error=1;
 #	print "Notti non pu� contentere caratteri\n";
@@ -144,16 +142,16 @@ if($datapartenza < $dataarrivo){
 
 }
 
-#if ($adulti !~ /\d/){
-#	$error=1;
-#	print "Adulti non pu&ograve; contentere caratteri\n";
-#}elsif ($adulti>3){
-#	$error=1;
-#    print "Non esistono camere per pi&ugrave; di 3 adulti\n";
-#}elsif($adulti == 0){
-#	$error=1;
-#	print "Il numero di adulti non pu&ograve; essere pari a 0\n";
-#}
+if ($adulti !~ /\d/){
+	$error=1;
+	print "Adulti non pu&ograve; contentere caratteri\n";
+}elsif ($adulti>3){
+	$error=1;
+    print "Non esistono camere per pi&ugrave; di 3 adulti\n";
+}elsif($adulti == 0){
+	$error=1;
+	print "Il numero di adulti non pu&ograve; essere pari a 0\n";
+}
 
 # if ($tipocamera !~ /singola|doppia|singoladoppia/){
 # 	$error=1;
@@ -176,11 +174,8 @@ if($datapartenza < $dataarrivo){
 if(!$error){
     #print "no error";
     Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,);
-    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
-      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
-    }
-    my $diff = Std::DiffData($dataarrivo,$datapartenza);
-    Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
+    Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+    Std::Prezzi($doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno);
     inserisciDatiXML($page->Vars);
 }
 else{
