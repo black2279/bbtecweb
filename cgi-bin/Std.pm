@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+use DateTime;
 use strict;
 use warnings;
 use CGI;
@@ -12,7 +13,7 @@ sub HtmlCode{
   print "Content-type: text/html\n\n";
 
 print"
-<!DOCTYPE html PUBLIC \\'-//W3C//DTD XHTML 1.0 Strict//EN'' \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
 <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"it\" lang=\"it\">
 
 
@@ -32,64 +33,91 @@ print"
 <body>
 <div id=\"wrapper\">
 <div id=\"header\">
-    <img src=\"../img/Logo-bn.png\" alt=\"logo B&B\" id=\"logo\">
+    <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
 <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
 </div>
 
 <div id=\"menu\">
 	<ul>
-		<li><a href=\"index.html\"><span lang=\"en\">Home</span></a></li>
+		<li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
 
-    	<li><a href=\"chisiamo.html\">Chi siamo</a></li>
+    	<li><a href=\"../chisiamo.html\">Chi siamo</a></li>
 
-    	<li><a href=\"galleria.html\">Galleria</a></li>
+    	<li><a href=\"../galleria.html\">Galleria</a></li>
 
-    	<li><a href=\"servizi.html\">Servizi</a></li>
+    	<li><a href=\"../servizi.html\">Servizi</a></li>
 
-    	<li><a href=\"tariffe.html\">Tariffe</a></li>
+    	<li><a href=\"../tariffe.html\">Tariffe</a></li>
 
-    	<li id=\"currentLink\"><a href=\"prenotazioni.html\">Prenotazioni</a></li>
+    	<li id=\"currentLink\"><a href=\"../prenotazioni.html\">Prenotazioni</a></li>
 
-    	<li><a href=\"contatti.html\">Contatti</a></li>
+    	<li><a href=\"../contatti.html\">Contatti</a></li>
 	</ul>
 </div>
 
 <div id=\"breadcrumb\">
-<p>Ti trovi qui :<a href=\"index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; <a href=\"prenotazioni.html\"><span lang=\"en\">Prenotazioni</span></a> &gt;&gt; Disponibilit&agrave;</p>
+<p>Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; <a href=\"../prenotazioni.html\"><span lang=\"en\">Prenotazioni</span></a> &gt;&gt; Disponibilit&agrave;</p>
 </div>
+<div id=\"content\">
 ";
 }
 
 sub PrintPren{
-my($arrivo,$notti,$adulti,$camera,$prezzo,$numeroprenotazione)=@_;
-print "<h2>La tua prenotazione \n</h2>";
-print "Numero prenotazione".$numeroprenotazione."\n";
-print "<div id=\"prenotazione\">";
- print "Data Arrivo ".$arrivo->textContent."\n";
-print "Notti ".$notti->textContent."\n";
-print "Adulti ".$adulti->textContent."\n";
-print "Tipo Camera ".$camera->textContent."\n";
-print "Totale €: ".$prezzo->textContent."\n";
+my($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno)=@_;
+print "<h2>La tua prenotazione</h2>";
+print "<p>Numero prenotazione: ".$numeroprenotazione."</p>";
+print "<div id=\"richiesta\">";
+print "<p>Data Arrivo: ".$arrivo->textContent."</p>";
+print "<p>Data Partenza ".$partenza->textContent."</p>";
+print "<p>Ospiti ".$adulti->textContent."</p>";
+print "<p>La tua prenotazione comprende:</p>";
+if($singole->textContent != 0){
+print "<p>Camere singole: ".$singole->textContent."</p>";
+}
+if($doppie->textContent  != 0){
+print "<p>Camere doppie: ".$doppie->textContent."</p>";
+}
+if($parcheggio->textContent == 1 || $pulizia->textContent == 1 || $navaereo->textContent == 1 || $navtreno->textContent == 1){
+print"<p>La tua prenotazione comprende anche i seguenti servizi</p>";
+ if($parcheggio->textContent == 1){
+   print "<p>- Parcheggio</p>";
+   }
+   if($pulizia->textContent == 1){
+   print "<p>- Pulizia Quotidiana</p>";
+   }
+   if($navaereo->textContent == 1){
+   print "<p>- Navetta dall'Aeroporto</p>";
+   }
+   if($navtreno->textContent == 1){
+   print "<p>- Navetta dalla Stazione</p>";
+   }
+}
+print "<p>Totale: &euro;".$prezzo->textContent."</p>";
 print "</div>";
 }
 
 sub Disp{
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
 print "<h2>La tua prenotazione \n</h2>";
-print "Data Arrivo ".$dataarrivo."\n";
-print "Data Partenza ".$datapartenza."\n";
-print "Adulti ".$adulti."\n";
-print "Numero Camere ".$numerocamere."\n";
+print "<div id=\"richiesta\">";
+print "<p>Data Arrivo ".$dataarrivo."\n</p>";
+print "<p>Data Partenza ".$datapartenza."\n</p>";
+print "<p>Adulti ".$adulti."\n</p>";
+print "<p>Numero Camere ".$numerocamere."\n</p>";
+# print "</div>";
 # my $doppie = int($numerocamere / 2);
 # my $singole = int($numerocamere % 2);
 my $exdoppie="";
 my $exsingole="";
 if($doppie != 0){
     if($doppie == 1){
-    $exdoppie="$doppie camera doppia e ";
+    $exdoppie="$doppie camera doppia";
     }
     else{
-    $exdoppie="$doppie camere doppie e ";
+    $exdoppie="$doppie camere doppie";
+    }
+    if($singole != 0){
+      print " e ";
     }
     }
 if($singole != 0){
@@ -101,36 +129,176 @@ if($singole != 0){
     }
     }
 
-print "La tua prenotazione comprende: $exdoppie $exsingole.";
+print "<p>La tua prenotazione comprende: $exdoppie $exsingole.</p>";
+print "</div>"
 #print "Totale €: ".$prezzo->textContent."\n";
 #print "</div>";
 }
 
 sub Servizi{
+  print "Servizi";
 my ($parcheggio,$pulizia,$navettaaereo, $navettatreno)=@_;
+  print "<div id = \"dettagli\">";
+  print "<p>Hai richiesto anche: </p>";
    if($parcheggio eq "true"){
-   print "Hai richiesto il parcheggio";
+   print "<p>- Parcheggio</p>";
    }
    if($pulizia eq "true"){
-   print "Hai richiesto la pulizia quotidiana";
+   print "<p>- Pulizia Quotidiana</p>";
    }
    if($navettaaereo eq "true"){
-   print "Hai richiesto la navetta dall'aeroporto";
+   print "<p>- Navetta dall'Aeroporto</p>";
    }
    if($navettatreno eq "true"){
-   print "Hai richiesto la navetta dalla stazione";
+   print "<p>- Navetta dalla Stazione</p>";
    }
+   print "</div>";
+}
+sub Prezzi{
+  print "<div id = \"dettprezzi\">";
+    my($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno,$diff)=@_;
+          my $prdoppie = "0";
+          my $prsingole = "0";
+          my $prparcheggio = "0";
+          my $prpulizia = "0";
+          my $prnavettaaereo = "0";
+          my $prnavettatreno = "0";
+    print "<h2>Dettaglio costi</h2>";
+      if($doppie > 0){
+          $prdoppie = (30*$doppie);
+          if($doppie == 1){
+          print "<p>$doppie camera doppia &nbsp; &euro; 30 x $doppie = &euro; $prdoppie.</p>";
+          }
+          else{
+            print "<p>$doppie camere doppie &nbsp; &euro; 30 x $doppie = &euro; $prdoppie.</p>";
+          }
+          }
+      if($singole > 0){
+          $prsingole = (20*$singole);
+          if($singole == 1){
+          print "<p>$singole camera singola &nbsp; 20 x $singole = &euro; $prsingole.</p>";
+          }
+          else{
+          print "<p>$singole camere singole &nbsp; 20 x $singole = &euro; $prsingole.</p>";
+          }
+          }
+      if($parcheggio eq "true"){
+        my $prpark = "5";
+          $prparcheggio = $prpark*$diff;
+        print "<p>Parcheggio coperto = &euro; $prpark x $diff giorni = &euro; $prparcheggio</p>";
+      }
+      if($pulizia eq "true"){
+        my $prpul = "2";
+          $prpulizia = $prpul*$diff;
+        print "<p>Pulizia quotidiana = &euro; $prpul x $diff giorni = &euro; $prpulizia</p>";
+      }
+      if($navettaaereo eq "true"){
+          $prnavettaaereo = "30";
+        print "<p>Navetta B&amp;B Navona - Aeroporto Fiumicino = &euro; $prnavettaaereo</p>";
+      }
+
+      if($navettatreno eq "true"){
+          $prnavettatreno = "30";
+        print "<p>Navetta B&amp;B Navona - Stazione Termini = &euro; $prnavettatreno</p>";
+      }
+      my $totale = $prdoppie + $prsingole + $prparcheggio + $prpulizia + $prnavettaaereo + $prnavettatreno;
+      print "<p>Totale &euro; $totale</p>";
+      print "</div>";
+      return $totale;
+    }
+
+sub DiffData{
+  my ($dataarrivo,$datapartenza)=@_;
+  $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
+  my $dt1 = DateTime->new(
+      year       => $3,
+      month      => $2,
+      day        => $1,
+      hour       => 00,
+      minute     => 00,
+      second     => 00,
+      nanosecond => 000000000,
+      time_zone  => 'Europe/Rome',
+  );
+  $datapartenza =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
+  my $dt2 = DateTime->new(
+      year       => $3,
+      month      => $2,
+      day        => $1,
+      hour       => 00,
+      minute     => 00,
+      second     => 00,
+      nanosecond => 000000000,
+      time_zone  => 'Europe/Rome',
+  );
+  my $duration = $dt1->delta_days($dt2);
+  return $duration->days;
 }
 
-sub Prezzi{
-    my($doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno)=@_;
-    if ($doppie > 0) {
-      print "$doppie camere doppie &nbsp; 30 x $doppie = ".(30*$doppie).".";
-    }
+sub Dati{
+my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale)=@_;
+print "<div id=\"dati\">";
+print "<h2>Inserisci i dati</h2>";
+print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.";
+print "<form method=\"post\" action=\"prenotazione.pl\">
+        <input type=\"text\" name=\"dataarrivo\" id=\"nascosto\" value=$dataarrivo readonly>
+        
+		<input type=\"text\" name=\"datapartenza\" id=\"nascosto\" value=$datapartenza readonly>
+        
+		<input type=\"text\" name=\"numerocamere\" id=\"nascosto\" value=$numerocamere readonly>
+        
+		<input type=\"text\" name=\"adulti\" id=\"nascosto\" value=$adulti readonly>
+        
+		<input type=\"text\" name=\"doppie\" id=\"nascosto\" value=$doppie readonly>
+        
+		<input type=\"text\" name=\"singole\" id=\"nascosto\" value=$singole readonly>
+
+		<input type=\"text\" name=\"parcheggio\" id=\"nascosto\" value=$parcheggio readonly>
+        
+        <input type=\"text\" name=\"pulizia\" id=\"nascosto\" value=$pulizia readonly>
+        
+		<input type=\"text\" name=\"navettaaereo\" id=\"nascosto\" value=$navettaaereo>
+		<input type=\"text\" name=\"navettatreno\" id=\"nascosto\" value=$navettatreno>
+		<input type=\"text\" name=\"totale\" id=\"nascosto\" value=$totale>
+		<p>Dati anagrafici</p>
+        <fieldset>
+			<p><label for=\"nome\">Nome </label></p>
+			<p><input type=\"text\" name=\"nome\" id=\"nome\"></p>
+            <p><label for=\"cognome\">Cognome </label></p>
+            <p><input type=\"text\" name=\"cognome\" id=\"cognome\"></p>
+            <p><label for=\"dataNascita\">Data di Nascita </label></p>
+			<p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\"></p>
+            <p><label for=\"citta\">Citt&agrave; </label></p>
+            <p><input type=\"text\" name=\"citta\" id=\"citta\"></p>
+            <p><label for=\"email\">E-mail </label></p>
+            <p><input type=\"text\" name=\"email\" id=\"email\"></p>
+            <p><label for=\"cemail\">Conferma E-mail </label></p>
+            <p><input type=\"text\" name=\"cemail\" id=\"cemail\"></p>    
+            </fieldset>
+        <p>Dati di pagamento</p>
+        <fieldset>
+            <p><label for=\"pagamento\">Metodo di pagamento </label></p>
+            <p><select name=\"pagamento\" id=\"pagamento\">
+                <option value=\"Visa\">Visa</option>
+                <option value=\"Mastercard\">Mastercard</option>
+                <option value=\"American Express\">American Express</option>
+            </select></p>
+            <p><label for=\"numerocarta\">Numero carta </label></p>
+			<p><input type=\"text\" name=\"numerocarta\" id=\"numerocarta\" maxlength=\"16\"></p>
+            <p><label for=\"cvc\">CVC </label></p>
+            <p><input type=\"text\" name=\"cvc\"id=\"cvc\" maxlength=\"3\"></p>
+            <p><label for=\"intcarta\">Nome e Cognome dell'intestatario della carta</label></p>
+            <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\"></p>
+        </fieldset>
+        <input type=\"submit\" id=\"prenota\" value=\"Prenota\">
+        </form>
+        </div>";
+            
 }
 
 sub EndHtml{
-print "<div id=\"footer\">
+print "</div>
+    <div id=\"footer\">
     <div id=\"left\">
     <p>Tutti i diritti riservati</p>
 	<img class=\"imgValidCode\" src=\"../img/XMLvalido.png\" alt=\"XHTML valido\"/>

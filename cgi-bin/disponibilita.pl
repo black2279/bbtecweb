@@ -15,7 +15,7 @@ binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
 
-sub inserisciDatiXML{
+#sub inserisciDatiXML{
 #use XML::LibXML;
 #my $file = '../data/tariffe.xml';
 
@@ -24,20 +24,20 @@ sub inserisciDatiXML{
 
 #my $doc=$parser->parse_file($file);
 
-my %prenotazione = @_;
-my $dataarrivo = $prenotazione{"dataArrivo"};
-my $datapartenza = $prenotazione{"dataPartenza"};
+#my %prenotazione = @_;
+#my $dataarrivo = $prenotazione{"dataArrivo"};
+#my $datapartenza = $prenotazione{"dataPartenza"};
 #my $notti = "\n\t\t<notti>".$prenotazione{'notti'}."</notti>";
-my $numerocamere = $prenotazione{"numeroCamere"};
-my $adulti = $prenotazione{"adulti"};
+#my $numerocamere = $prenotazione{"numeroCamere"};
+#my $adulti = $prenotazione{"adulti"};
 #my $tipocamera = "\n\t\t<tipoCamera>".$prenotazione{'tipoCamera'}."</tipoCamera>";
-my $parcheggio = $prenotazione{"parcheggio"};
-my $pulizia = $prenotazione{"pulizia"};
-my $navettaaereo = $prenotazione{"navettaereo"};
-my $navettatreno = $prenotazione{"navettatreno"};
+#my $parcheggio = $prenotazione{"parcheggio"};
+#my $pulizia = $prenotazione{"pulizia"};
+#my $navettaaereo = $prenotazione{"navettaereo"};
+#my $navettatreno = $prenotazione{"navettatreno"};
 #print "Il numero della prenotazione &egrave; $id\n";
 
-}
+#}
 
 
 sub isvaliddate {
@@ -123,6 +123,8 @@ if(!isvaliddate($datapartenza)){
   }
 }
 
+
+
 #if ($notti !~ /\d/){
 #	$error=1;
 #	print "Notti non pu� contentere caratteri\n";
@@ -136,22 +138,26 @@ if(!isvaliddate($datapartenza)){
 
 if($datapartenza < $dataarrivo){
     $error=1;
-    print "La data di partenza non pu&ograve; essere precedente a quella di arrivo\n";
+    print "<p>La data di partenza non pu&ograve; essere precedente a quella di arrivo</p>";
     # my $testo = enc($text);
     # print $text;
 
 }
-
-if ($adulti !~ /\d/){
-	$error=1;
-	print "Adulti non pu&ograve; contentere caratteri\n";
-}elsif ($adulti>3){
-	$error=1;
-    print "Non esistono camere per pi&ugrave; di 3 adulti\n";
-}elsif($adulti == 0){
-	$error=1;
-	print "Il numero di adulti non pu&ograve; essere pari a 0\n";
+if($numerocamere > $adulti){
+    $error=1;
+    print "<p>Il numero delle camere non pu&ograve; essere superiore al numero di adulti</p>"
 }
+
+#if ($adulti !~ /\d/){
+#	$error=1;
+#	print "Adulti non pu&ograve; contentere caratteri\n";
+#}elsif ($adulti>3){
+#	$error=1;
+#    print "Non esistono camere per pi&ugrave; di 3 adulti\n";
+#}elsif($adulti == 0){
+#	$error=1;
+#	print "Il numero di adulti non pu&ograve; essere pari a 0\n";
+#}
 
 # if ($tipocamera !~ /singola|doppia|singoladoppia/){
 # 	$error=1;
@@ -173,17 +179,23 @@ if ($adulti !~ /\d/){
 
 if(!$error){
     #print "no error";
-    Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,);
-    Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
-    Std::Prezzi($doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno);
-    inserisciDatiXML($page->Vars);
+    Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+    my $diff = Std::DiffData($dataarrivo,$datapartenza);
+    my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
+    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+    }
+    #inserisciDatiXML($page->Vars);
+    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
 }
 else{
-    print "error";
+    print "<form action=\"../prenotazioni.html\" method=\"post\">
+    <input type=\"submit\" value=\"Indietro\" 
+         name=\"Submit\" />
+</form>";
 }
-
 # sub enc {
 #     return Encode::encode('UTF-8', $_[0]);
 # }
 
-Std::EndHtml();
+#Std::EndHtml();

@@ -14,7 +14,6 @@ Std::HtmlCode();
 sub inserisciDatiXML{
 use XML::LibXML;
 my $file = '../data/prenotazioni.xml';
-my $tariffe = '../data/tariffe.xml';
 my $parser = XML::LibXML->new();
 my $id = -1;
 

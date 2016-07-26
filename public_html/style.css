@@ -124,7 +124,7 @@ li:hover:before, li:focus:before, li:active:before {
     float: left;
 }
 
-#menu li, a, #menu > ul > li > span{
+#menu li, #menu a, #menu > ul > li > span{
     display: inline-block;
     /*color: #272727;*/
     color: #ffffff;
@@ -132,6 +132,12 @@ li:hover:before, li:focus:before, li:active:before {
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
     text-decoration: none;
+}
+
+#breadcrumb, #breadcrumb a{
+    color: #ffffff;
+    padding-top: 0.3125em;
+    padding-bottom: 0.3125em;
 }
 
 #menu li:hover{
@@ -299,4 +305,34 @@ input[type="submit"]:hover, input[type="reset"]:hover {
 fieldset{
     background-color: #8F8DAD;
     width: 60%;
+}
+
+#richiesta{
+  float: left;
+  width: 50%;
+}
+
+#dettagli{
+  float: left;
+  width: 50%;
+}
+
+#dettprezzi {
+  float:right;
+  width: 50%;
+}
+
+#dati{
+    /*float: left;*/
+    margin-top: 15em;
+    padding-bottom: 2em;
+}
+#dati input:not(#prenota):not(#citta){
+    width: 1000px;
+}
+
+#nascosto{
+    display: none;
+    height: 0px;
+    
 }

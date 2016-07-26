@@ -2,106 +2,314 @@
 <prenotazioni>
 	<prenotazione id="0">
 		<dataArrivo>25/12/2015</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>27/12/2015</dataPartenza>
 		<adulti>2</adulti>
-		<tipoCamera>doppia</tipoCamera>
+		<singole>0</singole>
+        <doppie>1</doppie>
+        <parcheggio>1</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="1">
 		<dataArrivo>25/12/2015</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>27/12/2015</dataPartenza>
 		<adulti>2</adulti>
-		<tipoCamera>doppia</tipoCamera>
+		<singole>0</singole>
+        <doppie>1</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>1</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="2">
 		<dataArrivo>25/01/2016</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>27/01/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>1</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="3">
 		<dataArrivo>25/02/2016</dataArrivo>
-		<notti>2</notti>
-		<adulti>3</adulti>
-		<tipoCamera>singoladoppia</tipoCamera>
+		<dataPartenza>27/02/2016</dataPartenza>
+        <adulti>3</adulti>
+		<singole>1</singole>
+        <doppie>1</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>1</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="4">
 		<dataArrivo>26/02/2016</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>28/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>1</pulizia>
+        <navaereo>1</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="5">
 		<dataArrivo>26/02/2016</dataArrivo>
-		<notti>2</notti>
+        <dataPartenza>28/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>1</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="6">
 		<dataArrivo>26/02/2016</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>28/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+        <singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>1</parcheggio>
+        <pulizia>1</pulizia>
+        <navaereo>1</navaereo>
+        <navtreno>1</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="7">
 		<dataArrivo>26/02/2016</dataArrivo>
-		<notti>2</notti>
+        <dataPartenza>28/02/2015</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="8">
 		<dataArrivo>27/02/2016</dataArrivo>
-		<notti>2</notti>
+        <dataPartenza>28/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="9">
 		<dataArrivo>01/02/2016</dataArrivo>
-		<notti>2</notti>
+        <dataPartenza>03/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>1</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="10">
 		<dataArrivo>02/02/2016</dataArrivo>
-		<notti>2</notti>
+		<dataPartenza>04/02/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
 	<prenotazione id="11">
 		<dataArrivo>25/12/2015</dataArrivo>
-		<notti>2</notti>
+        <dataPartenza>27/02/2015</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+        <doppie>0</doppie>
+        <parcheggio>0</parcheggio>
+        <pulizia>0</pulizia>
+        <navaereo>0</navaereo>
+        <navtreno>0</navtreno>
+        <totale>70</totale>
 	</prenotazione>
 
-	<prenotazione id="12">
-		<dataArrivo>25/12/2015</dataArrivo>
-		<notti>2</notti>
+
+	<prenotazione id="-1">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
 	</prenotazione>
 
-	<prenotazione id="13">
-		<dataArrivo>25/12/2015</dataArrivo>
-		<notti>2</notti>
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
 		<adulti>1</adulti>
-		<tipoCamera>singola</tipoCamera>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
 	</prenotazione>
 
-	<prenotazione id="14">
-		<dataArrivo>28/02/2016</dataArrivo>
-		<notti>2</notti>
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="41">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="YTYSID">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno/>
+		<totale>92</totale>
+	</prenotazione>
+
+	<prenotazione id="2B53SC">
+		<dataArrivo>10/10/2016</dataArrivo>
+		<dataPartenza>12/10/2016</dataPartenza>
 		<adulti>2</adulti>
-		<tipoCamera>doppia</tipoCamera>
+		<singole>0</singole>
+		<doppie>1</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>104</totale>
+	</prenotazione>
+
+	<prenotazione id="Y8Z6EE">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
+	</prenotazione>
+
+	<prenotazione id="8SR66N">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>08/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>122</totale>
 	</prenotazione>
 </prenotazioni>
