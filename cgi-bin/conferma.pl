@@ -45,7 +45,7 @@ if(!$error){
     }
 }
 else{
-    print "<form action=\"../prenotazioni.html\" method=\"post\">
+    print "<form action=\"../cgi-bin/prenotazioni.pl\" method=\"post\">
     <input type=\"submit\" value=\"Indietro\" 
          name=\"Submit\" />
 </form>";

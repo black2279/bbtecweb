@@ -8,57 +8,102 @@ package Std;
 
 use Exporter qw(import);
 our @EXPORT = qw(HtmlCode);
-
 sub HtmlCode{
   print "Content-type: text/html\n\n";
 
-print"
-<!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
-<html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"it\" lang=\"it\">
+        print"
+    <!DOCTYPE html PUBLIC \"-//W3C//DTD XHTML 1.0 Strict//EN\" \"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd\">
+    <html xmlns=\"http://www.w3.org/1999/xhtml\" xml:lang=\"it\" lang=\"it\">
 
 
-<head>
-<meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
+    <head>
+    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
 
-<title>Bed and Breakfast Navona</title>
-<meta name=\"title\" content=\"Bed and Breakfast Navona\"/>
-<meta name=\"description\" content=\"Sito del Bed and Breakfast Navona - Roma\" />
-<meta name=\"keywords\" content=\"bed and breakfast, bed, breakfast, Roma, Navona\" />
-<meta name=\"language\" content=\"italian it\" />
-<meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
-<link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
+    <title>Bed and Breakfast Navona</title>
+    <meta name=\"title\" content=\"Bed and Breakfast Navona\"/>
+    <meta name=\"description\" content=\"Sito del Bed and Breakfast Navona - Roma\" />
+    <meta name=\"keywords\" content=\"bed and breakfast, bed, breakfast, Roma, Navona\" />
+    <meta name=\"language\" content=\"italian it\" />
+    <meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
+    <link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
 
 
-</head>
-<body>
-<div id=\"wrapper\">
-<div id=\"header\">
-    <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
-<!--<h1>Bed and Breakfast Navona - Roma</h1>-->
-</div>
+    </head>
+    <body>
+    <div id=\"wrapper\">
+    <div id=\"header\">
+        <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
+    <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
+    </div>
 
-<div id=\"menu\">
-	<ul>
-		<li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
+    <div id=\"menu\">
+        <ul>
+            <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
 
-    	<li><a href=\"../chisiamo.html\">Chi siamo</a></li>
+            <li><a href=\"../chisiamo.html\">Chi siamo</a></li>
 
-    	<li><a href=\"../galleria.html\">Galleria</a></li>
+            <li><a href=\"../galleria.html\">Galleria</a></li>
 
-    	<li><a href=\"../servizi.html\">Servizi</a></li>
+            <li><a href=\"../servizi.html\">Servizi</a></li>
 
-    	<li><a href=\"../tariffe.html\">Tariffe</a></li>
+            <li><a href=\"../tariffe.html\">Tariffe</a></li>
 
-    	<li id=\"currentLink\"><a href=\"../prenotazioni.html\">Prenotazioni</a></li>
+            <li id=\"currentLink\"><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
 
-    	<li><a href=\"../contatti.html\">Contatti</a></li>
-	</ul>
-</div>
+            <li><a href=\"../contatti.html\">Contatti</a></li>
+        </ul>
+    </div>
+"}
 
-<div id=\"breadcrumb\">
-<p>Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; <a href=\"../prenotazioni.html\"><span lang=\"en\">Prenotazioni</span></a> &gt;&gt; Disponibilit&agrave;</p>
+sub Breadcrumb{
+my @percorso = @_;
+print "<div id=\"breadcrumb\">
+Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; ".$percorso[0]."
 </div>
 <div id=\"content\">
+";
+}
+
+sub FormPren{
+my %valori= @_;
+print "<div id=\"content\">
+<h1>Prenotazioni</h1>
+
+	<form method=\"post\" action=\"disponibilita.pl\">
+		<fieldset>
+			<!--<legend>Prenotazione</legend>-->
+            <p>
+			<label for=\"dataArrivo\">Data Arrivo </label>
+			<input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'arrivo'}.">
+            <label for=\"dataPartenza\">Data Partenza </label>
+            <input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'partenza'}.">
+            </p>
+            <label for=\"numeroCamere\">Numero Camere </label>
+            <input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=".$valori{'numerocamere'}.">
+            <label for=\"adulti\">Adulti </label>
+			<input type=\"text\" name=\"adulti\" id=\"adulti\" maxlength=\"1\" value=".$valori{'adulti'}.">
+            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\"/ $valori{'parcheggio'}> Voglio usufruire del parcheggio coperto convenzionato (5&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\"/ $valori{'pulizia'}> Pulizia giornaliera della camera (2&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\"/ $valori{'navaereo'}> Servizio navetta Fiumicino - Hotel : 30&euro;</p>
+            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\"/ $valori{'navtreno'}> Servizio navetta Stazione Termini - Hotel : 30&euro;</p>
+
+            <!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"prenota\" value=\"Prenota\" />
+
+		</fieldset>
+
+	</form>
+	<form method=\"post\" action=\"ricerca_prenotazioni.pl\">
+		<fieldset>
+			<!--<legend>Ricerca Prenotazione</legend>-->
+			<label for=\"numeroPrenotazione\">Numero Prenotazione</label>
+			<input type=\"text\" name=\"numeroPrenotazione\" id=\"numeroPrenotazione\" value=".$valori{'npren'}.">
+
+			<!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"ricerca\" value=\"Ricerca\" />
+
+
+		</fieldset>
+	</form>
+</div>
 ";
 }
 
@@ -131,7 +176,7 @@ if($singole != 0){
 
 print "<p>La tua prenotazione comprende: $exdoppie $exsingole.</p>";
 print "</div>"
-#print "Totale €: ".$prezzo->textContent."\n";
+#print "Totale &euro;: ".$prezzo->textContent."\n";
 #print "</div>";
 }
 
@@ -236,6 +281,7 @@ sub DiffData{
 }
 
 sub Dati{
+my %valori;
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale)=@_;
 print "<div id=\"dati\">";
 print "<h2>Inserisci i dati</h2>";
@@ -262,18 +308,24 @@ print "<form method=\"post\" action=\"prenotazione.pl\">
 		<input type=\"text\" name=\"totale\" id=\"nascosto\" value=$totale>
 		<p>Dati anagrafici</p>
         <fieldset>
-			<p><label for=\"nome\">Nome </label></p>
-			<p><input type=\"text\" name=\"nome\" id=\"nome\"></p>
-            <p><label for=\"cognome\">Cognome </label></p>
-            <p><input type=\"text\" name=\"cognome\" id=\"cognome\"></p>
-            <p><label for=\"dataNascita\">Data di Nascita </label></p>
-			<p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\"></p>
-            <p><label for=\"citta\">Citt&agrave; </label></p>
-            <p><input type=\"text\" name=\"citta\" id=\"citta\"></p>
-            <p><label for=\"email\">E-mail </label></p>
-            <p><input type=\"text\" name=\"email\" id=\"email\"></p>
-            <p><label for=\"cemail\">Conferma E-mail </label></p>
-            <p><input type=\"text\" name=\"cemail\" id=\"cemail\"></p>    
+            <div id=\"sinistra\">
+                <p><label for=\"nome\">Nome </label></p>
+                <p><input type=\"text\" name=\"nome\" id=\"nome\" value=".$valori{'nome'}."></p>
+                <p><label for=\"cognome\">Cognome </label></p>
+                <p><input type=\"text\" name=\"cognome\" id=\"cognome\" value=".$valori{'cognome'}."></p>
+                <p><label for=\"dataNascita\">Data di Nascita </label></p>
+                <p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'nascita'}."></p>
+                <p><label for=\"citta\">Citt&agrave; </label></p>
+                <p><input type=\"text\" name=\"citta\" id=\"citta\" value=".$valori{'citta'}."></p>
+            </div>
+            <div id=\"destra\">
+                <p><label for=\"email\">E-mail </label></p>
+                <p><input type=\"text\" name=\"email\" id=\"email\" value=".$valori{'email'}."></p>
+                <p><label for=\"cemail\">Conferma E-mail </label></p>
+                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"></p>
+                <p><label for=\"telefono\">Numero di cellulare </label></p>
+                <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=".$valori{'telefono'}."></p>
+            </div>
             </fieldset>
         <p>Dati di pagamento</p>
         <fieldset>
@@ -288,7 +340,7 @@ print "<form method=\"post\" action=\"prenotazione.pl\">
             <p><label for=\"cvc\">CVC </label></p>
             <p><input type=\"text\" name=\"cvc\"id=\"cvc\" maxlength=\"3\"></p>
             <p><label for=\"intcarta\">Nome e Cognome dell'intestatario della carta</label></p>
-            <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\"></p>
+            <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\" value=".$valori{'intcarta'}."></p>
         </fieldset>
         <input type=\"submit\" id=\"prenota\" value=\"Prenota\">
         </form>

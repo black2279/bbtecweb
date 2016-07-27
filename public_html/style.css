@@ -24,7 +24,7 @@ body{
     padding: 0;
     /*max-width: 59.375em;*/
     border: 0;
-    font-family: Raleway, Verdana, Helvetica, sans-serif;
+    font-family: Verdana, Helvetica, sans-serif;
     height: 100%;
 }
 h1{
@@ -326,13 +326,31 @@ fieldset{
     /*float: left;*/
     margin-top: 15em;
     padding-bottom: 2em;
+    width: 120%;
+    overflow: hidden;
 }
-#dati input:not(#prenota):not(#citta){
-    width: 1000px;
+#dati input:not(#prenota):not(#dataNascita):not(#cvc){
+    width: 16em;
+}
+input#cvc{
+    width: 3.125em;
+}
+input#dataNascita{
+    width: 9em;
+}
+
+
+#dati fieldset{
+    width: 40%;
 }
 
 #nascosto{
     display: none;
     height: 0px;
     
+}
+
+#dati #sinistra{
+    width: 22em;
+    float:left;
 }

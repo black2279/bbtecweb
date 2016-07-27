@@ -14,19 +14,22 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
-
+my $percorso = "Prenotazioni";
 sub ricercaDatiXML{
+my %valori;
+my $error = 0;
 use XML::LibXML;
 my $file = '../data/prenotazioni.xml';
 my $parser = XML::LibXML->new();
 
 if(-e($file)){
-
 my $doc=$parser->parse_file($file);
 my %prenotazione = @_;
 my $numeroprenotazione = $prenotazione{'numeroPrenotazione'};
-
+$valori{'npren'} = $numeroprenotazione;
 if(my $node = $doc->findnodes("//prenotazione[\@id=\"$numeroprenotazione\"]")->get_node(1)){
+$percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Ricerca Prenotazione";
+Std::Breadcrumb($percorso);
 my @childnodes = $node->nonBlankChildNodes();
 my $arrivo = $childnodes[0];
 my $partenza = $childnodes[1];
@@ -45,13 +48,15 @@ Std::PrintPren($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenota
 #print "Adulti ".$childnodes[2]->textContent."\n";
 #print "Tipo Camera ".$childnodes[3]->textContent."\n";
 }else{
-print "Il numero di prenotazione non corrisponde";
+Std::Breadcrumb($percorso);
+print "<p>Nessuna prenotazione trovata</p>";
+Std::FormPren(%valori);
 }
 Std::EndHtml();
 }else{
-
-print "Nessuna prenotazione trovata\n";
-
+Std::Breadcrumb($percorso);
+print "<p>Nessuna prenotazione trovata</p>";
+Std::FormPren(%valori);
 }
 
 }
@@ -67,8 +72,8 @@ my $error=0;
 #}
 
 
-if ($error){
-	print "Dati non corretti";
-}else{
+#if ($error){
+#	print "<p>Dati non corretti</p>";
+#}else{
 	ricercaDatiXML($page->Vars);
-}
+#}

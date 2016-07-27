@@ -14,7 +14,9 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
+my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
 
+Std::Breadcrumb($percorso);
 
 
 my $page = new CGI;
@@ -24,9 +26,11 @@ my $dataNascita = $page->param("dataNascita");
 my $citta = $page->param("citta");
 my $email = $page->param("email");
 my $cemail = $page->param("cemail");
+my $telefono = $page->param("telefono");
 my $pagamento = $page->param("pagamento");
 my $numerocarta = $page->param("numerocarta");
 my $cvc = $page->param("cvc");
+my $intcarta = $page->param("intcarta");
 my $dataarrivo = $page->param("dataarrivo");
 my $dataarrivo = $page->param("dataarrivo");
 my $datapartenza = $page->param("datapartenza");
@@ -40,16 +44,30 @@ my $navettaaereo = $page->param("navettaaereo");
 my $navettatreno = $page->param("navettatreno");
 
 my $error=0;
+
+my %valori;
+$valori{'nome'} = $nome;
+$valori{'cognome'} = $cognome;
+$valori{'nascita'} = $dataNascita;
+$valori{'citta'} = $citta;
+$valori{'email'} = $email;
+$valori{'telefono'} = $telefono;
+$valori{'intcarta'} = $intcarta
+
 if($cvc !~ /\d/ ){
     $error=1;
     print "<p>Il codice CVC deve contenere solo cifre.</p>";
+}
+if($nome =~ /\d/){
+    $error=1;
+    print "<p>Il nome pu&ograve; contenere solo lettere.</p>";
 }
 if($numerocarta !~ /\d/ ){
     $error=1;
     print "<p>Il numero della carta deve contenere solo cifre.</p>"
 }
 
-if($pagamento eq "Visa" && (length $numerocarta != 13 || length $numerocarta != 16)){
+if($pagamento eq "Visa" && (length $numerocarta != 16)){
     $error=1;
     print "<p>Il numero della carta non &egrave; valido.</p>";
 }
@@ -145,11 +163,19 @@ print "Il numero della prenotazione &egrave; $pren\n";
 
 
 
-
-
-
 if(!$error){
 inserisciDatiXML($page->Vars,);}
+
+else{
+    Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+    my $diff = Std::DiffData($dataarrivo,$datapartenza);
+    my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
+    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+    }
+    #inserisciDatiXML($page->Vars);
+    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
+}
 # sub enc {
 #     return Encode::encode('UTF-8', $_[0]);
 # }

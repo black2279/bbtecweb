@@ -1,9 +1,6 @@
 #!/usr/bin/perl
 #print "Content type: text/html; charset=UTF-8\n\n";
 
-#possibile modifica per gestire auto_increment,
-#creare attributo su tag prenotazioni con contatore prenotazioni;
-
 use DateTime;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
@@ -15,30 +12,9 @@ binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
 
-#sub inserisciDatiXML{
-#use XML::LibXML;
-#my $file = '../data/tariffe.xml';
+my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
 
-#my $parser = XML::LibXML->new();
-#my $id = -1;
-
-#my $doc=$parser->parse_file($file);
-
-#my %prenotazione = @_;
-#my $dataarrivo = $prenotazione{"dataArrivo"};
-#my $datapartenza = $prenotazione{"dataPartenza"};
-#my $notti = "\n\t\t<notti>".$prenotazione{'notti'}."</notti>";
-#my $numerocamere = $prenotazione{"numeroCamere"};
-#my $adulti = $prenotazione{"adulti"};
-#my $tipocamera = "\n\t\t<tipoCamera>".$prenotazione{'tipoCamera'}."</tipoCamera>";
-#my $parcheggio = $prenotazione{"parcheggio"};
-#my $pulizia = $prenotazione{"pulizia"};
-#my $navettaaereo = $prenotazione{"navettaereo"};
-#my $navettatreno = $prenotazione{"navettatreno"};
-#print "Il numero della prenotazione &egrave; $id\n";
-
-#}
-
+Std::Breadcrumb($percorso);
 
 sub isvaliddate {
   my $input = shift;
@@ -58,8 +34,6 @@ sub isvaliddate {
   }
 }
 
-
-
 my $page = new CGI;
 my $dataarrivo = $page->param("dataArrivo");
 my $datapartenza = $page->param("dataPartenza");
@@ -71,12 +45,26 @@ my $navettaaereo = $page->param("navettaaereo");
 my $navettatreno = $page->param("navettatreno");
 my $doppie = int($adulti / 2);
 my $singole = int($adulti % 2);
-#my $exdoppie="";
-#my $exsingole="";
-
 my $error=0;
 
+my %valori;
 
+$valori{'arrivo'} = $dataarrivo;
+$valori{'partenza'} = $datapartenza;
+$valori{'numerocamere'} = $numerocamere;
+$valori{'adulti'} = $adulti;
+if($parcheggio eq "true"){
+    $valori{'parcheggio'} = "checked";
+}
+if($pulizia eq "true"){
+    $valori{'pulizia'} = "checked";
+}
+if($navettaaereo eq "true"){
+    $valori{'navaereo'} = "checked";
+}
+if($navettatreno eq "true"){
+    $valori{'navtreno'} = "checked";
+}
 
 
 if(!isvaliddate($dataarrivo)){
@@ -124,18 +112,6 @@ if(!isvaliddate($datapartenza)){
 }
 
 
-
-#if ($notti !~ /\d/){
-#	$error=1;
-#	print "Notti non pu� contentere caratteri\n";
-#}elsif ($notti>=10){
-#	$error=1;
-#    print "Non puoi pernottare per pi� di 10 notti\n";
-#}elsif($notti == 0){
-#    $error=1;
-#	print "Il numero di notti non pu� essere pari a 0\n";
-#}
-
 if($datapartenza < $dataarrivo){
     $error=1;
     print "<p>La data di partenza non pu&ograve; essere precedente a quella di arrivo</p>";
@@ -147,35 +123,6 @@ if($numerocamere > $adulti){
     $error=1;
     print "<p>Il numero delle camere non pu&ograve; essere superiore al numero di adulti</p>"
 }
-
-#if ($adulti !~ /\d/){
-#	$error=1;
-#	print "Adulti non pu&ograve; contentere caratteri\n";
-#}elsif ($adulti>3){
-#	$error=1;
-#    print "Non esistono camere per pi&ugrave; di 3 adulti\n";
-#}elsif($adulti == 0){
-#	$error=1;
-#	print "Il numero di adulti non pu&ograve; essere pari a 0\n";
-#}
-
-# if ($tipocamera !~ /singola|doppia|singoladoppia/){
-# 	$error=1;
-# 	print "Non esiste questo tipo di camera\n";
-# }elsif ( ($tipocamera eq "singola" and $adulti > 1 ) or ( $tipocamera eq "doppia" and $adulti > 2 ) or ( $tipocamera eq "singoladoppia" # and $adulti > 3 ) ){
-# 	print "Troppi adulti per il tipo di camera\n";
-# 	$error=1;
-# }elsif ( ( $tipocamera eq "doppia" and $adulti < 2 ) or ( $tipocamera eq "singoladoppia" and $adulti < 3 )){
-# 	print "Pochi adulti per il tipo di camera\n";
-# 	$error=1;
-# }
-
-
-# if ($error){
-# 	print "Dati non corretti";
-# }else{
-	# inserisciDatiXML($page->Vars);
-# }
 
 if(!$error){
     #print "no error";
@@ -189,13 +136,11 @@ if(!$error){
     Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
 }
 else{
-    print "<form action=\"../prenotazioni.html\" method=\"post\">
-    <input type=\"submit\" value=\"Indietro\" 
-         name=\"Submit\" />
-</form>";
+    Std::FormPren(%valori);
+    #print "<form action=\"../cgi-bin/prenotazioni.pl\" method=\"post\">
+    #<input type=\"submit\" value=\"Indietro\" 
+    #     name=\"Submit\" />
+#</form>";
 }
-# sub enc {
-#     return Encode::encode('UTF-8', $_[0]);
-# }
 
 #Std::EndHtml();
