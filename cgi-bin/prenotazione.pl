@@ -21,6 +21,7 @@ Std::Breadcrumb($percorso);
 
 my $page = new CGI;
 my $nome = $page->param("nome");
+print $nome;
 my $cognome = $page->param("cognome");
 my $dataNascita = $page->param("dataNascita");
 my $citta = $page->param("citta");
@@ -52,35 +53,159 @@ $valori{'nascita'} = $dataNascita;
 $valori{'citta'} = $citta;
 $valori{'email'} = $email;
 $valori{'telefono'} = $telefono;
-$valori{'intcarta'} = $intcarta
-
-if($cvc !~ /\d/ ){
-    $error=1;
-    print "<p>Il codice CVC deve contenere solo cifre.</p>";
+$valori{'intcarta'} = $intcarta;
+if ($pagamento eq "Visa"){
+    $valori{'Vpag'} = "selected";
 }
-if($nome =~ /\d/){
-    $error=1;
-    print "<p>Il nome pu&ograve; contenere solo lettere.</p>";
+if ($pagamento eq "Mastercard"){
+    $valori{'Mpag'} = "selected";
 }
-if($numerocarta !~ /\d/ ){
-    $error=1;
-    print "<p>Il numero della carta deve contenere solo cifre.</p>"
+if ($pagamento eq "American Express"){
+    $valori{'Apag'} = "selected";
 }
 
-if($pagamento eq "Visa" && (length $numerocarta != 16)){
-    $error=1;
-    print "<p>Il numero della carta non &egrave; valido.</p>";
+if(length ($nome) == 0){
+    $error = 1;
+    $valori{'ernome'} = "Il campo nome non pu&ograve; essere vuoto."
+} else {
+    if($nome =~ /\d/){
+        $error=1;
+        $valori{'ernome'} = "Il nome pu&ograve; contenere solo lettere.";
+    }
 }
 
-if($pagamento eq "Mastercard" &&  length $numerocarta != 16){
-    $error=1;
-    print "<p>Il numero della carta non &egrave; valido.</p>";
+if($cognome eq undef){
+    $error = 1;
+    $valori{'ercognome'} = "Il campo cognome non pu&ograve; essere vuoto."
+} else{
+    if($cognome =~ /\d/){
+    $error = 1;
+    $valori{'ercognome'} = "Il cognome pu&ograve; contenere solo lettere";
+    }
 }
 
-if($pagamento eq "American Express" && length $numerocarta != 15){
-    $error=1;
-    print "<p>Il numero della carta non &egrave; valido.</p>";
+if($dataNascita eq undef){
+    $error = 1;
+    $valori{'ernascita'} = "Il campo Data di nascita non pu&ograve; essere vuoto."
 }
+
+if($citta eq undef){
+    $error = 1;
+    $valori{'ercitta'} = "Il campo Citt&agrave; non pu&ograve; essere vuoto."
+} else {
+    if($citta =~ /\d/){
+    $error = 1;
+    $valori{'ercitta'} = "Il campo Citt&agrave; pu&ograve; contenere solo lettere";
+    }
+}
+
+if($email eq undef){
+    $error = 1;
+    $valori{'eremail'} = "Il campo <span lang=\"en\">email</span> non pu&ograve; essere vuoto.";
+}
+
+if($cemail eq undef){
+    $error = 1;
+    $valori{'ercemail'} = "&Egrave; necessario riscrivere l'<span lang=\"en\">email</span>.";
+}
+
+if($email ne $cemail){
+    $error = 1;
+    $valori{'eremail'} = "Le email non coincidono.";
+}
+
+if($telefono eq undef){
+    $error = 1;
+    $valori{'ertel'} = "Il campo Numero di telefono non pu&ograve; essere vuoto.";
+}
+
+if($numerocarta eq undef){
+    $error = 1;
+    $valori{'ernumcarta'} = "Il campo numero della carta non pu&ograve; essere vuoto.";
+} else {
+    if($numerocarta =~ /\D/ ){
+    $error=1;
+    $valori{'ernumcarta'} = "Il numero della carta deve contenere solo cifre.";
+    }
+    else{
+    
+            if($pagamento eq "Visa" && (length $numerocarta != 16)){
+                $error=1;
+                $valori{'ercifre'} = "Il numero della carta non &egrave; valido.";
+            }
+
+            if($pagamento eq "Mastercard" &&  length $numerocarta != 16){
+                $error=1;
+                $valori{'ercifre'} = "Il numero della carta non &egrave; valido.";
+            }
+
+            if($pagamento eq "American Express" && length $numerocarta != 15){
+                $error=1;
+                $valori{'ercifre'} = "Il numero della carta non &egrave; valido.";
+            }
+            
+            if($pagamento eq "Visa" && substr($numerocarta, 0, 1) != "4"){
+                $error=1;
+                $valori{'ermet'} = "Controlla che il metodo di pagamento sia corretto.";
+            }
+
+            if($pagamento eq "Mastercard" && substr($numerocarta, 0, 1) != "5"){
+                $error=1;
+                $valori{'ermet'} = "Controlla che il metodo di pagamento sia corretto.";
+            }
+            
+            if($pagamento eq "American Express" && substr($numerocarta, 0, 1) != "3"){
+                $error=1;
+                $valori{'ermet'} = "Controlla che il metodo di pagamento sia corretto.";
+            }
+
+    }
+}
+
+if($cvc eq undef){
+    $error = 1;
+    $valori{'ercvc'} = "Il campo CVC non pu&ograve; essere vuoto.";
+} else {
+    if($cvc =~ /\D/ ){
+    $error=1;
+    $valori{'ercvc'} = "Il codice CVC deve contenere solo cifre.";
+    }
+}
+
+
+if($intcarta eq undef){
+    $error = 1;
+    $valori{'erintcarta'} = "Il campo Intestatario della carta non pu&ograve; essere vuoto.";
+} else {
+    if($intcarta =~ /\d/){
+    $error = 1;
+    $valori{'erintcarta'} = "Il nome dell'intestatario pu&ograve; contenere solo lettere";
+    }
+}
+
+sub isvaliddate {
+  my $input = shift;
+  if ($input =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!) {
+    # At this point, $1 holds the day, $2 the month and $3 the year of the date entered
+    if ($1 == 31 and ($2 == 4 or $2 == 6 or $2 == 9 or $2 == 11)) {
+      return 0; # 31st of a month with 30 days
+    } elsif ($1 >= 30 and $2 == 2) {
+      return 0; # February 30th or 31st
+    } elsif ($2 == 2 and $1 == 29 and not ($3 % 4 == 0 and ($3 % 100 != 0 or $3 % 400 == 0))) {
+      return 0; # February 29th outside a leap year
+    } else {
+      return 1; # Valid date
+    }
+  } else {
+    return 0; # Not a date
+  }
+}
+if($dataNascita ne undef && !isvaliddate($dataNascita)){
+	$error=1;
+	$valori{'ernascita'} = "Data di nascita non valida.";
+}
+
+
 
 sub ricercaDatiXML{
 use XML::LibXML;
@@ -174,7 +299,7 @@ else{
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
     }
     #inserisciDatiXML($page->Vars);
-    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
+    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori);
 }
 # sub enc {
 #     return Encode::encode('UTF-8', $_[0]);

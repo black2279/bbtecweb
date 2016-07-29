@@ -354,3 +354,8 @@ input#dataNascita{
     width: 22em;
     float:left;
 }
+
+.errore{
+    color: crimson;
+    font-weight: bold;
+}

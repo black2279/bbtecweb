@@ -281,8 +281,7 @@ sub DiffData{
 }
 
 sub Dati{
-my %valori;
-my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale)=@_;
+my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori)=@_;
 print "<div id=\"dati\">";
 print "<h2>Inserisci i dati</h2>";
 print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.";
@@ -309,37 +308,72 @@ print "<form method=\"post\" action=\"prenotazione.pl\">
 		<p>Dati anagrafici</p>
         <fieldset>
             <div id=\"sinistra\">
-                <p><label for=\"nome\">Nome </label></p>
-                <p><input type=\"text\" name=\"nome\" id=\"nome\" value=".$valori{'nome'}."></p>
-                <p><label for=\"cognome\">Cognome </label></p>
+                <p><label for=\"nome\">Nome </label></p>";
+                if($valori{'ernome'} ne undef){print "
+                <span class=\"errore\">".$valori{'ernome'}."</span>"};
+                print"
+                <p><input type=\"text\" name=\"nome\" id=\"nome\" value=\"$valori{'nome'}\"></p>
+                <p><label for=\"cognome\">Cognome </label></p>";
+                if($valori{'ercognome'} ne undef){print "
+                <span class=\"errore\">".$valori{'ercognome'}."</span>"};
+                print "
                 <p><input type=\"text\" name=\"cognome\" id=\"cognome\" value=".$valori{'cognome'}."></p>
-                <p><label for=\"dataNascita\">Data di Nascita </label></p>
+                <p><label for=\"dataNascita\">Data di Nascita </label></p>";
+                if($valori{'ernascita'} ne undef){print "
+                <span class=\"errore\">".$valori{'ernascita'}."</span>"};
+                print "
                 <p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'nascita'}."></p>
-                <p><label for=\"citta\">Citt&agrave; </label></p>
+                <p><label for=\"citta\">Citt&agrave; </label></p>";
+                if($valori{'ercitta'} ne undef){print "
+                <span class=\"errore\">".$valori{'ercitta'}."</span>"};
+                print "
                 <p><input type=\"text\" name=\"citta\" id=\"citta\" value=".$valori{'citta'}."></p>
             </div>
             <div id=\"destra\">
-                <p><label for=\"email\">E-mail </label></p>
-                <p><input type=\"text\" name=\"email\" id=\"email\" value=".$valori{'email'}."></p>
-                <p><label for=\"cemail\">Conferma E-mail </label></p>
-                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"></p>
-                <p><label for=\"telefono\">Numero di cellulare </label></p>
+                <p><label for=\"mail\">E-mail </label></p>";
+                if($valori{'eremail'} ne undef){print "
+                <span class=\"errore\">".$valori{'eremail'}."</span>"};
+                print "
+                <p><input type=\"text\" name=\"mail\" id=\"mail\"  pattern =\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}\" value=".$valori{'email'}." ></p>
+                <p><label for=\"cemail\">Conferma E-mail </label></p>";
+                if($valori{'ercemail'} ne undef){print "
+                <span class=\"errore\">".$valori{'ercemail'}."</span>"};
+                print "
+                <p><input type=\"text\" name=\"cemail\" id=\"cemail\" pattern =\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}\"/></p>
+                <p><label for=\"telefono\">Numero di cellulare </label></p>";
+                if($valori{'ertel'} ne undef){print "
+                <span class=\"errore\">".$valori{'ertel'}."</span>"};
+                print "
                 <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=".$valori{'telefono'}."></p>
             </div>
             </fieldset>
         <p>Dati di pagamento</p>
         <fieldset>
-            <p><label for=\"pagamento\">Metodo di pagamento </label></p>
+            <p><label for=\"pagamento\">Metodo di pagamento </label></p>";
+            if($valori{'ermet'} ne undef){print "
+            <span class=\"errore\">".$valori{'ermet'}."</span>"};
+            print "
             <p><select name=\"pagamento\" id=\"pagamento\">
-                <option value=\"Visa\">Visa</option>
-                <option value=\"Mastercard\">Mastercard</option>
-                <option value=\"American Express\">American Express</option>
+                <option value=\"Visa\"".$valori{'Vpag'}.">Visa</option>
+                <option value=\"Mastercard\"".$valori{'Mpag'}.">Mastercard</option>
+                <option value=\"American Express\"".$valori{'Apag'}.">American Express</option>
             </select></p>
-            <p><label for=\"numerocarta\">Numero carta </label></p>
+            <p><label for=\"numerocarta\">Numero carta </label></p>";
+            if($valori{'ernumcarta'} ne undef){print "
+            <span class=\"errore\">".$valori{'ernumcarta'}."</span>"};
+            if($valori{'ercifre'} ne undef){print "
+            <span class=\"errore\">".$valori{'ercifre'}."</span>"};
+            print"
 			<p><input type=\"text\" name=\"numerocarta\" id=\"numerocarta\" maxlength=\"16\"></p>
-            <p><label for=\"cvc\">CVC </label></p>
+            <p><label for=\"cvc\">CVC </label></p>";
+            if($valori{'ercvc'} ne undef){
+            print "<span class=\"errore\">".$valori{'ercvc'}."</span>"};
+            print "
             <p><input type=\"text\" name=\"cvc\"id=\"cvc\" maxlength=\"3\"></p>
-            <p><label for=\"intcarta\">Nome e Cognome dell'intestatario della carta</label></p>
+            <p><label for=\"intcarta\">Nome e Cognome dell'intestatario della carta</label></p>";
+            if($valori{'erintcarta'} ne undef){
+            print "<span class=\"errore\">".$valori{'erintcarta'}."</span>"};
+            print "
             <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\" value=".$valori{'intcarta'}."></p>
         </fieldset>
         <input type=\"submit\" id=\"prenota\" value=\"Prenota\">
