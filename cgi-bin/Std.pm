@@ -58,7 +58,7 @@ sub HtmlCode{
 sub Breadcrumb{
 my @percorso = @_;
 print "<div id=\"breadcrumb\">
-Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; ".$percorso[0]."
+Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
 </div>
 <div id=\"content\">
 ";
@@ -66,27 +66,45 @@ Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&g
 
 sub FormPren{
 my %valori= @_;
-print "<div id=\"content\">
+print "<div id=\"centrale\">
 <h1>Prenotazioni</h1>
 
 	<form method=\"post\" action=\"disponibilita.pl\">
 		<fieldset>
 			<!--<legend>Prenotazione</legend>-->
-            <p>
-			<label for=\"dataArrivo\">Data Arrivo </label>
-			<input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'arrivo'}.">
-            <label for=\"dataPartenza\">Data Partenza </label>
-            <input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'partenza'}.">
-            </p>
-            <label for=\"numeroCamere\">Numero Camere </label>
-            <input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=".$valori{'numerocamere'}.">
-            <label for=\"adulti\">Adulti </label>
-			<input type=\"text\" name=\"adulti\" id=\"adulti\" maxlength=\"1\" value=".$valori{'adulti'}.">
-            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\"/ $valori{'parcheggio'}> Voglio usufruire del parcheggio coperto convenzionato (5&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\"/ $valori{'pulizia'}> Pulizia giornaliera della camera (2&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\"/ $valori{'navaereo'}> Servizio navetta Fiumicino - Hotel : 30&euro;</p>
-            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\"/ $valori{'navtreno'}> Servizio navetta Stazione Termini - Hotel : 30&euro;</p>
-
+            <div id=\"dati\">
+            <div id=\"sinistra\">
+			<p><label for=\"dataArrivo\">Data Arrivo </label></p>";
+            if($valori{'erarrivo'} ne undef){ print "
+            <span class=\"error\">$valori{'erarrivo'}</span>";}
+            print "
+			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" /></p>
+            <p><label for=\"dataPartenza\">Data Partenza </label></p>";
+            if($valori{'erpartenza'} ne undef){ print "
+            <span class=\"error\">$valori{'erpartenza'}</span>";}
+            print "
+            <p><input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" value=\"$valori{'partenza'}\" /></p>
+            </div>
+            
+            <div id=\"destra\">
+            <p><label for=\"numeroCamere\">Numero Camere </label></p>";
+            if($valori{'ercamere'} ne undef){ print "
+            <span class=\"error\">$valori{'ercamere'}</span>";}
+            print "
+            <p><input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=\"$valori{'numerocamere'}\" /></p>
+            <p><label for=\"adulti\">Adulti </label></p>";
+            if($valori{'eradulti'} ne undef){ print "
+            <span class=\"error\">$valori{'eradulti'}</span>";}
+            print "
+			<p><input type=\"text\" name=\"adulti\" id=\"adulti\" maxlength=\"1\" value=\"$valori{'adulti'}\" /></p>
+            </div>
+            </div>
+            <div id=\"elenco\">
+            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\" $valori{'parcheggio'}/> Voglio usufruire del parcheggio coperto convenzionato (5&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\" $valori{'pulizia'}/> Pulizia giornaliera della camera (2&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\" $valori{'navaereo'}/> Servizio navetta Fiumicino - Hotel : 30&euro;</p>
+            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\" $valori{'navtreno'}/> Servizio navetta Stazione Termini - Hotel : 30&euro;</p>
+            </div>
             <!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"prenota\" value=\"Prenota\" />
 
 		</fieldset>
@@ -95,63 +113,68 @@ print "<div id=\"content\">
 	<form method=\"post\" action=\"ricerca_prenotazioni.pl\">
 		<fieldset>
 			<!--<legend>Ricerca Prenotazione</legend>-->
-			<label for=\"numeroPrenotazione\">Numero Prenotazione</label>
-			<input type=\"text\" name=\"numeroPrenotazione\" id=\"numeroPrenotazione\" value=".$valori{'npren'}.">
+			<p><label for=\"numeroPrenotazione\">Numero Prenotazione</label></p>";
+            if($valori{'erpren'} ne undef){ print "
+            <span class=\"error\">$valori{'erpren'}</span>";}
+            print "
+			<p><input type=\"text\" name=\"numeroPrenotazione\" id=\"numeroPrenotazione\" value=\"$valori{'npren'}\"/></p>
 
 			<!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"ricerca\" value=\"Ricerca\" />
 
 
 		</fieldset>
 	</form>
-</div>
-";
+</div>";
+
 }
 
 sub PrintPren{
 my($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno)=@_;
 print "<h2>La tua prenotazione</h2>";
-print "<p>Numero prenotazione: ".$numeroprenotazione."</p>";
+print "<div id=\"centrale\">";
+print "<p>Numero prenotazione: $numeroprenotazione</p>";
 print "<div id=\"richiesta\">";
-print "<p>Data Arrivo: ".$arrivo->textContent."</p>";
-print "<p>Data Partenza ".$partenza->textContent."</p>";
-print "<p>Ospiti ".$adulti->textContent."</p>";
+print "<p>Data Arrivo: $arrivo</p>";
+print "<p>Data Partenza $partenza</p>";
+print "<p>Ospiti $adulti</p>";
 print "<p>La tua prenotazione comprende:</p>";
 if($singole->textContent != 0){
-print "<p>Camere singole: ".$singole->textContent."</p>";
+$singole = $singole->textContent;
+print "<p>Camere singole: $singole</p>";
 }
 if($doppie->textContent  != 0){
-print "<p>Camere doppie: ".$doppie->textContent."</p>";
+$doppie = $doppie->textContent;
+print "<p>Camere doppie: $doppie</p>";
 }
-if($parcheggio->textContent == 1 || $pulizia->textContent == 1 || $navaereo->textContent == 1 || $navtreno->textContent == 1){
+if($parcheggio->textContent eq "true" || $pulizia->textContent eq "true" || $navaereo->textContent eq "true" || $navtreno->textContent eq "true"){
 print"<p>La tua prenotazione comprende anche i seguenti servizi</p>";
- if($parcheggio->textContent == 1){
+ if($parcheggio->textContent eq "true"){
    print "<p>- Parcheggio</p>";
    }
-   if($pulizia->textContent == 1){
+   if($pulizia->textContent eq "true"){
    print "<p>- Pulizia Quotidiana</p>";
    }
-   if($navaereo->textContent == 1){
+   if($navaereo->textContent eq "true"){
    print "<p>- Navetta dall'Aeroporto</p>";
    }
-   if($navtreno->textContent == 1){
+   if($navtreno->textContent eq "true"){
    print "<p>- Navetta dalla Stazione</p>";
    }
 }
-print "<p>Totale: &euro;".$prezzo->textContent."</p>";
+print "<p>Totale: &euro; $prezzo</p>";
+print "</div>";
 print "</div>";
 }
 
 sub Disp{
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
-print "<h2>La tua prenotazione \n</h2>";
+#print "<h2>La tua prenotazione</h2>";
 print "<div id=\"richiesta\">";
-print "<p>Data Arrivo ".$dataarrivo."\n</p>";
-print "<p>Data Partenza ".$datapartenza."\n</p>";
-print "<p>Adulti ".$adulti."\n</p>";
-print "<p>Numero Camere ".$numerocamere."\n</p>";
-# print "</div>";
-# my $doppie = int($numerocamere / 2);
-# my $singole = int($numerocamere % 2);
+print "<p>Data Arrivo $dataarrivo</p>";
+print "<p>Data Partenza $datapartenza</p>";
+print "<p>Adulti $adulti</p>";
+print "<p>Numero Camere $numerocamere</p>";
+
 my $exdoppie="";
 my $exsingole="";
 if($doppie != 0){
@@ -284,99 +307,99 @@ sub Dati{
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori)=@_;
 print "<div id=\"dati\">";
 print "<h2>Inserisci i dati</h2>";
-print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.";
+print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.</p>";
 print "<form method=\"post\" action=\"prenotazione.pl\">
-        <input type=\"text\" name=\"dataarrivo\" id=\"nascosto\" value=$dataarrivo readonly>
+        <p><input type=\"text\" name=\"dataarrivo\" class=\"nascosto\" value=\"$dataarrivo\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"datapartenza\" id=\"nascosto\" value=$datapartenza readonly>
+		<p><input type=\"text\" name=\"datapartenza\" class=\"nascosto\" value=\"$datapartenza\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"numerocamere\" id=\"nascosto\" value=$numerocamere readonly>
+		<p><input type=\"text\" name=\"numerocamere\" class=\"nascosto\" value=\"$numerocamere\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"adulti\" id=\"nascosto\" value=$adulti readonly>
+		<p><input type=\"text\" name=\"adulti\" class=\"nascosto\" value=\"$adulti\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"doppie\" id=\"nascosto\" value=$doppie readonly>
+		<p><input type=\"text\" name=\"doppie\" class=\"nascosto\" value=\"$doppie\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"singole\" id=\"nascosto\" value=$singole readonly>
+		<p><input type=\"text\" name=\"singole\" class=\"nascosto\" value=\"$singole\" readonly=\"readonly\"/></p>
 
-		<input type=\"text\" name=\"parcheggio\" id=\"nascosto\" value=$parcheggio readonly>
+		<p><input type=\"text\" name=\"parcheggio\" class=\"nascosto\" value=\"$parcheggio\" readonly=\"readonly\"/></p>
         
-        <input type=\"text\" name=\"pulizia\" id=\"nascosto\" value=$pulizia readonly>
+        <p><input type=\"text\" name=\"pulizia\" class=\"nascosto\" value=\"$pulizia\" readonly=\"readonly\"/></p>
         
-		<input type=\"text\" name=\"navettaaereo\" id=\"nascosto\" value=$navettaaereo>
-		<input type=\"text\" name=\"navettatreno\" id=\"nascosto\" value=$navettatreno>
-		<input type=\"text\" name=\"totale\" id=\"nascosto\" value=$totale>
+		<p><input type=\"text\" name=\"navettaaereo\" class=\"nascosto\" value=\"$navettaaereo\" readonly=\"readonly\"/></p>
+		<p><input type=\"text\" name=\"navettatreno\" class=\"nascosto\" value=\"$navettatreno\" readonly=\"readonly\"/></p>
+		<p><input type=\"text\" name=\"totale\" class=\"nascosto\" value=\"$totale\"/></p>
 		<p>Dati anagrafici</p>
         <fieldset>
             <div id=\"sinistra\">
                 <p><label for=\"nome\">Nome </label></p>";
                 if($valori{'ernome'} ne undef){print "
-                <span class=\"errore\">".$valori{'ernome'}."</span>"};
+                <span class=\"errore\">$valori{'ernome'}</span>"};
                 print"
-                <p><input type=\"text\" name=\"nome\" id=\"nome\" value=\"$valori{'nome'}\"></p>
+                <p><input type=\"text\" name=\"nome\" id=\"nome\" value=\"$valori{'nome'}\"/></p>
                 <p><label for=\"cognome\">Cognome </label></p>";
                 if($valori{'ercognome'} ne undef){print "
-                <span class=\"errore\">".$valori{'ercognome'}."</span>"};
+                <span class=\"errore\">$valori{'ercognome'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"cognome\" id=\"cognome\" value=".$valori{'cognome'}."></p>
+                <p><input type=\"text\" name=\"cognome\" id=\"cognome\" value=\"$valori{'cognome'}\"/></p>
                 <p><label for=\"dataNascita\">Data di Nascita </label></p>";
                 if($valori{'ernascita'} ne undef){print "
-                <span class=\"errore\">".$valori{'ernascita'}."</span>"};
+                <span class=\"errore\">$valori{'ernascita'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" placeholder=\"gg/mm/aaaa\" value=".$valori{'nascita'}."></p>
+                <p><input type=\"text\" name=\"dataNascita\" id=\"dataNascita\" maxlength=\"10\" value=\"$valori{'nascita'}\"/></p>
                 <p><label for=\"citta\">Citt&agrave; </label></p>";
                 if($valori{'ercitta'} ne undef){print "
-                <span class=\"errore\">".$valori{'ercitta'}."</span>"};
+                <span class=\"errore\">$valori{'ercitta'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"citta\" id=\"citta\" value=".$valori{'citta'}."></p>
+                <p><input type=\"text\" name=\"citta\" id=\"citta\" value=\"$valori{'citta'}\"/></p>
             </div>
             <div id=\"destra\">
-                <p><label for=\"mail\">E-mail </label></p>";
+                <p><label for=\"email\">E-mail </label></p>";
                 if($valori{'eremail'} ne undef){print "
-                <span class=\"errore\">".$valori{'eremail'}."</span>"};
+                <span class=\"errore\">$valori{'eremail'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"mail\" id=\"mail\"  pattern =\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}\" value=".$valori{'email'}." ></p>
+                <p><input type=\"text\" name=\"email\" id=\"email\" value=\"$valori{'email'}\"/></p>
                 <p><label for=\"cemail\">Conferma E-mail </label></p>";
                 if($valori{'ercemail'} ne undef){print "
-                <span class=\"errore\">".$valori{'ercemail'}."</span>"};
+                <span class=\"errore\">$valori{'ercemail'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"cemail\" id=\"cemail\" pattern =\"[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}\"/></p>
+                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"/></p>
                 <p><label for=\"telefono\">Numero di cellulare </label></p>";
                 if($valori{'ertel'} ne undef){print "
-                <span class=\"errore\">".$valori{'ertel'}."</span>"};
+                <span class=\"errore\">$valori{'ertel'}</span>"};
                 print "
-                <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=".$valori{'telefono'}."></p>
+                <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=\"$valori{'telefono'}\" maxlength=\"13\"/></p>
             </div>
             </fieldset>
         <p>Dati di pagamento</p>
         <fieldset>
             <p><label for=\"pagamento\">Metodo di pagamento </label></p>";
             if($valori{'ermet'} ne undef){print "
-            <span class=\"errore\">".$valori{'ermet'}."</span>"};
+            <span class=\"errore\">$valori{'ermet'}</span>"};
             print "
             <p><select name=\"pagamento\" id=\"pagamento\">
-                <option value=\"Visa\"".$valori{'Vpag'}.">Visa</option>
-                <option value=\"Mastercard\"".$valori{'Mpag'}.">Mastercard</option>
-                <option value=\"American Express\"".$valori{'Apag'}.">American Express</option>
+                <option value=\"Visa\" $valori{'Vpag'}>Visa</option>
+                <option value=\"Mastercard\" $valori{'Mpag'}>Mastercard</option>
+                <option value=\"American Express\" $valori{'Apag'}>American Express</option>
             </select></p>
             <p><label for=\"numerocarta\">Numero carta </label></p>";
             if($valori{'ernumcarta'} ne undef){print "
-            <span class=\"errore\">".$valori{'ernumcarta'}."</span>"};
+            <span class=\"errore\">$valori{'ernumcarta'}</span>"};
             if($valori{'ercifre'} ne undef){print "
-            <span class=\"errore\">".$valori{'ercifre'}."</span>"};
+            <span class=\"errore\">$valori{'ercifre'}</span>"};
             print"
-			<p><input type=\"text\" name=\"numerocarta\" id=\"numerocarta\" maxlength=\"16\"></p>
+			<p><input type=\"text\" name=\"numerocarta\" id=\"numerocarta\" maxlength=\"16\"/></p>
             <p><label for=\"cvc\">CVC </label></p>";
             if($valori{'ercvc'} ne undef){
-            print "<span class=\"errore\">".$valori{'ercvc'}."</span>"};
+            print "<span class=\"errore\">$valori{'ercvc'}</span>"};
             print "
-            <p><input type=\"text\" name=\"cvc\"id=\"cvc\" maxlength=\"3\"></p>
+            <p><input type=\"text\" name=\"cvc\" id=\"cvc\" maxlength=\"3\"/></p>
             <p><label for=\"intcarta\">Nome e Cognome dell'intestatario della carta</label></p>";
             if($valori{'erintcarta'} ne undef){
-            print "<span class=\"errore\">".$valori{'erintcarta'}."</span>"};
+            print "<span class=\"errore\">$valori{'erintcarta'}</span>"};
             print "
-            <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\" value=".$valori{'intcarta'}."></p>
+            <p><input type=\"text\" name=\"intcarta\" id=\"intcarta\" value=\"$valori{'intcarta'}\"/></p>
         </fieldset>
-        <input type=\"submit\" id=\"prenota\" value=\"Prenota\">
+        <p><input type=\"submit\" id=\"prenota\" value=\"Prenota\"/></p>
         </form>
         </div>";
             
@@ -399,7 +422,7 @@ print "</div>
 
         <p>Telefono 0093412534</p>
         <p>Email bbmichele\@gmail.com</p>
-        </div>
+    </div>
 
 </div>
 </div>

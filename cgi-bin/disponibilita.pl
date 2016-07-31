@@ -12,9 +12,7 @@ binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
 
-my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
 
-Std::Breadcrumb($percorso);
 
 sub isvaliddate {
   my $input = shift;
@@ -67,33 +65,46 @@ if($navettatreno eq "true"){
 }
 
 
-if(!isvaliddate($dataarrivo)){
-	$error=1;
-	print "La data di arrivo contiene un errore\n";
-}else{
-  $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
-  my $dt1 = DateTime->new(
-      year       => $3,
-      month      => $2,
-      day        => $1,
-      hour       => 00,
-      minute     => 00,
-      second     => 00,
-      nanosecond => 000000000,
-      time_zone  => 'Europe/Rome',
-  );
-  my $dt2 = DateTime->now(time_zone=>'local');
-  if(DateTime->compare($dt1, $dt2) == -1){
-  $error=1;
-  print "Data di arrivo non valida\n ";
-  }
+
+if($dataarrivo eq undef){
+    $error = 1;
+    $valori{'erarrivo'} = "Il campo data di arrivo &egrave; obbligatorio";
+}
+else{
+    if(!isvaliddate($dataarrivo)){
+        $error=1;
+        $valori{'erarrivo'} = "La data di arrivo contiene un errore";
+    }else{
+      $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
+      my $dt1 = DateTime->new(
+          year       => $3,
+          month      => $2,
+          day        => $1,
+          hour       => 00,
+          minute     => 00,
+          second     => 00,
+          nanosecond => 000000000,
+          time_zone  => 'Europe/Rome',
+      );
+      my $dt2 = DateTime->now(time_zone=>'local');
+      if(DateTime->compare($dt1, $dt2) == -1){
+      $error=1;
+      $valori{'erarrivo'} =  "Data di arrivo non valida";
+      }
+    }
 }
 
+
+if($datapartenza eq undef){
+    $error = 1;
+    $valori{'erpartenza'} = "Il campo data di partenza &egrave; obbligatorio";
+}
+else{
 if(!isvaliddate($datapartenza)){
 	$error=1;
-	print "La data di partenza contiene un errore\n";
+	$valori{'erpartenza'} = "La data di partenza contiene un errore";
 }else{
-  $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
+  $datapartenza =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
   my $dt1 = DateTime->new(
       year       => $3,
       month      => $2,
@@ -107,40 +118,56 @@ if(!isvaliddate($datapartenza)){
   my $dt2 = DateTime->now(time_zone=>'local');
   if(DateTime->compare($dt1, $dt2) == -1){
   $error=1;
-  print "Data di partenza non valida\n ";
+  $valori{'erpartenza'} = "Data di partenza non valida";
   }
 }
-
+}
 
 if($datapartenza < $dataarrivo){
     $error=1;
-    print "<p>La data di partenza non pu&ograve; essere precedente a quella di arrivo</p>";
-    # my $testo = enc($text);
-    # print $text;
+    $valori{'erarrivo'} = "La data di partenza non pu&ograve; essere precedente a quella di arrivo.";
 
 }
 if($numerocamere > $adulti){
     $error=1;
-    print "<p>Il numero delle camere non pu&ograve; essere superiore al numero di adulti</p>"
+    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere superiore al numero di adulti."
 }
+if($numerocamere eq undef){
+    $error=1;
+    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere vuoto.";
+} else {
+if($numerocamere =~ /\D/){
+    $error=1;
+    $valori{'ercamere'} = "Il campo deve essere un valore numerico.";
+} }
+
+if($adulti eq undef){
+    $error=1;
+    $valori{'eradulti'} = "&Egrave; necessario indicare il numero di adulti.";
+    }
+    else {
+        if($adulti =~ /\D/){
+        $error=1;
+        $valori{'eradulti'} = "Il campo ospiti deve essere un valore numerico."
+        }
+    }
 
 if(!$error){
-    #print "no error";
+    my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
+    Std::Breadcrumb($percorso);
+    print "<h2>La tua prenotazione </h2>";
     Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
     }
-    #inserisciDatiXML($page->Vars);
     Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
 }
 else{
+my $percorso = "Prenotazioni";
+Std::Breadcrumb($percorso);
     Std::FormPren(%valori);
-    #print "<form action=\"../cgi-bin/prenotazioni.pl\" method=\"post\">
-    #<input type=\"submit\" value=\"Indietro\" 
-    #     name=\"Submit\" />
-#</form>";
 }
 
-#Std::EndHtml();
+Std::EndHtml();

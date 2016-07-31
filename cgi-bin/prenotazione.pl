@@ -14,14 +14,11 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
-my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
 
-Std::Breadcrumb($percorso);
 
 
 my $page = new CGI;
 my $nome = $page->param("nome");
-print $nome;
 my $cognome = $page->param("cognome");
 my $dataNascita = $page->param("dataNascita");
 my $citta = $page->param("citta");
@@ -55,13 +52,13 @@ $valori{'email'} = $email;
 $valori{'telefono'} = $telefono;
 $valori{'intcarta'} = $intcarta;
 if ($pagamento eq "Visa"){
-    $valori{'Vpag'} = "selected";
+    $valori{'Vpag'} = "selected = \"selected\"";
 }
 if ($pagamento eq "Mastercard"){
-    $valori{'Mpag'} = "selected";
+    $valori{'Mpag'} = "selected = \"selected\"";
 }
 if ($pagamento eq "American Express"){
-    $valori{'Apag'} = "selected";
+    $valori{'Apag'} = "selected = \"selected\"";
 }
 
 if(length ($nome) == 0){
@@ -218,11 +215,11 @@ my $doc=$parser->parse_file($file);
 
 my %prenotazione = @_;
 my $numeroprenotazione = $prenotazione{'numeroPrenotazione'};
-my @set = ('0' ..'9', 'A' .. 'M', 'N' .. 'Z');
+my @set = ('1' ..'9', 'A' .. 'N', 'P' .. 'Z');
 my $str = join '' => map $set[rand @set], 1 .. 6;
 
 while(my $node = $doc->findnodes("//prenotazione[\@id = \"$str\"]")->get_node(1)){
-   my @set = ('0' ..'9', 'A' .. 'F');
+   my @set = ('1' ..'9', 'A' .. 'N', 'P' .. 'Z');
    my $str = join '' => map $set[rand @set], 1 .. 6;
 }
 return $str;
@@ -250,16 +247,16 @@ $id=0;
 my $doc=$parser->parse_file($file);
 
 my %prenotazione = @_;
-my $dataarrivo = "\n\t\t<dataArrivo>".$prenotazione{'dataarrivo'}."</dataArrivo>";
-my $datapartenza = "\n\t\t<dataPartenza>".$prenotazione{'datapartenza'}."</dataPartenza>";
-my $adulti = "\n\t\t<adulti>".$prenotazione{'adulti'}."</adulti>";
-my $singole = "\n\t\t<singole>".$prenotazione{'singole'}."</singole>";
-my $doppie = "\n\t\t<doppie>".$prenotazione{'doppie'}."</doppie>";
-my $parcheggio = "\n\t\t<parcheggio>".$prenotazione{'parcheggio'}."</parcheggio>";
-my $pulizia = "\n\t\t<pulizia>".$prenotazione{'pulizia'}."</pulizia>";
-my $navaereo = "\n\t\t<navaereo>".$prenotazione{'navetaaereo'}."</navaereo>";
-my $navtreno = "\n\t\t<navtreno>".$prenotazione{'navettatreno'}."</navtreno>";
-my $totale = "\n\t\t<totale>".$prenotazione{'totale'}."</totale>";
+my $dataarrivo = "\n\t\t<dataArrivo>$prenotazione{'dataarrivo'}</dataArrivo>";
+my $datapartenza = "\n\t\t<dataPartenza>$prenotazione{'datapartenza'}</dataPartenza>";
+my $adulti = "\n\t\t<adulti>$prenotazione{'adulti'}</adulti>";
+my $singole = "\n\t\t<singole>$prenotazione{'singole'}</singole>";
+my $doppie = "\n\t\t<doppie>$prenotazione{'doppie'}</doppie>";
+my $parcheggio = "\n\t\t<parcheggio>$prenotazione{'parcheggio'}</parcheggio>";
+my $pulizia = "\n\t\t<pulizia>$prenotazione{'pulizia'}</pulizia>";
+my $navaereo = "\n\t\t<navaereo>$prenotazione{'navettaaereo'}</navaereo>";
+my $navtreno = "\n\t\t<navtreno>$prenotazione{'navettatreno'}</navtreno>";
+my $totale = "\n\t\t<totale>$prenotazione{'totale'}</totale>";
 
 
 if(my $lastnode = $doc->findnodes("//prenotazione[last()]")->get_node(1)){
@@ -281,28 +278,41 @@ open(OUT, ">$file");
 print OUT $doc->toString;
 close(OUT);
 
-print "Prenotazione Inserita\n";
-print "Il numero della prenotazione &egrave; $pren\n";
-
+#print "Prenotazione Inserita";
+#print "Il numero della prenotazione &egrave; $pren";
+return $pren;
 }
 
 
 
 if(!$error){
-inserisciDatiXML($page->Vars,);}
-
+my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave; &gt;&gt; Conferma";
+Std::Breadcrumb($percorso);
+my $pren = inserisciDatiXML($page->Vars);
+print "<h2>La prenotazione &egrave; andata a buon fine.</h2>
+        <p>Il codice di prenotazione &egrave; $pren .</p>
+        <h2>La tua prenotazione</h2>";
+Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+    my $diff = Std::DiffData($dataarrivo,$datapartenza);
+    my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
+    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+}
+}
 else{
+my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
+Std::Breadcrumb($percorso);
+    print "<h2>La tua prenotazione</h2>";
     Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
     }
-    #inserisciDatiXML($page->Vars);
     Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori);
 }
 # sub enc {
 #     return Encode::encode('UTF-8', $_[0]);
 # }
 
-#Std::EndHtml();
+Std::EndHtml();

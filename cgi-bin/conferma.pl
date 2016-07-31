@@ -54,4 +54,4 @@ else{
 #     return Encode::encode('UTF-8', $_[0]);
 # }
 
-#Std::EndHtml();
+Std::EndHtml();

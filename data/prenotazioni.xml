@@ -312,4 +312,148 @@
 		<navtreno>true</navtreno>
 		<totale>122</totale>
 	</prenotazione>
+
+	<prenotazione id="S0JFWS">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>05/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>readonly</parcheggio>
+		<pulizia>readonly</pulizia>
+		<navaereo/>
+		<navtreno/>
+		<totale>20</totale>
+	</prenotazione>
+
+	<prenotazione id="CUKMIL">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>05/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>101</totale>
+	</prenotazione>
+
+	<prenotazione id="TDR8ZG">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>05/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio/>
+		<pulizia/>
+		<navaereo/>
+		<navtreno/>
+		<totale>50</totale>
+	</prenotazione>
+    
+
+	<prenotazione id="YUUGEB">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>05/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>101</totale>
+	</prenotazione>
+
+	<prenotazione id="W5TETP">
+		<dataArrivo>02/08/2016</dataArrivo>
+		<dataPartenza>05/08/2016</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>101</totale>
+	</prenotazione>
+
+	<prenotazione id="MB6Y7Z">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia/>
+		<navaereo/>
+		<navtreno/>
+		<totale>30</totale>
+	</prenotazione>
+
+	<prenotazione id="GPGB5S">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>94</totale>
+	</prenotazione>
+
+	<prenotazione id="Q4N2KN">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>94</totale>
+	</prenotazione>
+
+	<prenotazione id="ED7S9R">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>94</totale>
+	</prenotazione>
+
+	<prenotazione id="X7KQEN">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>94</totale>
+	</prenotazione>
+
+	<prenotazione id="CKPGZU">
+		<dataArrivo>10/06/2017</dataArrivo>
+		<dataPartenza>12/06/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno>true</navtreno>
+		<totale>94</totale>
+	</prenotazione>
 </prenotazioni>
