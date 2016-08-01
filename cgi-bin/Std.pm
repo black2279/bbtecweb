@@ -68,8 +68,9 @@ sub FormPren{
 my %valori= @_;
 print "<div id=\"centrale\">
     <h1>Prenotazioni</h1>
-
-	<form method=\"post\" action=\"disponibilita.pl\">
+    
+    <script type=\"text/javascript\" src=\"registrazione.js\"></script>
+	<form id=\"FormPren\" action=\"disponibilita.pl\" method=\"post\">
 		<fieldset>
 			<!--<legend>Prenotazione</legend>-->
             <div class=\"dati\">
@@ -78,12 +79,12 @@ print "<div id=\"centrale\">
             if($valori{'erarrivo'} ne undef){ print "
             <span class=\"error\">$valori{'erarrivo'}</span>";}
             print "
-			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" /></p>
+			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" onblur=\"controlloData()\"/></p>
             <p><label for=\"dataPartenza\">Data Partenza </label></p>";
             if($valori{'erpartenza'} ne undef){ print "
             <span class=\"error\">$valori{'erpartenza'}</span>";}
             print "
-            <p><input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" value=\"$valori{'partenza'}\" /></p>
+            <p><input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" value=\"$valori{'partenza'}\" onblur=\"controlloData()\"/></p>
             </div>
             
             <div id=\"destra\">
