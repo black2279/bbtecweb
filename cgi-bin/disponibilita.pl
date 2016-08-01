@@ -157,9 +157,7 @@ if($adulti eq undef){
 	
 my $prenotazioni = Utils::ricercaPrenotazioni($dataarrivo,$datapartenza);
 my $camere_singole_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,'SINGOLA');
-print $camere_singole_prenotate."<br>";
 my $camere_doppie_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,"DOPPIA");
-print $camere_doppie_prenotate;
 
 if(($camere_singole_prenotate + $singole) > $limite_singole){
 $error=1;
