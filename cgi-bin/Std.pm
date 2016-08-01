@@ -90,6 +90,10 @@ print "<div id=\"centrale\">
             <p><label for=\"numeroCamere\">Numero Camere </label></p>";
             if($valori{'ercamere'} ne undef){ print "
             <span class=\"error\">$valori{'ercamere'}</span>";}
+			if($valori{'ersingole'} ne undef){ print "
+            <span class=\"error\">$valori{'ersingole'}</span>";}
+			if($valori{'erdoppie'} ne undef){ print "
+            <span class=\"error\">$valori{'erdoppie'}</span>";}
             print "
             <p><input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=\"$valori{'numerocamere'}\" /></p>
             <p><label for=\"adulti\">Adulti </label></p>";
