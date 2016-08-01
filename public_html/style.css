@@ -312,8 +312,8 @@ fieldset{
 }
 
 #richiesta{
-  float: left;
-  width: 50%;
+    width: 50%;
+    margin-left: 1em;
 }
 
 #dettagli{
@@ -322,17 +322,17 @@ fieldset{
 }
 
 #dettprezzi {
-  float:right;
-  width: 50%;
+    float:right;
+    width: 50%;
 }
 
-#dati{
+.dati{
     /*float: left;*/
     padding-bottom: 2em;
     width: 100%;
     overflow: hidden;
 }
-#dati input:not(#prenota):not(#dataNascita):not(#cvc){
+.dati input:not(#prenota):not(#dataNascita):not(#cvc){
     width: 16em;
 }
 input#cvc{
@@ -343,7 +343,7 @@ input#dataNascita{
 }
 
 
-/*#dati fieldset{
+/*.dati fieldset{
     width: 100%;
 }*/
 
@@ -353,12 +353,12 @@ input#dataNascita{
     
 }
 
-#dati #sinistra{
+.dati #sinistra{
     width: 50%;
     float:left;
     position: relative;
 }
-#dati #destra{
+.dati #destra{
     width: 50%;
     float: left;
     position: relative;

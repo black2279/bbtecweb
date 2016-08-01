@@ -58,7 +58,7 @@ sub HtmlCode{
 sub Breadcrumb{
 my @percorso = @_;
 print "<div id=\"breadcrumb\">
-Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
+Ti trovi qui: <a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
 </div>
 <div id=\"content\">
 ";
@@ -67,12 +67,12 @@ Ti trovi qui :<a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&g
 sub FormPren{
 my %valori= @_;
 print "<div id=\"centrale\">
-<h1>Prenotazioni</h1>
+    <h1>Prenotazioni</h1>
 
 	<form method=\"post\" action=\"disponibilita.pl\">
 		<fieldset>
 			<!--<legend>Prenotazione</legend>-->
-            <div id=\"dati\">
+            <div class=\"dati\">
             <div id=\"sinistra\">
 			<p><label for=\"dataArrivo\">Data Arrivo </label></p>";
             if($valori{'erarrivo'} ne undef){ print "
@@ -131,7 +131,7 @@ print "<div id=\"centrale\">
 sub PrintPren{
 my($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno)=@_;
 print "<h2>La tua prenotazione</h2>";
-print "<div id=\"centrale\">";
+#print "<div id=\"centrale\">";
 print "<p>Numero prenotazione: $numeroprenotazione</p>";
 print "<div id=\"richiesta\">";
 print "<p>Data Arrivo: $arrivo</p>";
@@ -162,7 +162,7 @@ print"<p>La tua prenotazione comprende anche i seguenti servizi</p>";
    }
 }
 print "<p>Totale: &euro; $prezzo</p>";
-print "</div>";
+#print "</div>";
 print "</div>";
 }
 
@@ -305,7 +305,7 @@ sub DiffData{
 
 sub Dati{
 my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori)=@_;
-print "<div id=\"dati\">";
+print "<div class=\"dati\">";
 print "<h2>Inserisci i dati</h2>";
 print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.</p>";
 print "<form method=\"post\" action=\"prenotazione.pl\">
@@ -341,7 +341,7 @@ print "<form method=\"post\" action=\"prenotazione.pl\">
                 <span class=\"errore\">$valori{'ercognome'}</span>"};
                 print "
                 <p><input type=\"text\" name=\"cognome\" id=\"cognome\" value=\"$valori{'cognome'}\"/></p>
-                <p><label for=\"dataNascita\">Data di Nascita </label></p>";
+                <p><label for=\"dataNascita\">Data di Nascita (gg/mm/aaaa) </label></p>";
                 if($valori{'ernascita'} ne undef){print "
                 <span class=\"errore\">$valori{'ernascita'}</span>"};
                 print "

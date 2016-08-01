@@ -24,7 +24,6 @@ my $file = '../data/prenotazioni.xml';
 my $parser = XML::LibXML->new();
 my %prenotazione = @_;
 my $numeroprenotazione = $prenotazione{'numeroPrenotazione'};
-print $numeroprenotazione;
 
 if(-e($file)){
 my $doc=$parser->parse_file($file);

@@ -106,9 +106,13 @@ if($cemail eq undef){
     $valori{'ercemail'} = "&Egrave; necessario riscrivere l'<span lang=\"en\">email</span>.";
 }
 
+if($email !~ m/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}/){
+    $valori{'eremail'} = "Inserire un'email valida."
+} else {
 if($email ne $cemail){
     $error = 1;
     $valori{'eremail'} = "Le email non coincidono.";
+}
 }
 
 if($telefono eq undef){
