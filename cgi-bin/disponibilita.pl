@@ -8,6 +8,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use strict;
 use warnings;
 use Std;
+use Utils;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
@@ -44,6 +45,8 @@ my $navettatreno = $page->param("navettatreno");
 my $doppie = int($adulti / 2);
 my $singole = int($adulti % 2);
 my $error=0;
+my $limite_doppie=Utils::getNumeroCamere('SINGOLA');
+my $limite_singole=Utils::getNumeroCamere('DOPPIA');
 
 my %valori;
 
@@ -151,6 +154,20 @@ if($adulti eq undef){
         $valori{'eradulti'} = "Il campo ospiti deve essere un valore numerico."
         }
     }
+	
+my $prenotazioni = Utils::ricercaPrenotazioni($dataarrivo,$datapartenza);
+my $camere_singole_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,'SINGOLA');
+my $camere_doppie_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,"DOPPIA");
+
+if(($camere_singole_prenotate + $singole) > $limite_singole){
+$error=1;
+$valori{'ersingole'} = "Limite camere singole raggiunto";
+}
+
+if(($camere_doppie_prenotate + $doppie) > $limite_doppie){
+$error=1;
+$valori{'erdoppie'} = "Limite camere doppie raggiunto";
+}
 
 if(!$error){
     my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";

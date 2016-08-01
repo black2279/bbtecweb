@@ -4,6 +4,7 @@ use strict;
 use warnings;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
+use Tariffe;
 package Std;
 
 use Exporter qw(import);
@@ -91,6 +92,10 @@ print "<div id=\"centrale\">
             <p><label for=\"numeroCamere\">Numero Camere </label></p>";
             if($valori{'ercamere'} ne undef){ print "
             <span class=\"error\">$valori{'ercamere'}</span>";}
+			if($valori{'ersingole'} ne undef){ print "
+            <span class=\"error\">$valori{'ersingole'}</span>";}
+			if($valori{'erdoppie'} ne undef){ print "
+            <span class=\"error\">$valori{'erdoppie'}</span>";}
             print "
             <p><input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=\"$valori{'numerocamere'}\" /></p>
             <p><label for=\"adulti\">Adulti </label></p>";
@@ -101,10 +106,10 @@ print "<div id=\"centrale\">
             </div>
             </div>
             <div id=\"elenco\">
-            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\" $valori{'parcheggio'}/> Voglio usufruire del parcheggio coperto convenzionato (5&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\" $valori{'pulizia'}/> Pulizia giornaliera della camera (2&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\" $valori{'navaereo'}/> Servizio navetta Fiumicino - Hotel : 30&euro;</p>
-            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\" $valori{'navtreno'}/> Servizio navetta Stazione Termini - Hotel : 30&euro;</p>
+            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\" $valori{'parcheggio'}/> Voglio usufruire del parcheggio coperto convenzionato (".Tariffe::getPrezzoParcheggio()."&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\" $valori{'pulizia'}/> Pulizia giornaliera della camera (".Tariffe::getPrezzoPulizie()."&euro;/giorno).</p>
+            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\" $valori{'navaereo'}/> Servizio navetta Fiumicino - Hotel : ".Tariffe::getPrezzoNavettaAeroporto()."&euro;</p>
+            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\" $valori{'navtreno'}/> Servizio navetta Stazione Termini - Hotel : ".Tariffe::getPrezzoNavettaTreno()."&euro;</p>
             </div>
             <!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"prenota\" value=\"Prenota\" />
 
@@ -234,40 +239,42 @@ sub Prezzi{
           my $prnavettatreno = "0";
     print "<h2>Dettaglio costi</h2>";
       if($doppie > 0){
-          $prdoppie = (30*$doppie);
+		  my $prdoppia = Tariffe::getPrezzoCamera('DOPPIA');
+          $prdoppie = $prdoppia*$doppie;
           if($doppie == 1){
-          print "<p>$doppie camera doppia &nbsp; &euro; 30 x $doppie = &euro; $prdoppie.</p>";
+          print "<p>$doppie camera doppia &nbsp; &euro; $prdoppia x $doppie = &euro; $prdoppie.</p>";
           }
           else{
-            print "<p>$doppie camere doppie &nbsp; &euro; 30 x $doppie = &euro; $prdoppie.</p>";
+            print "<p>$doppie camere doppie &nbsp; &euro; $prdoppia x $doppie = &euro; $prdoppie.</p>";
           }
           }
       if($singole > 0){
-          $prsingole = (20*$singole);
+          my $prsingola = Tariffe::getPrezzoCamera('SINGOLA');
+		  $prsingole = Tariffe::getPrezzoCamera('SINGOLA')*$singole;
           if($singole == 1){
-          print "<p>$singole camera singola &nbsp; 20 x $singole = &euro; $prsingole.</p>";
+          print "<p>$singole camera singola &nbsp; $prsingola x $singole = &euro; $prsingole.</p>";
           }
           else{
-          print "<p>$singole camere singole &nbsp; 20 x $singole = &euro; $prsingole.</p>";
+          print "<p>$singole camere singole &nbsp; $prsingola x $singole = &euro; $prsingole.</p>";
           }
           }
       if($parcheggio eq "true"){
-        my $prpark = "5";
-          $prparcheggio = $prpark*$diff;
+          my $prpark = Tariffe::getPrezzoParcheggio();
+		  $prparcheggio = $prpark*$diff;
         print "<p>Parcheggio coperto = &euro; $prpark x $diff giorni = &euro; $prparcheggio</p>";
       }
       if($pulizia eq "true"){
-        my $prpul = "2";
-          $prpulizia = $prpul*$diff;
+          my $prpul = Tariffe::getPrezzoPulizie();
+		  $prpulizia = $prpul*$diff;
         print "<p>Pulizia quotidiana = &euro; $prpul x $diff giorni = &euro; $prpulizia</p>";
       }
       if($navettaaereo eq "true"){
-          $prnavettaaereo = "30";
+          $prnavettaaereo = Tariffe::getPrezzoNavettaAeroporto();
         print "<p>Navetta B&amp;B Navona - Aeroporto Fiumicino = &euro; $prnavettaaereo</p>";
       }
 
       if($navettatreno eq "true"){
-          $prnavettatreno = "30";
+          $prnavettatreno = Tariffe::getPrezzoNavettaTreno();
         print "<p>Navetta B&amp;B Navona - Stazione Termini = &euro; $prnavettatreno</p>";
       }
       my $totale = $prdoppie + $prsingole + $prparcheggio + $prpulizia + $prnavettaaereo + $prnavettatreno;
