@@ -89,16 +89,19 @@ print "<div id=\"centrale\">
             </div>
             
             <div id=\"destra\">
-            <p><label for=\"numeroCamere\">Numero Camere </label></p>";
-            if($valori{'ercamere'} ne undef){ print "
-            <span class=\"error\">$valori{'ercamere'}</span>";}
-			if($valori{'ersingole'} ne undef){ print "
+            <p><label for=\"singole\">Singole </label></p>";
+            if($valori{'ersingole'} ne undef){ print "
             <span class=\"error\">$valori{'ersingole'}</span>";}
-			if($valori{'erdoppie'} ne undef){ print "
-            <span class=\"error\">$valori{'erdoppie'}</span>";}
             print "
-            <p><input type=\"text\" name=\"numeroCamere\" id=\"numeroCamere\" maxlength=\"1\" value=\"$valori{'numerocamere'}\" /></p>
-            <p><label for=\"adulti\">Adulti </label></p>";
+            <p><input type=\"text\" name=\"singole\" id=\"singole\" maxlength=\"1\" value=\"$valori{'singole'}\" /></p>
+            
+            <p><label for=\"doppie\">Doppie </label></p>";
+            if($valori{'erdoppie'} ne undef){ print "
+            <span class=\"error\">$valori{'erdoppie'}</span>";}
+            print "            
+            <p><input type=\"text\" name=\"doppie\" id=\"doppie\" maxlength=\"1\" value=\"$valori{'doppie'}\" /></p>
+            
+			<p><label for=\"adulti\">Adulti </label></p>";
             if($valori{'eradulti'} ne undef){ print "
             <span class=\"error\">$valori{'eradulti'}</span>";}
             print "
@@ -173,13 +176,15 @@ print "</div>";
 }
 
 sub Disp{
-my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
+my($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
 #print "<h2>La tua prenotazione</h2>";
 print "<div id=\"richiesta\">";
 print "<p>Data Arrivo $dataarrivo</p>";
 print "<p>Data Partenza $datapartenza</p>";
 print "<p>Adulti $adulti</p>";
-print "<p>Numero Camere $numerocamere</p>";
+if($singole) { print "<p>Singole $singole</p>";}
+if($doppie) {print "<p>Doppie $doppie</p>";}
+
 
 my $exdoppie="";
 my $exsingole="";
@@ -312,7 +317,7 @@ sub DiffData{
 }
 
 sub Dati{
-my($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori)=@_;
+my($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori)=@_;
 print "<div class=\"dati\">";
 print "<h2>Inserisci i dati</h2>";
 print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i campi sono obbligatori.</p>";
@@ -321,7 +326,9 @@ print "<form method=\"post\" action=\"prenotazione.pl\">
         
 		<p><input type=\"text\" name=\"datapartenza\" class=\"nascosto\" value=\"$datapartenza\" readonly=\"readonly\"/></p>
         
-		<p><input type=\"text\" name=\"numerocamere\" class=\"nascosto\" value=\"$numerocamere\" readonly=\"readonly\"/></p>
+        <p><input type=\"text\" name=\"singole\" class=\"nascosto\" value=\"$singole\" readonly=\"readonly\"/></p>
+        
+		<p><input type=\"text\" name=\"doppie\" class=\"nascosto\" value=\"$doppie\" readonly=\"readonly\"/></p>
         
 		<p><input type=\"text\" name=\"adulti\" class=\"nascosto\" value=\"$adulti\" readonly=\"readonly\"/></p>
         

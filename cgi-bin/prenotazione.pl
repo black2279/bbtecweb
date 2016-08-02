@@ -32,10 +32,10 @@ my $intcarta = $page->param("intcarta");
 my $dataarrivo = $page->param("dataarrivo");
 my $dataarrivo = $page->param("dataarrivo");
 my $datapartenza = $page->param("datapartenza");
-my $numerocamere = $page->param("numerocamere");
+#my $numerocamere = $page->param("numerocamere");
 my $adulti = $page->param("adulti");
-my $doppie = $page->param("doppie");
 my $singole = $page->param("singole");
+my $doppie = $page->param("doppie");
 my $parcheggio = $page->param("parcheggio");
 my $pulizia = $page->param("pulizia");
 my $navettaaereo = $page->param("navettaaereo");
@@ -249,18 +249,28 @@ $id=0;
 }
 
 my $doc=$parser->parse_file($file);
-
 my %prenotazione = @_;
+
 my $dataarrivo = "\n\t\t<dataArrivo>$prenotazione{'dataarrivo'}</dataArrivo>";
 my $datapartenza = "\n\t\t<dataPartenza>$prenotazione{'datapartenza'}</dataPartenza>";
 my $adulti = "\n\t\t<adulti>$prenotazione{'adulti'}</adulti>";
-my $singole = "\n\t\t<singole>$prenotazione{'singole'}</singole>";
-my $doppie = "\n\t\t<doppie>$prenotazione{'doppie'}</doppie>";
+my $singole = "\n\t\t<singole>$singole</singole>";
+my $doppie = "\n\t\t<doppie>$doppie</doppie>";
 my $parcheggio = "\n\t\t<parcheggio>$prenotazione{'parcheggio'}</parcheggio>";
 my $pulizia = "\n\t\t<pulizia>$prenotazione{'pulizia'}</pulizia>";
 my $navaereo = "\n\t\t<navaereo>$prenotazione{'navettaaereo'}</navaereo>";
 my $navtreno = "\n\t\t<navtreno>$prenotazione{'navettatreno'}</navtreno>";
 my $totale = "\n\t\t<totale>$prenotazione{'totale'}</totale>";
+my $nome = "\n\t\t<nome>$prenotazione{'nome'}</nome>";
+my $cognome = "\n\t\t<cognome>$prenotazione{'cognome'}</cognome>";
+my $dataNascita = "\n\t\t<dataNascita>$prenotazione{'dataNascita'}</dataNascita>";
+my $citta = "\n\t\t<citta>$prenotazione{'citta'}</citta>";
+my $email = "\n\t\t<email>$prenotazione{'email'}</email>";
+my $telefono = "\n\t\t<telefono>$prenotazione{'telefono'}</telefono>";
+my $pagamento = "\n\t\t<pagamento>$prenotazione{'pagamento'}</pagamento>";
+my $numerocarta = "\n\t\t<numerocarta>$prenotazione{'numerocarta'}</numerocarta>";
+my $cvc = "\n\t\t<cvc>$prenotazione{'cvc'}</cvc>";
+my $intestatario = "\n\t\t<intestatario>$prenotazione{'intcarta'}</intestatario>";
 
 
 if(my $lastnode = $doc->findnodes("//prenotazione[last()]")->get_node(1)){
@@ -270,7 +280,7 @@ $id = $pren;
 $id=0;
 }
 
-my $pren_el="\n\t<prenotazione id=\"$id\" >$dataarrivo$datapartenza$adulti$singole$doppie$parcheggio$pulizia$navaereo$navtreno$totale\n\t</prenotazione>\n";
+my $pren_el="\n\t<prenotazione id=\"$id\" >$dataarrivo$datapartenza$adulti$singole$doppie$parcheggio$pulizia$navaereo$navtreno$totale$nome$cognome$dataNascita$citta$email$telefono$pagamento$numerocarta$cvc$intestatario\n\t</prenotazione>\n";
 
 my $frammento = $parser->parse_balanced_chunk($pren_el) or die("nodo non ben formato");
 
@@ -296,7 +306,7 @@ my $pren = inserisciDatiXML($page->Vars);
 print "<h2>La prenotazione &egrave; andata a buon fine.</h2>
         <p>Il codice di prenotazione &egrave; $pren .</p>
         <h2>La tua prenotazione</h2>";
-Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
@@ -307,13 +317,13 @@ else{
 my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
 Std::Breadcrumb($percorso);
     print "<h2>La tua prenotazione</h2>";
-    Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+    Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
     }
-    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori);
+    Std::Dati($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori);
 }
 # sub enc {
 #     return Encode::encode('UTF-8', $_[0]);

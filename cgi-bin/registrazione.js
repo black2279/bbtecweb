@@ -42,6 +42,24 @@ function validateForm() {
 function controlloData(){
     var data = document.forms["FormPren"]["dataArrivo"].value;
     if (data == null || data == "") {
+        //var errore = document.querySelector('#erarrivo');
+        //var errore_arrivo = "<p>Il campo non può essere vuoto.</p>";
+        //var campo_arrivo = document.getElementById("dataArrivo");
+        //campo_arrivo.insertBefore(errore_arrivo, campo_arrivo);
+        //var bordo = document.querySelector("#dataArrivo");
+        //bordo.style.borderColor = "red";
+        
+        var el = document.getElementById("dataArrivo"),
+        html = "<span>Some HTML <b>here</b></span>";
+
+        if (el.insertAdjacentHTML)
+        el.insertAdjacentHTML ("beforeBegin", html);
+        else {
+        var range = document.createRange();
+        var frag = range.createContextualFragment(html);
+        el.parentNode.insertBefore(frag, el);
+        }
+        
         return false;
     }
     else{

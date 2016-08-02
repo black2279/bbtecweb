@@ -36,14 +36,16 @@ sub isvaliddate {
 my $page = new CGI;
 my $dataarrivo = $page->param("dataArrivo");
 my $datapartenza = $page->param("dataPartenza");
-my $numerocamere = $page->param("numeroCamere");
+#my $numerocamere = $page->param("numeroCamere");
+my $singole = $page->param("singole");
+my $doppie = $page->param("doppie");
 my $adulti = $page->param("adulti");
 my $parcheggio = $page->param("parcheggio");
 my $pulizia = $page->param("pulizia");
 my $navettaaereo = $page->param("navettaaereo");
 my $navettatreno = $page->param("navettatreno");
-my $doppie = int($adulti / 2);
-my $singole = int($adulti % 2);
+#my $doppie = int($adulti / 2);
+#my $singole = int($adulti % 2);
 my $error=0;
 my $limite_doppie=Utils::getNumeroCamere('SINGOLA');
 my $limite_singole=Utils::getNumeroCamere('DOPPIA');
@@ -52,7 +54,9 @@ my %valori;
 
 $valori{'arrivo'} = $dataarrivo;
 $valori{'partenza'} = $datapartenza;
-$valori{'numerocamere'} = $numerocamere;
+#$valori{'numerocamere'} = $numerocamere;
+$valori{'singole'} = $singole;
+$valori{'doppie'} = $doppie;
 $valori{'adulti'} = $adulti;
 if($parcheggio eq "true"){
     $valori{'parcheggio'} = "checked";
@@ -131,18 +135,26 @@ if($datapartenza < $dataarrivo){
     $valori{'erarrivo'} = "La data di partenza non pu&ograve; essere precedente a quella di arrivo.";
 
 }
-if($numerocamere > $adulti){
-    $error=1;
-    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere superiore al numero di adulti."
-}
-if($numerocamere eq undef){
-    $error=1;
-    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere vuoto.";
+
+if($singole eq undef){
+    $error  = 1;
+    $valori{'ersingole'} = "Il campo singole &egrave; vuoto."
 } else {
-if($numerocamere =~ /\D/){
-    $error=1;
-    $valori{'ercamere'} = "Il campo deve essere un valore numerico.";
-} }
+if($singole =~/\D/){
+    $error = 1;
+    $valori{'ersingole'} = "Il campo deve essere un valore numerico."
+}
+}
+
+if($doppie eq undef){
+ $error  = 1;
+    $valori{'erdoppie'} = "Il campo doppie &egrave; vuoto."
+} else {
+if($doppie =~/\D/){
+    $error = 1;
+    $valori{'erdoppie'} = "Il campo deve essere un valore numerico."
+}
+}
 
 if($adulti eq undef){
     $error=1;
@@ -154,10 +166,37 @@ if($adulti eq undef){
         $valori{'eradulti'} = "Il campo ospiti deve essere un valore numerico."
         }
     }
+
+if($adulti > $singole + 2*$doppie){
+    $error = 1;
+    $valori{'eradulti'}  = "Il numero di ospiti supera la capienza delle camere."
+}
+
+if($adulti < $singole + 2*$doppie){
+    $valori{'erinf'} = "Il numero di camere è superiore al numero di ospiti."
+}
+
+
+
+
+#if($numerocamere > $adulti){
+#    $error=1;
+#    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere superiore al numero di adulti."
+#}
+#if($numerocamere eq undef){
+#    $error=1;
+#    $valori{'ercamere'} = "Il numero delle camere non pu&ograve; essere vuoto.";
+#} else {
+#if($numerocamere =~ /\D/){
+#    $error=1;
+#    $valori{'ercamere'} = "Il campo deve essere un valore numerico.";
+#} }
+
+
 	
 my $prenotazioni = Utils::ricercaPrenotazioni($dataarrivo,$datapartenza);
 my $camere_singole_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,'SINGOLA');
-my $camere_doppie_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,"DOPPIA");
+my $camere_doppie_prenotate = Utils::getNumeroCamerePrenotate($prenotazioni,'DOPPIA');
 
 if(($camere_singole_prenotate + $singole) > $limite_singole){
 $error=1;
@@ -173,13 +212,14 @@ if(!$error){
     my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
     Std::Breadcrumb($percorso);
     print "<h2>La tua prenotazione </h2>";
-    Std::Disp($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole);
+
+    Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
     }
-    Std::Dati($dataarrivo,$datapartenza,$numerocamere,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
+    Std::Dati($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
 }
 else{
 my $percorso = "Prenotazioni";
