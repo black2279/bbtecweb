@@ -372,3 +372,13 @@ input#dataNascita{
     color: crimson;
     font-weight: bold;
 }
+
+#login span,input{
+ display:block;
+ margin-top:5px;
+ width:100%;
+}
+
+#login{
+ width: 200px;
+}

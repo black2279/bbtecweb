@@ -4,6 +4,7 @@ use warnings;
 use XML::LibXML;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
+use CGI::Session;
 package Utils;
 
 sub ricercaPrenotazioni{
@@ -58,6 +59,37 @@ sub getNumeroCamere{
 	my $doc=$parser->parse_file($file);
 	my $numero_camere = $doc->findnodes("/bb/$nodo")->get_node(1)->textContent;
 	return int($numero_camere);
+}
+
+
+sub login{
+	my($username,$password,$database)=@_;
+	my $file = "../data/$database.xml";
+	my $parser = XML::LibXML->new();
+	my $doc=$parser->parse_file($file);
+	my $utente = $doc->findnodes("child::".$database."/child::*[username='$username']");
+	if($utente){
+		my $pw_db=$utente->get_node(1)->findnodes("password");
+		if ($password eq $pw_db){
+			return 1;
+		}else{
+			return 0;
+			}
+	}else{
+	 return 0;
+	}
+}
+
+sub start_session{
+	my($page)=@_;
+	my $sid = $page->cookie('CGISESSID') || undef;
+	my $session = new CGI::Session("driver:File", $sid, {Directory=>'../data'});
+	if ($sid eq undef){
+		my $cookie = $page->cookie(CGISESSID => $session->id);
+		print $page->header( -cookie => $cookie );
+		$session->param("logged", 0);
+	}
+	return $session;
 }
 
 1;
