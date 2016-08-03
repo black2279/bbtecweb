@@ -373,7 +373,7 @@ input#dataNascita{
     font-weight: bold;
 }
 
-#login span,input{
+#login  *{
  display:block;
  margin-top:5px;
  width:100%;
@@ -381,4 +381,10 @@ input#dataNascita{
 
 #login{
  width: 200px;
+}
+
+#logout{
+ text-align:right;
+ margin-right: 1em;
+ display:block;
 }

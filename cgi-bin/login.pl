@@ -21,6 +21,7 @@ my $database = 'admins';
 my $login = Utils::login($username,$password,$database);
 if($login){
 	$session->param("logged", 1);
+	$session->param("username", $username);
 	print $page->redirect("home.pl");
 }else{
 	if($username eq undef && $password eq undef){

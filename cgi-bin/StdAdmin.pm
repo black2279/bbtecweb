@@ -42,27 +42,24 @@ sub Menu {
  print"
  <div id=\"menu\">
         <ul>
-            <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
+            <li><a href=\"home.pl\"><span lang=\"en\">Home</span></a></li>
 
-            <li><a href=\"../chisiamo.html\">Chi siamo</a></li>
+            <li><a href=\"bb.pl\">Bed &amp; Breakfast</a></li>
 
-            <li><a href=\"../galleria.html\">Galleria</a></li>
+            <li><a href=\"stato_prenotazioni.pl\">Stato Prenotazioni</a></li>
 
-            <li><a href=\"../servizi.html\">Servizi</a></li>
-
-            <li><a href=\"../tariffe.html\">Tariffe</a></li>
-
-            <li id=\"currentLink\"><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
-
-            <li><a href=\"../contatti.html\">Contatti</a></li>
+            <li><a href=\"tariffe.pl\">Tariffe</a></li>
         </ul>
     </div>"
 }
 
 sub Breadcrumb{
-my @percorso = @_;
-print "<div id=\"breadcrumb\">
-Ti trovi qui: <a href=\"../index.html\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
+my ($logged,@percorso) = @_;
+print "<div id=\"breadcrumb\">";
+if($logged){
+Logout();
+}
+print "Ti trovi qui: <a href=\"home.pl\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
 </div>
 <div id=\"content\">
 ";
@@ -112,10 +109,36 @@ print
 ";
 }
 
+sub Benvenuto{
+	my($username)=@_;
+	print"
+	<h2>Ben ritornato $username</h2>
+	<p>Benvenuto nel Pannello di Amministrazione del <strong>Navona - Bed &amp; Breakfast</strong>.
+	<p>Qui potrai visualizzare e modificare le caratteristiche del tuo Bed &amp Breakfast, personalizzare le tariffe 
+	e vedere lo stato delle prenotazioni in corso.</p>
+	";
+}
+
+sub Logout{
+	print"
+	<a id=\"logout\" href=\"logout.pl\">Logout</a>
+	";
+}
+
+
 sub PrintLogin{
  my($esito)=@_;
  HtmlCode();
  Breadcrumb();
  Login($esito);
+ EndHtml();
+}
+
+sub PrintHome{
+ my($username)=@_;
+ HtmlCode();
+ Menu();
+ Breadcrumb(1,"Home");
+ Benvenuto($username);
  EndHtml();
 }

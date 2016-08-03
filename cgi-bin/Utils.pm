@@ -83,10 +83,11 @@ sub login{
 sub start_session{
 	my($page)=@_;
 	my $sid = $page->cookie('CGISESSID') || undef;
-	my $session = new CGI::Session("driver:File", $sid, {Directory=>'../data'});
+	my $session = new CGI::Session("driver:File", $sid, {Directory=>File::Spec->tmpdir});
 	if ($sid eq undef){
 		my $cookie = $page->cookie(CGISESSID => $session->id);
-		print $page->header( -cookie => $cookie );
+		print "Set-Cookie: $cookie\n";
+		#print $page->header( -cookie => $cookie );
 		$session->param("logged", 0);
 	}
 	return $session;
