@@ -1,80 +1,84 @@
-/*function checkEmpty(valore))  
-{  
-    if(valore.length == 0) return true;
-    return false;
-}
+function controlloData(campo){
+            var data = document.getElementById(campo).value;
 
-function checkEmail(){
-    var email = document.getElementById("email");
-    if(checkEmpty(email.value)){
-        
-    }
-}*/
-/*
-function controlloVuoto(){
-    var arrivo = document.forms["FormPren"]["dataArrivo"].value;
-    if (arrivo == null || arrivo == "") {
-        alert("Name must be filled out");
-        return true;
-    }
-    return false;
-}
-
-function validazioneForm(){
-    if(!controlloVuoto()){
-        alert("Nessun errore");
-        return true;
-    }
-    else{
-        alert("Errore");
-        return false;
-    }
-}*/
-/*
-function validateForm() {
-    var x = document.forms["FormPren"]["dataArrivo"].value;
-    if (x == null || x == "") {
-        alert("Name must be filled out");
-        return false;
-    }
-}*/
-
-function controlloData(){
-    var data = document.forms["FormPren"]["dataArrivo"].value;
     if (data == null || data == "") {
-        //var errore = document.querySelector('#erarrivo');
-        //var errore_arrivo = "<p>Il campo non può essere vuoto.</p>";
-        //var campo_arrivo = document.getElementById("dataArrivo");
-        //campo_arrivo.insertBefore(errore_arrivo, campo_arrivo);
-        //var bordo = document.querySelector("#dataArrivo");
-        //bordo.style.borderColor = "red";
+            if(!document.getElementById(campo+"errore")){
+                var errore = document.createElement('div');
+                errore.id = campo+'errore';
+                var testoerrore = document.createTextNode("Campo obbligatorio");
+                errore.appendChild(testoerrore);
+                var id = document.getElementById(campo);
+	           id.parentElement.insertBefore(errore, id);
+                return false;
+                }
+            else   {document.getElementById(campo+"errore").innerHTML = "Campo obbligatorio";
+                   return false;
+                   }
+                
+        }
+    else {
+            var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
+            if(!(date_regex.test(data))){
+                if(!document.getElementById(campo+"errore")){
+                    var errore = document.createElement('div');
+                    errore.id = campo+'errore';
+                    var testoerrore = document.createTextNode("Inserire la data con il formato gg/mm/aaaa");
+                    errore.appendChild(testoerrore);
+                    var id = document.getElementById(campo);
+                    id.parentElement.insertBefore(errore, id);
+                    return false;
+                    }
+                else  { document.getElementById(campo+"errore").innerHTML = "Inserire la data con il formato gg/mm/aaaa";
+                    return false;
+                      }
+                    
+                }
+            else{
+                if(document.getElementById(campo+"errore")){
+                    var rimuovere = document.getElementById(campo+"errore");
+                    rimuovere.parentNode.removeChild(rimuovere);
+                    
+                }
+            }
+        }
+    
+    var arr = document.getElementById("dataArrivo").value;
+    var part = document.getElementById("dataPartenza").value;
+    if (arr && part){
+        var parti_arr = arr.split("/");
+        var parti_part = part.split("/");
+        var giorno_arr = parti_arr[0];
+        var mese_arr= parti_arr[1];
+        var anno_arr = parti_arr[2]; 
         
-        var el = document.getElementById("dataArrivo"),
-        html = "<span>Some HTML <b>here</b></span>";
-
-        if (el.insertAdjacentHTML)
-        el.insertAdjacentHTML ("beforeBegin", html);
+        var giorno_part = parti_part[0];
+        var mese_part= parti_part[1];
+        var anno_part = parti_part[2];
+        
+        var d1 = Date.parse(anno_arr+"-"+mese_arr+"-"+giorno_arr);
+        var d2 = Date.parse(anno_part+"-"+mese_part+"-"+giorno_part);
+        
+        if (d1 > d2){
+            if(!document.getElementById("confrontoerrore")){
+                var errore = document.createElement('div');
+                errore.id = 'confrontoerrore';
+                var testoerrore = document.createTextNode("La data di partenza deve essere successiva a quella di arrivo");
+                errore.appendChild(testoerrore);
+                var id = document.getElementById("dataPartenza");
+	           id.parentElement.insertBefore(errore, id);
+                return false;
+                }
+            else   {document.getElementById("confrontoerrore").innerHTML = "La data di partenza deve essere successiva a quella di arrivo";
+                   return false;
+                   }
+        }
         else {
-        var range = document.createRange();
-        var frag = range.createContextualFragment(html);
-        el.parentNode.insertBefore(frag, el);
-        }
-        
-        return false;
+                if(document.getElementById("confrontoerrore")){
+                    var rimuovere = document.getElementById("confrontoerrore");
+                    rimuovere.parentNode.removeChild(rimuovere);
+                     return true;
+                }
+            }
     }
-    else{
-        /*var re = new RegExp("^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)");*/
-        /*if(/^(0?[1-9]|[12][0-9]|3[01])[\/\-](0?[1-9]|1[012])[\/\-]\d{4}$/.test(data)){*/
-         /*if(/^\d{1,2}\/\d{1,2}\/\d{4}$/.test(data)){*/
-        var date_regex = /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(19|20)\d{2}$/ ;
-if(!(date_regex.test(data)))
-{    alert("Pattern errato");
-            return false;
-        }
-        else {alert("Data corretta");
-             return true;
-             }
-    }
-
+    return true;
 }
-

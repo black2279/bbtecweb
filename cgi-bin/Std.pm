@@ -80,12 +80,12 @@ print "<div id=\"centrale\">
             if($valori{'erarrivo'} ne undef){ print "
             <span class=\"error\">$valori{'erarrivo'}</span>";}
             print "
-			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" onblur=\"controlloData()\"/></p>
+			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" onblur=\"controlloData('dataArrivo')\"/></p>
             <p><label for=\"dataPartenza\">Data Partenza </label></p>";
             if($valori{'erpartenza'} ne undef){ print "
             <span class=\"error\">$valori{'erpartenza'}</span>";}
             print "
-            <p><input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" value=\"$valori{'partenza'}\" onblur=\"controlloData()\"/></p>
+            <p><input type=\"text\" name=\"dataPartenza\" id=\"dataPartenza\" maxlength=\"10\" value=\"$valori{'partenza'}\" onblur=\"controlloData('dataPartenza')\"/></p>
             </div>
             
             <div id=\"destra\">
