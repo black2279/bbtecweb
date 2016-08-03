@@ -368,7 +368,7 @@ input#dataNascita{
     padding-top: 1em;
 }
 
-.errore{
+#error{
     color: crimson;
     font-weight: bold;
 }

@@ -2,6 +2,10 @@ function controlloData(campo){
             var data = document.getElementById(campo).value;
 
     if (data == null || data == "") {
+            if(document.getElementById("confrontoerrore")){
+                    var rimuovere = document.getElementById("confrontoerrore");
+                    rimuovere.parentNode.removeChild(rimuovere);
+            }
             if(!document.getElementById(campo+"errore")){
                 var errore = document.createElement('div');
                 errore.id = campo+'errore';
@@ -19,6 +23,10 @@ function controlloData(campo){
     else {
             var date_regex = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/ ;
             if(!(date_regex.test(data))){
+                if(document.getElementById("confrontoerrore")){
+                    var rimuovere = document.getElementById("confrontoerrore");
+                    rimuovere.parentNode.removeChild(rimuovere);
+            }
                 if(!document.getElementById(campo+"errore")){
                     var errore = document.createElement('div');
                     errore.id = campo+'errore';
@@ -34,6 +42,27 @@ function controlloData(campo){
                     
                 }
             else{
+                var parti_input = data.split("/");
+                var giorno_input = parti_input[0];
+                var mese_input= parti_input[1];
+                var anno_input = parti_input[2];
+                var data_input = Date.parse(anno_input+"-"+mese_input+"-"+giorno_input);
+                var oggi = new Date();
+                if(data_input < oggi){
+                    if(!document.getElementById(campo+"errore")){
+                    var errore = document.createElement('div');
+                    errore.id = campo+'errore';
+                    var testoerrore = document.createTextNode("La data deve essere successiva alla data odierna");
+                    errore.appendChild(testoerrore);
+                    var id = document.getElementById(campo);
+                    id.parentElement.insertBefore(errore, id);
+                    return false;
+                    }
+                    else  { document.getElementById(campo+"errore").innerHTML = "La data deve essere successiva alla data odierna";
+                    return false;
+                      }
+                }
+                else{
                 if(document.getElementById(campo+"errore")){
                     var rimuovere = document.getElementById(campo+"errore");
                     rimuovere.parentNode.removeChild(rimuovere);
@@ -41,6 +70,7 @@ function controlloData(campo){
                 }
             }
         }
+    }
     
     var arr = document.getElementById("dataArrivo").value;
     var part = document.getElementById("dataPartenza").value;
@@ -58,17 +88,29 @@ function controlloData(campo){
         var d1 = Date.parse(anno_arr+"-"+mese_arr+"-"+giorno_arr);
         var d2 = Date.parse(anno_part+"-"+mese_part+"-"+giorno_part);
         
-        if (d1 > d2){
+        if (d1 >= d2){
             if(!document.getElementById("confrontoerrore")){
                 var errore = document.createElement('div');
                 errore.id = 'confrontoerrore';
+                if(d1>d2){
                 var testoerrore = document.createTextNode("La data di partenza deve essere successiva a quella di arrivo");
+                }
+                else{
+                    
+                var testoerrore = document.createTextNode("La data di partenza e quella di arrivo non possono coincidere");
+                }
                 errore.appendChild(testoerrore);
                 var id = document.getElementById("dataPartenza");
 	           id.parentElement.insertBefore(errore, id);
                 return false;
                 }
-            else   {document.getElementById("confrontoerrore").innerHTML = "La data di partenza deve essere successiva a quella di arrivo";
+            else   {
+                 if(d1>d2){
+                     document.getElementById("confrontoerrore").innerHTML = "La data di partenza deve essere successiva a quella di arrivo";
+                 }
+                else{
+                    document.getElementById("confrontoerrore").innerHTML = "La data di partenza e quella di arrivo non possono coincidere";
+                }
                    return false;
                    }
         }
@@ -81,4 +123,13 @@ function controlloData(campo){
             }
     }
     return true;
+}
+
+function disattivaerrori(){
+    //var myElements = document.querySelectorAll(".error");
+    var nascondere = document.getElementById("erarrivo");
+    nascondere.style.display=none;
+/*for (var i = 0; i < myElements.length; i++) {
+    myElements[i].style["display"] = none;
+}*/
 }

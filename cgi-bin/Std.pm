@@ -70,7 +70,7 @@ my %valori= @_;
 print "<div id=\"centrale\">
     <h1>Prenotazioni</h1>
     
-    <script type=\"text/javascript\" src=\"registrazione.js\"></script>
+    <script type=\"text/javascript\" src=\"registrazione.js\"> windows.onload = disattivaerrori();</script>
 	<form id=\"FormPren\" action=\"disponibilita.pl\" method=\"post\">
 		<fieldset>
 			<!--<legend>Prenotazione</legend>-->
@@ -78,7 +78,7 @@ print "<div id=\"centrale\">
             <div id=\"sinistra\">
 			<p><label for=\"dataArrivo\">Data Arrivo </label></p>";
             if($valori{'erarrivo'} ne undef){ print "
-            <span class=\"error\">$valori{'erarrivo'}</span>";}
+            <span id=\"erarrivo\">$valori{'erarrivo'}</span>";}
             print "
 			<p><input type=\"text\" name=\"dataArrivo\" id=\"dataArrivo\" maxlength=\"10\" value=\"$valori{'arrivo'}\" onblur=\"controlloData('dataArrivo')\"/></p>
             <p><label for=\"dataPartenza\">Data Partenza </label></p>";
