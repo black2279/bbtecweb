@@ -93,4 +93,24 @@ sub start_session{
 	return $session;
 }
 
+sub setNumeroCamere{
+	my($tipo,$numero)=@_;
+	my $nodo='unknown';
+	if ($tipo eq 'DOPPIA'){
+		$nodo='doppie';
+	}elsif($tipo eq 'SINGOLA'){
+		$nodo='singole';
+	}else{
+		print "Tipo camera sconosciuto";
+	}
+	my $file = '../data/bb.xml';
+	my $parser = XML::LibXML->new();
+	my $doc=$parser->parse_file($file);
+	my $numero_camere = $doc->findnodes("/bb/$nodo/text()")->get_node(1);
+	$numero_camere->setData($numero);
+	open(OUT, ">$file");
+	print OUT $doc->toString;
+	close(OUT);
+}
+
 1;

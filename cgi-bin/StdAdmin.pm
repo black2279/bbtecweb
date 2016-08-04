@@ -125,6 +125,21 @@ sub Logout{
 	";
 }
 
+sub CamereDisponibili{
+	print CGI::h2("Camere");
+	#possibile lettura db e stampa di tutte le camere
+	print "<form id=\"bbForm\" method=\"post\" action=\"bb.pl\" >";
+	print CGI::div(CGI::span("Numero camere singole: ".Utils::getNumeroCamere('SINGOLA')).
+				"<input id=\"nsingole\" name=\"nsingole\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />"
+				);
+	print CGI::div(CGI::span("Numero camere doppie: ".Utils::getNumeroCamere('DOPPIA')).
+				"<input id=\"ndoppie\" name=\"ndoppie\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	
+	print "</form>";
+}
 
 sub PrintLogin{
  my($esito)=@_;
@@ -140,5 +155,13 @@ sub PrintHome{
  Menu();
  Breadcrumb(1,"Home");
  Benvenuto($username);
+ EndHtml();
+}
+
+sub BedBreakfast(){
+ HtmlCode();
+ Menu();
+ Breadcrumb(1,"Bed &amp; Breakfast");
+ CamereDisponibili();
  EndHtml();
 }
