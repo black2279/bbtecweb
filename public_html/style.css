@@ -437,7 +437,33 @@ input#dataNascita{
 	float:left;
 } 
 
+/*Chi siamo*/
 
+#title
+{
+	margin-top:1em;
+	margin-left:1em;
+}
+
+#content .imgchisiamo{
+	width:250px;
+	height:250px;
+	float:left;
+	margin-right:1em;
+	border-width:medium;
+	border-color:#940315;;
+	border-style:solid;	
+}
+
+#content p
+{
+	text-align:left;
+}
+
+#content{
+	margin-top:1em;
+	padding-bottom:6.875em;		
+}
 
 
 
