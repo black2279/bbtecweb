@@ -4,6 +4,9 @@ use strict;
 use warnings;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
+use XML::LibXML;
+use Time::Piece;
+use DateTime;
 package StdAdmin;
 
 use Exporter qw(import);
@@ -141,6 +144,85 @@ sub CamereDisponibili{
 	print "</form>";
 }
 
+sub ordinaPrenotazioni{
+   my $fmt = "%d/%m/%Y";
+   my $dataArrivo_1 = Time::Piece->strptime($a->findnodes('dataArrivo')->get_node(1)->textContent, $fmt);
+   my $dataPartenza_1 = Time::Piece->strptime($a->findnodes('dataPartenza')->get_node(1)->textContent, $fmt);
+   my $dataArrivo_2 = Time::Piece->strptime($b->findnodes('dataArrivo')->get_node(1)->textContent, $fmt);
+   my $dataPartenza_2 = Time::Piece->strptime($b->findnodes('dataPartenza')->get_node(1)->textContent, $fmt);
+   if($dataArrivo_1 eq $dataArrivo_2){
+		return $dataPartenza_1 <=> $dataPartenza_2;
+   }else{
+		return $dataArrivo_1 <=> $dataArrivo_2;
+   }
+}
+
+sub Prenotazioni{
+	my($inizio, $fine)=@_;
+	#definire pagina per il dettaglio di una prenotazione
+	#aggiungere nomi agli elementi tramite attributi
+	my $firstline = 0;
+	my @prenotazioni = Utils::ricercaPrenotazioni($inizio,$fine);
+	@prenotazioni = sort ordinaPrenotazioni @prenotazioni;
+	@prenotazioni = reverse @prenotazioni;
+	if(@prenotazioni){
+	print "<table id=\"t_stato_pren\">";
+	foreach my $prenotazione (@prenotazioni) {
+	  my $children = $prenotazione->nonBlankChildNodes();
+	  if(!($firstline)){
+		print "<tr>";
+		print "<th>Codice</th>";
+		foreach my $child ($children->get_nodelist()){
+			print "<th>".$child->localname."</th>";
+		}
+		print "</tr>";
+		$firstline = 1;
+	  }
+	  print "<tr class=".statoPrenotazione($prenotazione).">";
+	  print "<td><a href=\"dettaglio_prenotazione.pl?id=".($prenotazione->attributes())[0]->getValue()."\">".
+	  ($prenotazione->attributes())[0]->getValue()."</a></td>";
+	  foreach my $child ($children->get_nodelist()){
+			print "<td>".$child->textContent."</td>";
+		}
+	  print "</tr>";
+	}
+	print "</table>";
+	}else{
+		print "Nessuna prenotazione presente";
+	}
+}
+
+sub statoPrenotazione{
+	my($prenotazione)=@_;
+	my $fmt = "%d/%m/%Y";
+	my $dataArrivo = Time::Piece->strptime($prenotazione->findnodes('dataArrivo')->get_node(1)->textContent, $fmt);
+	my $dataPartenza = Time::Piece->strptime($prenotazione->findnodes('dataPartenza')->get_node(1)->textContent, $fmt);
+	my $now = Time::Piece->strptime(DateTime->now()->dmy("/"), $fmt);
+   if($dataArrivo > $now and $dataPartenza > $now){
+		return 'prossima';
+   }elsif($dataArrivo <= $now and $dataPartenza >= $now ){
+		return 'incorso';
+   }elsif($dataArrivo < $now and $dataPartenza < $now){
+		return 'scaduta';
+   }else{
+		return '';
+   }
+}
+
+
+
+sub PrintFormRicerca{
+	print CGI::h2("Stato Prenotazioni");
+	#possibile lettura db e stampa di tutte le camere
+	print "<form id=\"spForm\" method=\"post\" action=\"stato_prenotazioni.pl\" >";
+	print CGI::div(
+				"<span>Da</span><input id=\"da\" name=\"da\" type=\"text\" maxlength=\"10\" />
+				<span>A</span><input id=\"a\" name=\"a\" type=\"text\" maxlength=\"10\" />
+				<input type=\"submit\" value=\"Ricerca\" />"
+				);
+	print "</form>";
+}
+
 sub PrintLogin{
  my($esito)=@_;
  HtmlCode();
@@ -164,4 +246,76 @@ sub BedBreakfast(){
  Breadcrumb(1,"Bed &amp; Breakfast");
  CamereDisponibili();
  EndHtml();
+}
+
+sub StatoPrenotazioni{
+	my($inizio,$fine)=@_;
+	 HtmlCode();
+	 Menu();
+	 Breadcrumb(1,"Stato Prenotazioni");
+	 PrintFormRicerca();
+	 if(ControlloDate($inizio,$fine)){
+		Prenotazioni($inizio,$fine);
+	 }
+	 EndHtml();
+
+}
+
+sub ControlloDate{
+	my($da,$a)=@_;
+	if($da and $a){
+	if(isvaliddate($da) and isvaliddate($a)){
+	my $fmt="%d/%m/%Y";
+	my $d1 = Time::Piece->strptime($da,$fmt);
+	my $d2 = Time::Piece->strptime($a,$fmt);
+	if ($d2 <= $d1){
+		print "<p>La data A deve essere maggiore</p>";
+		return 0;
+	}else{
+		return 1;
+		}
+	}else{
+	   if(!(isvaliddate($da))){
+		print "<p>La data DA non &egrave valida</p>";
+	    }
+		if(!(isvaliddate($a))){
+		print "<p>La data A non &egrave valida</p>";
+		}
+		return 0;
+	}
+	}elsif($da eq undef and $a eq undef){
+		return 1;
+	}elsif($da eq undef){
+		if(isvaliddate($a)){
+			return 1;
+		}else{
+			print "<p>La data A non &egrave valida</p>";
+			return 0;
+			}
+	}elsif($a eq undef){
+		if(isvaliddate($da)){
+			return 1;
+		}else{
+			print "<p>La data DA non &egrave valida</p>";
+			return 0;
+		}
+	}
+}
+
+sub isvaliddate {
+  my $input = shift;
+  if ($input =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!) {
+    # At this point, $1 holds the day, $2 the month and $3 the year of the date entered
+    if ($1 == 31 and ($2 == 4 or $2 == 6 or $2 == 9 or $2 == 11)) {
+      return 0; # 31st of a month with 30 days
+    } elsif ($1 >= 30 and $2 == 2) {
+      return 0; # February 30th or 31st
+    } elsif ($2 == 2 and $1 == 29 and not ($3 % 4 == 0 and ($3 % 100 != 0 or $3 % 400 == 0))) {
+      return 0; # February 29th outside a leap year
+    } else {
+      return 1; # Valid date
+    }
+  } else {
+    return 0; # Not a date
+  }
 }

@@ -11,19 +11,31 @@ sub ricercaPrenotazioni{
 	my ($dataarrivo,$datapartenza)=@_;
 	$dataarrivo =~ s/\//-/g; #sostituisce / con -
 	$datapartenza =~ s/\//-/g; #sostituisce / con -
-	my $dataArrivo ="number(concat(substring(dataArrivo,7,4),substring(dataArrivo,4,2),substring(dataArrivo,1,2)))";
-	my $dataarrivo ="number(concat(substring('$dataarrivo',7,4),substring('$dataarrivo',4,2),substring('$dataarrivo',1,2)))";
+	my $dataArrivo ="number(concat(substring(dataArrivo,7,4),substring(dataArrivo,4,2),substring(dataArrivo,1,2)))"; 
 	my $dataPartenza ="number(concat(substring(dataPartenza,7,4),substring(dataPartenza,4,2),substring(dataPartenza,1,2)))";
-	my $datapartenza ="number(concat(substring('$datapartenza',7,4),substring('$datapartenza',4,2),substring('$datapartenza',1,2)))";
+
 	my $file = '../data/prenotazioni.xml';
 	my $parser = XML::LibXML->new();
 	my $doc=$parser->parse_file($file);
-	my $prenotazioni = $doc->findnodes("//prenotazione[
+	if($dataarrivo eq undef && $datapartenza eq undef){
+		return $doc->findnodes("//prenotazione");
+	}elsif($dataarrivo eq undef){
+		$datapartenza ="number(concat(substring('$datapartenza',7,4),substring('$datapartenza',4,2),substring('$datapartenza',1,2)))";
+		return $doc->findnodes("//prenotazione[
+	($dataArrivo <= $datapartenza and $dataPartenza >= $datapartenza) or
+	($dataArrivo <= $datapartenza and $dataPartenza <= $datapartenza) ]");
+	}elsif($datapartenza eq undef){
+		$dataarrivo ="number(concat(substring('$dataarrivo',7,4),substring('$dataarrivo',4,2),substring('$dataarrivo',1,2)))";
+		return $doc->findnodes("//prenotazione[
+	($dataArrivo <= $dataarrivo and $dataPartenza >= $dataarrivo) or
+	($dataArrivo >= $dataarrivo and $dataPartenza >= $dataarrivo) ]");
+	}else{
+		return $doc->findnodes("//prenotazione[
 	($dataArrivo <= $dataarrivo and $dataPartenza <= $datapartenza and $dataPartenza >= $dataarrivo) or
 	($dataArrivo >= $dataarrivo and $dataPartenza <= $datapartenza) or
 	($dataArrivo >= $dataarrivo and $dataArrivo <= $datapartenza and $dataPartenza >= $datapartenza) or
 	($dataArrivo <= $dataarrivo and $dataPartenza >= $datapartenza) ]");
-	return $prenotazioni;
+	}
 }
 
 sub getNumeroCamerePrenotate{

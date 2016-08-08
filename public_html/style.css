@@ -392,5 +392,35 @@ input#dataNascita{
 #bbForm *{
  margin-right: 1em;
  margin-top: 0.5em;
- 
 }
+
+.prossima:nth-child(even){
+ background:#0F6;
+}
+.prossima:nth-child(odd){
+ background:#0E6;
+}
+
+.incorso:nth-child(even){
+ background:#DDD;
+}
+.incorso:nth-child(odd){
+ background:#BBB;
+}
+
+.scaduta{
+color:#666;
+}
+
+.scaduta:nth-child(even) {
+background: #EEE;
+}
+.scaduta:nth-child(odd) {
+background: #CCC;
+}
+
+#t_stato_pren{
+margin: 10px;
+
+}
+
