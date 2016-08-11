@@ -21,16 +21,29 @@ print $page->redirect("login.pl");
 	my $nsingole = $page->param("nsingole");
 	my $ndoppie = $page->param("ndoppie");
 	if($nsingole eq undef && $ndoppie eq undef){
-	 StdAdmin::BedBreakfast();
-	 print "Compila almeno un campo";
+	 my $errore="<p>Compila almeno un campo</p>";
+	 StdAdmin::BedBreakfast($errore);
 	}else{
-		if($nsingole){
-			Utils::setNumeroCamere('SINGOLA',$nsingole);
-			}
-		if($ndoppie){
+		my $errsingole = undef;
+		my $errdoppie = undef;
+		my $errore = "";
+		if($nsingole =~ /\d/){
+				Utils::setNumeroCamere('SINGOLA',$nsingole);
+		}elsif($nsingole){
+				$errsingole="<p>Il campo singole deve essere un numero</p>";
+		}
+		if($ndoppie =~ /\d/){
 			Utils::setNumeroCamere('DOPPIA',$ndoppie);
-			}
-		StdAdmin::BedBreakfast();
+		}elsif($ndoppie){
+				$errdoppie="<p>Il campo doppie deve essere un numero</p>";
+		}
+		if($errsingole){
+			$errore=$errore.$errsingole;
+		}
+		if($errdoppie){
+			$errore=$errore.$errdoppie;
+		}
+		StdAdmin::BedBreakfast($errore);
 		}
 	}else{
 	  StdAdmin::BedBreakfast();

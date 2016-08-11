@@ -240,11 +240,15 @@ sub PrintHome{
  EndHtml();
 }
 
-sub BedBreakfast(){
+sub BedBreakfast{
+ my($errore) = @_;
  HtmlCode();
  Menu();
  Breadcrumb(1,"Bed &amp; Breakfast");
  CamereDisponibili();
+ if($errore){
+	print $errore;
+ }
  EndHtml();
 }
 
