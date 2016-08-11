@@ -7,6 +7,7 @@ use CGI::Carp qw(fatalsToBrowser);
 use XML::LibXML;
 use Time::Piece;
 use DateTime;
+use Tariffe;
 package StdAdmin;
 
 use Exporter qw(import);
@@ -144,6 +145,40 @@ sub CamereDisponibili{
 	print "</form>";
 }
 
+sub FormTariffe{
+	print CGI::h1("Tariffe");
+	#possibile lettura db e stampa di tutte le camere
+	print CGI::h2("Camere");
+	print "<form id=\"tariffeForm\" method=\"post\" action=\"tariffe.pl\" >";
+	print CGI::div(CGI::span("Prezzo Singola ".Tariffe::getPrezzoCamera('SINGOLA')."&euro;").
+				"<input id=\"psingola\" name=\"psingola\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />"
+				);
+	print CGI::div(CGI::span("Prezzo Doppia: ".Tariffe::getPrezzoCamera('DOPPIA')."&euro;").
+				"<input id=\"pdoppie\" name=\"pdoppia\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	print CGI::h2("Servizi");
+	print CGI::div(CGI::span("Prezzo Parcheggio: ".Tariffe::getPrezzoParcheggio()."&euro;").
+				"<input id=\"pparcheggio\" name=\"pparcheggio\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	print CGI::div(CGI::span("Prezzo Pulizie: ".Tariffe::getPrezzoPulizie()."&euro;").
+				"<input id=\"ppulizie\" name=\"ppulizie\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	print CGI::div(CGI::span("Prezzo Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()."&euro;").
+				"<input id=\"pnavaereo\" name=\"pnavaereo\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	print CGI::div(CGI::span("Prezzo Navetta per Treno: ".Tariffe::getPrezzoNavettaTreno()."&euro;").
+				"<input id=\"pnavtreno\" name=\"pnavtreno\" type=\"text\" maxlength=\"3\" />
+				<input type=\"submit\" value=\"Modifica\" />
+				");
+	
+	print "</form>";
+}
+
 sub ordinaPrenotazioni{
    my $fmt = "%d/%m/%Y";
    my $dataArrivo_1 = Time::Piece->strptime($a->findnodes('dataArrivo')->get_node(1)->textContent, $fmt);
@@ -263,6 +298,18 @@ sub StatoPrenotazioni{
 	 }
 	 EndHtml();
 
+}
+
+sub Tariffe{
+ my($errore) = @_;
+ HtmlCode();
+ Menu();
+ Breadcrumb(1,"Tariffe");
+ FormTariffe();
+ if($errore){
+	print $errore;
+ }
+ EndHtml();
 }
 
 sub ControlloDate{
