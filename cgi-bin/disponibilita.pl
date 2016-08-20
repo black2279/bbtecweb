@@ -1,4 +1,5 @@
 #!/usr/bin/perl
+
 #print "Content type: text/html; charset=UTF-8\n\n";
 
 use DateTime;
@@ -10,6 +11,7 @@ use warnings;
 use Std;
 use Utils;
 binmode STDOUT, ":utf8";
+use Time::Piece;
 
 Std::HtmlCode();
 
@@ -83,7 +85,7 @@ else{
         $valori{'erarrivo'} = "La data di arrivo contiene un errore";
     }else{
       $dataarrivo =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
-      my $dt1 = DateTime->new(
+      my $dtarr1 = DateTime->new(
           year       => $3,
           month      => $2,
           day        => $1,
@@ -94,7 +96,7 @@ else{
           time_zone  => 'Europe/Rome',
       );
       my $dt2 = DateTime->now(time_zone=>'local');
-      if(DateTime->compare($dt1, $dt2) == -1){
+      if(DateTime->compare($dtarr1, $dt2) == -1){
       $error=1;
       $valori{'erarrivo'} =  "Data di arrivo non valida";
       }
@@ -112,7 +114,7 @@ if(!isvaliddate($datapartenza)){
 	$valori{'erpartenza'} = "La data di partenza contiene un errore";
 }else{
   $datapartenza =~ m!^(0[1-9]|[12][0-9]|3[01])[/](0[1-9]|1[012])[/]((19|20)\d\d)$!;
-  my $dt1 = DateTime->new(
+  my $dtpart1 = DateTime->new(
       year       => $3,
       month      => $2,
       day        => $1,
@@ -123,18 +125,23 @@ if(!isvaliddate($datapartenza)){
       time_zone  => 'Europe/Rome',
   );
   my $dt2 = DateTime->now(time_zone=>'local');
-  if(DateTime->compare($dt1, $dt2) == -1){
+  if(DateTime->compare($dtpart1, $dt2) == -1){
   $error=1;
   $valori{'erpartenza'} = "Data di partenza non valida";
   }
 }
 }
 
-if($datapartenza < $dataarrivo){
+my $fmt = "%d/%m/%Y";
+my $dta = Time::Piece->strptime($dataarrivo, $fmt);
+my $dtp = Time::Piece->strptime($datapartenza,$fmt);
+
+if($dtp < $dta){
     $error=1;
-    $valori{'erarrivo'} = "La data di partenza non pu&ograve; essere precedente a quella di arrivo.";
+    $valori{'erarrivo'} = "$datapartenza $dataarrivo La data di partenza non pu&ograve; essere precedente a quella di arrivo.";
 
 }
+
 
 if($singole eq undef){
     $error  = 1;
@@ -214,7 +221,8 @@ if(!$error){
     print "<h2>La tua prenotazione </h2>";
 
     Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
-    my $diff = Std::DiffData($dataarrivo,$datapartenza);
+#    my $diff = Std::DiffData($dataarrivo,$datapartenza);
+    my $diff = ($dtp - $dta) / (86400);
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
     if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
       Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);

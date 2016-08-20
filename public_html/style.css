@@ -368,7 +368,16 @@ input#dataNascita{
     padding-top: 1em;
 }
 
-#error{
-    color: crimson;
+.error{
+    color: red;
     font-weight: bold;
+    padding-left: 2em;
+    font-size: 0.75em;
 }
+
+.error{
+    background: url(Button-warning-icon.png);
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
