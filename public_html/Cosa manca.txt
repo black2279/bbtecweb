@@ -1,0 +1,2 @@
+Galleria: centrare le immagini e il testo, parte javascript ingrandimento immagini.
+Chi siamo: possibilità di utilizzare <br>

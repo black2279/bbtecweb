@@ -69,7 +69,7 @@ h1{
 }*/
 #content {
     margin-left: 1em;
-	padding-bottom:6.875em; /* Height of the footer element */
+	padding-bottom:auto/*6.875em*/; /* Height of the footer element */
 }
 
 #centrale{
@@ -381,3 +381,94 @@ input#dataNascita{
     background-size: contain;
 }
 
+/*galleria + pagine interne*/
+
+/*pagine interne*/
+
+.imgGalleria{
+	border-width:medium;
+	border-color:#940315;;
+	border-style:solid;
+	margin-top: auto;
+	margin-left: 2em;
+	margin-right: 2em;
+	margin-bottom: 3em;
+	width:200px;
+	height:200px;
+}
+
+#galleria{
+	margin-top:auto;	
+	margin-right:5em;
+	margin-left:5em; 
+	padding-bottom:6.875em;
+}
+
+/*galleria*/
+
+#camere{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;
+	float:left;
+	diplay:block;
+} 
+
+#esterni{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;
+	float:left;
+	diplay:block;
+} 
+
+#ristorante{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;	
+	diplay:block;
+	float:clear;
+} 
+
+#ristorante a{
+	float:left;
+} 
+
+#camere a{
+	float:left;
+} 
+
+#esterni a{
+	float:left;
+} 
+
+/*Chi siamo*/
+
+#title
+{
+	margin-top:1em;
+	margin-left:1em;
+}
+
+#content .imgchisiamo{
+	width:250px;
+	height:250px;
+	float:left;
+	margin-right:1em;
+	border-width:medium;
+	border-color:#940315;;
+	border-style:solid;	
+}
+
+#content p
+{
+	text-align:left;
+}
+
+#content{
+	margin-top:1em;
+	padding-bottom:6.875em;		
+}
