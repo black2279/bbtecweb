@@ -385,7 +385,7 @@ print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i ca
                 if($valori{'ertel'} ne undef){print "
                 <p><span class=\"error\">$valori{'ertel'}</span></p>"};
                 print "
-                <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=\"$valori{'telefono'}\" maxlength=\"13\"/></p>
+                <p><input type=\"text\" name=\"telefono\" id=\"telefono\" value=\"$valori{'telefono'}\" maxlength=\"10\"/></p>
             </div>
             </fieldset>
         <p>Dati di pagamento</p>

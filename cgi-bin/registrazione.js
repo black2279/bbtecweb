@@ -237,11 +237,11 @@ function controlloNumeri(num){
      if(eDefinito(num))
     {
         var numero = document.getElementById(num).value;
-        var controllo = numero.match(/\d/g);
+        var controllo = numero.match(/^[0-9]*$/);
         if(controllo == null){
            if(!document.getElementById(num+"errore")){
                 var errore = document.createElement('div');
-                errore.id = str+'errore';
+                errore.id = num+'errore';
                 errore.setAttribute('class', 'error');
                 var testoerrore = document.createTextNode("Il campo pu&ograve; contenere solo cifre");
                 errore.appendChild(testoerrore);
@@ -267,11 +267,11 @@ function controlloNumeri(num){
 function controlloCarta(num,tip){
     if(eDefinito(num)){
         var numero = document.getElementById(num).value;
-        var controllo = numero.match(/\D/g);
+        var controllo = numero.match(/^[0-9]*$/);
         if(controllo == null){
             if(!document.getElementById(num+"errore")){
                 var errore = document.createElement('div');
-                errore.id = str+'errore';
+                errore.id = num+'errore';
                 errore.setAttribute('class', 'error');
                 var testoerrore = document.createTextNode("Il campo pu&ograve; contenere solo cifre");
                 errore.appendChild(testoerrore);
