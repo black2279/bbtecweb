@@ -314,16 +314,23 @@ fieldset{
 #richiesta{
     width: 50%;
     margin-left: 1em;
+	float: left;
 }
 
 #dettagli{
   float: left;
-  width: 50%;
+  clear: left;
+  /*width: 50%;*/
+  margin-left: 1em;
 }
 
 #dettprezzi {
-    float:right;
-    width: 50%;
+    /*float:right;*/
+    /*width: 50%;*/
+}
+
+.FormPren{
+	clear:both;
 }
 
 .dati{
@@ -522,4 +529,8 @@ background: #CCC;
 #t_stato_pren{
 margin: 10px;
 
+}
+
+.separatore{
+clear: both;
 }

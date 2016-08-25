@@ -223,10 +223,10 @@ if(!$error){
     Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
 #    my $diff = Std::DiffData($dataarrivo,$datapartenza);
     my $diff = ($dtp - $dta) / (86400);
+	if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+	Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+	}
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
-    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
-      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
-    }
     Std::Dati($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale);
 }
 else{

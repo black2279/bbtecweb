@@ -309,10 +309,12 @@ print "<h2>La prenotazione &egrave; andata a buon fine.</h2>
         <h2>La tua prenotazione</h2>";
 Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
+	if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+     Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+    }
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
-    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
-      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
-}
+	#possibile rimozione
+	print "<div class=\"separatore\"></div>"
 }
 else{
 my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
@@ -320,10 +322,10 @@ Std::Breadcrumb($percorso);
     print "<h2>La tua prenotazione</h2>";
     Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
     my $diff = Std::DiffData($dataarrivo,$datapartenza);
+	if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
+	 Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
+	}
     my $totale = Std::Prezzi($dataarrivo,$datapartenza,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo,$navettatreno, $diff);
-    if($parcheggio eq "true" || $pulizia eq "true" || $navettaaereo eq "true" || $navettatreno eq "true"){
-      Std::Servizi($parcheggio,$pulizia,$navettaaereo, $navettatreno);
-    }
     Std::Dati($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$parcheggio,$pulizia,$navettaaereo, $navettatreno,$totale,%valori);
 }
 # sub enc {

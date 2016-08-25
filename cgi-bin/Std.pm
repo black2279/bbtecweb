@@ -216,9 +216,10 @@ print "</div>"
 }
 
 sub Servizi{
-  print "Servizi";
+  
 my ($parcheggio,$pulizia,$navettaaereo, $navettatreno)=@_;
   print "<div id = \"dettagli\">";
+  print "<strong>Servizi</strong>";
   print "<p>Hai richiesto anche: </p>";
    if($parcheggio eq "true"){
    print "<p>- Parcheggio</p>";
@@ -248,20 +249,20 @@ sub Prezzi{
 		  my $prdoppia = Tariffe::getPrezzoCamera('DOPPIA');
           $prdoppie = $prdoppia*$doppie*$diff;
           if($doppie == 1){
-          print "<p>$doppie camera doppia = &euro; $prdoppia x $doppie doppia * $diff giorni = &euro; $prdoppie.</p>";
+          print "<p>$doppie camera doppia = &euro; $prdoppia x $doppie doppia x $diff giorni = &euro; $prdoppie</p>";
           }
           else{
-            print "<p>$doppie camere doppie = &euro; $prdoppia x $doppie doppie * $diff giorni= &euro; $prdoppie.</p>";
+            print "<p>$doppie camere doppie = &euro; $prdoppia x $doppie doppie x $diff giorni= &euro; $prdoppie</p>";
           }
           }
       if($singole > 0){
           my $prsingola = Tariffe::getPrezzoCamera('SINGOLA');
 		  $prsingole = Tariffe::getPrezzoCamera('SINGOLA')*$singole*$diff;
           if($singole == 1){
-          print "<p>$singole camera singola = &euro; $prsingola x $singole singola x $diff giorni = &euro; $prsingole.</p>";
+          print "<p>$singole camera singola = &euro; $prsingola x $singole singola x $diff giorni = &euro; $prsingole</p>";
           }
           else{
-          print "<p>$singole camere singole = &euro; $prsingola x $singole singole x $diff giorni = &euro; $prsingole.</p>";
+          print "<p>$singole camere singole = &euro; $prsingola x $singole singole x $diff giorni = &euro; $prsingole</p>";
           }
           }
         my $camere = $singole+$doppie;
@@ -286,7 +287,7 @@ sub Prezzi{
       }
       my $totale = $prdoppie + $prsingole + $prparcheggio + $prpulizia + $prnavettaaereo + $prnavettatreno;
       print "<p>Totale &euro; $totale</p>";
-      print "</div>";
+	  print "</div>";
       return $totale;
     }
 
