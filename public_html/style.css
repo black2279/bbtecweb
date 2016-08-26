@@ -233,8 +233,10 @@ li:hover:before, li:focus:before, li:active:before {
 
 #menu ul {
     overflow: hidden;
-    margin: 1em;
-    padding: 0;
+    margin-top: 1em;
+	margin-left: 1em;
+	margin-bottom: 1em;
+    padding: 0px;
 }
 
 #menu > ul > li > a{
