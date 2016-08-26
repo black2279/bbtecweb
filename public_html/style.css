@@ -2,6 +2,7 @@ html{
     height: 100%;
     margin: 0;
     padding: 0;
+	overflow: auto;
 }
 @font-face {
     font-family: Raleway;
@@ -70,6 +71,7 @@ h1{
 #content {
     margin-left: 1em;
 	padding-bottom:auto/*6.875em*/; /* Height of the footer element */
+	margin-right: 1em;
 }
 
 #centrale{
@@ -209,6 +211,7 @@ li:hover:before, li:focus:before, li:active:before {
     padding-right: 2em;
     text-align: right;
     font-size: 0.75em;
+	line-height: 1em;
 }
 
 #imm_servizi{
@@ -248,10 +251,10 @@ li:hover:before, li:focus:before, li:active:before {
     list-style: none;
     float: left;
     text-align: center;
-    border-left: 0.0625em solid #fff;
-    border-right: 0.0625em solid #ccc;
-    /*width: 16.6667%;*/
-    width: calc(100% / 7);
+    border-left: 1px solid #fff;
+    border-right: 1px solid #ccc;
+    width: 14.27%;
+    /*width: calc(100% / 7);*/
     box-sizing: border-box;
 }
 
