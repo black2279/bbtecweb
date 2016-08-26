@@ -118,7 +118,6 @@ li:hover:before, li:focus:before, li:active:before {
 }
 */
 #menu ul {
-    list-style-type: none;
     margin: 0;
     padding: 0;
     overflow: hidden;
@@ -230,7 +229,6 @@ li:hover:before, li:focus:before, li:active:before {
     float: right;
     /*background: #f0f0f0;*/
     /*border: 1px solid #ccc;*/
-    border-right: none;
     margin-right: 1em;
 }
 
@@ -248,14 +246,11 @@ li:hover:before, li:focus:before, li:active:before {
 }
 
 #menu ul li {
-    list-style: none;
     float: left;
     text-align: center;
-    border-left: 1px solid #fff;
-    border-right: 1px solid #ccc;
-    width: 14.27%;
+    width: 14.1%;
     /*width: calc(100% / 7);*/
-    box-sizing: border-box;
+	border-left: 1px solid #fff;
 }
 
 #menu ul li:first-child {
@@ -403,7 +398,7 @@ input#dataNascita{
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
-	margin-right: 2em;
+	margin-right: auto;
 	margin-bottom: 3em;
 	width:200px;
 	height:200px;
