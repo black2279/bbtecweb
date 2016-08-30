@@ -138,11 +138,9 @@ form > fieldset p{
 
 #menu li, #menu a, #menu > ul > li > span{
     display: inline-block;
-    color: #ffffff;
     text-align: center;
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
-    text-decoration: none;
 }
 
 #menu > ul > li > a{
@@ -163,8 +161,6 @@ form > fieldset p{
 
 #menu ul li a, #menu > ul > li > span{
     display: block;
-    text-decoration: none;
-    color: #ffffff;
     padding: 10px 0;
 }
 
@@ -512,4 +508,17 @@ background: #EEE;
 }
 .scaduta:nth-child(odd) {
 background: #CCC;
+}
+
+/* Link */
+#menu a:link{
+	color:white;
+}
+
+#menu a:visited{
+	color: orange;
+}
+
+#menu a:active{
+	color: yellow;
 }
