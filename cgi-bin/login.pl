@@ -1,4 +1,4 @@
-﻿#!/usr/bin/perl
+#!/usr/bin/perl
 
 use DateTime;
 use CGI;
@@ -12,7 +12,6 @@ binmode STDOUT, ":utf8";
 
 my $page = new CGI;
 my $session = Utils::start_session($page);
-
 
 if($session->param("logged") == 0){
 my $username = $page->param("username");

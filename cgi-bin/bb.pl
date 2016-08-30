@@ -1,5 +1,4 @@
-﻿#!/usr/bin/perl
-
+#!/usr/bin/perl
 use DateTime;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
@@ -9,7 +8,6 @@ use StdAdmin;
 use Utils;
 use CGI::Session;
 binmode STDOUT, ":utf8";
-
 my $page = new CGI;
 my $session = Utils::start_session($page);
 

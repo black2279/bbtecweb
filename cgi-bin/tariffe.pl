@@ -1,5 +1,4 @@
-﻿#!/usr/bin/perl
-
+#!/usr/bin/perl
 use DateTime;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
