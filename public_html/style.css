@@ -473,6 +473,19 @@ clear: both;
  margin-top: 0.5em;
 }
 
+#bbForm > div{
+ margin: 0;
+ margin-top: 0.75em;
+ padding: 0;
+ vertical-align: top;
+}
+
+/* Form Stato Prenotazioni */
+#spForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
  /* Tabella Prenotazioni */
  
 #t_stato_pren{
@@ -481,20 +494,36 @@ margin: 10px;
 
 /* Prenotazioni successive alla data odierna */
 
+.prossima{
+ background: #0F6;
+}
+
+.prossima+.alternate {
+ background: #0E6;
+}
+
 .prossima:nth-child(even){
- background:#0F6;
+ background: #0F6;
 }
 .prossima:nth-child(odd){
- background:#0E6;
+ background: #0E6;
 }
 
 /* Prenotazioni in corso */
 
+.incorso{
+background: #DDD;
+}
+
+.incorso+.alternate {
+ background: #BBB;
+} 
+
 .incorso:nth-child(even){
- background:#DDD;
+ background: #DDD;
 }
 .incorso:nth-child(odd){
- background:#BBB;
+ background: #BBB;
 }
 
 /* Prenotazioni scadute */
@@ -503,10 +532,18 @@ margin: 10px;
 color:#666;
 }
 
+.scaduta{
+background: #EEE;
+}
+
+.scaduta+.alternate{
+ background: #CCC;
+} 
+
 .scaduta:nth-child(even) {
 background: #EEE;
 }
-.scaduta:nth-child(odd) {
+.scaduta:nth-child(odd){
 background: #CCC;
 }
 
