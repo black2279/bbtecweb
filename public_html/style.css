@@ -464,6 +464,7 @@ clear: both;
  text-align:right;
  margin-right: 1em;
  display:block;
+ line-height: 1em;
 }
 
 /* Form per dimensione Bed & Breakfast */
@@ -482,6 +483,12 @@ clear: both;
 
 /* Form Stato Prenotazioni */
 #spForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+/* Form Tariffe */
+#tariffeForm>div{
 margin-top: 1em;
 margin-bottom: 1em;
 }

@@ -30,32 +30,32 @@ print $page->redirect("login.pl");
 	 StdAdmin::Tariffe($errore);
 	}else{
 		my $errore = "";
-		if($psingola =~ /\d/){
+		if($psingola =~ /^\d+$/){
 			Tariffe::setPrezzoCamera('SINGOLA',$psingola);
 		}elsif($psingola){
 			$errore = $errore."<p>Il campo Prezzo Singola deve essere un numero</p>";
 		}
-		if($pdoppia =~ /\d/){
+		if($pdoppia =~ /^\d+$/){
 			Tariffe::setPrezzoCamera('DOPPIA',$pdoppia);
 		}elsif($pdoppia){
 			$errore= $errore."<p>Il campo Prezzo Doppia deve essere un numero</p>";
 		}
-		if($pparcheggio =~ /\d/){
+		if($pparcheggio =~ /^\d+$/){
 			Tariffe::setPrezzoParcheggio($pparcheggio);
 		}elsif($pparcheggio){
 				$errore= $errore."<p>Il campo Prezzo Parcheggio deve essere un numero</p>";
 		}
-		if($ppulizie =~ /\d/){
+		if($ppulizie =~ /^\d+$/){
 			Tariffe::setPrezzoPulizie($ppulizie);
 		}elsif($ppulizie){
 				$errore= $errore."<p>Il campo Prezzo Pulizie deve essere un numero</p>";
 		}
-		if($pnavaereo =~ /\d/){
+		if($pnavaereo =~ /^\d+$/){
 			Tariffe::setPrezzoNavettaAeroporto($pnavaereo);
 		}elsif($pnavaereo){
 				$errore= $errore."<p>Il campo Prezzo Navetta per Aeroporto deve essere un numero</p>";
 		}
-		if($pnavtreno =~ /\d/){
+		if($pnavtreno =~ /^\d+$/){
 			Tariffe::setPrezzoNavettaTreno($pnavtreno);
 		}elsif($pnavtreno){
 				$errore= $errore."<p>Il campo Prezzo Navetta per Treno deve essere un numero</p>";

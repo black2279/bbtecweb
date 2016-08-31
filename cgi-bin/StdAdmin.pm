@@ -148,8 +148,8 @@ sub CamereDisponibili{
 sub FormTariffe{
 	print CGI::h1("Tariffe");
 	#possibile lettura db e stampa di tutte le camere
-	print CGI::h2("Camere");
 	print "<form id=\"tariffeForm\" method=\"post\" action=\"tariffe.pl\" >";
+	print CGI::h2("Camere");
 	print CGI::div(CGI::span("Prezzo Singola ".Tariffe::getPrezzoCamera('SINGOLA')."&euro;").
 				"<input id=\"psingola\" name=\"psingola\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />"

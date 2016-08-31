@@ -25,12 +25,12 @@ print $page->redirect("login.pl");
 		my $errsingole = undef;
 		my $errdoppie = undef;
 		my $errore = "";
-		if($nsingole =~ /\d/){
+		if($nsingole =~ /^\d+$/){
 				Utils::setNumeroCamere('SINGOLA',$nsingole);
 		}elsif($nsingole){
 				$errsingole="<p>Il campo singole deve essere un numero</p>";
 		}
-		if($ndoppie =~ /\d/){
+		if($ndoppie =~ /^\d+$/){
 			Utils::setNumeroCamere('DOPPIA',$ndoppie);
 		}elsif($ndoppie){
 				$errdoppie="<p>Il campo doppie deve essere un numero</p>";
