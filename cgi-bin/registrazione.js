@@ -1,17 +1,19 @@
 function eDefinito(el){
     var elemento = document.getElementById(el).value;
     if(elemento == null || elemento == ""){
-            if(!document.getElementById(el+"errore")){
-                var errore = document.createElement('div');
+			var errore = document.createElement('div');
                 errore.id = el+'errore';
-                errore.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Campo obbligatorio");
-                errore.appendChild(testoerrore);
+                errore.className = 'error';
+				errore.innerHTML = "Campo obbligatorio";
+				
+            if(!document.getElementById(el+"errore")){
                 var id = document.getElementById(el);
 	           id.parentElement.insertBefore(errore, id);
                 return false;
                 }
-            else   {document.getElementById(el+"errore").innerHTML = "Campo obbligatorio";
+            else   {
+					var id = document.getElementById(el+"errore");
+					id.parentNode.replaceChild(errore,id);
                    return false;
                    }
     }
@@ -21,48 +23,29 @@ function eDefinito(el){
 }
 
 function controlloData(campo){
-            var data = document.getElementById(campo).value;
-
-    if (data == null || data == "") {
-            if(document.getElementById("confrontoerrore")){
-                    var rimuovere = document.getElementById("confrontoerrore");
-                    rimuovere.parentNode.removeChild(rimuovere);
-            }
-            if(!document.getElementById(campo+"errore")){
-                var errore = document.createElement('div');
-                errore.id = campo+'errore';
-                errore.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Campo obbligatorio");
-                errore.appendChild(testoerrore);
-                var id = document.getElementById(campo);
-	           id.parentElement.insertBefore(errore, id);
-                return false;
-                }
-            else   {document.getElementById(campo+"errore").innerHTML = "Campo obbligatorio";
-                   return false;
-                   }
-                
-        }
-    else {
+	if(document.getElementById("confrontoerrore")){
+       var rimuovere = document.getElementById("confrontoerrore");
+       rimuovere.parentNode.removeChild(rimuovere);
+    }
+    if (eDefinito(campo)){
+			var data = document.getElementById(campo).value;
             var date_regex = /^(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[0-2])\/(19|20)\d{2}$/ ;
             if(!(date_regex.test(data))){
-                if(document.getElementById("confrontoerrore")){
-                    var rimuovere = document.getElementById("confrontoerrore");
-                    rimuovere.parentNode.removeChild(rimuovere);
-            }
-                if(!document.getElementById(campo+"errore")){
-                    var errore = document.createElement('div');
+				var errore = document.createElement('div');
                     errore.id = campo+'errore';
-                errore.setAttribute('class', 'error');
-                    var testoerrore = document.createTextNode("Inserire la data con il formato gg/mm/aaaa");
-                    errore.appendChild(testoerrore);
+					errore.className = 'error';
+					errore.innerHTML = "Inserire la data con il formato gg/mm/aaaa";
+					
+                if(!document.getElementById(campo+"errore")){
                     var id = document.getElementById(campo);
                     id.parentElement.insertBefore(errore, id);
                     return false;
                     }
-                else  { document.getElementById(campo+"errore").innerHTML = "Inserire la data con il formato gg/mm/aaaa";
+                else  { 
+					var id = document.getElementById(campo+"errore");
+					id.parentNode.replaceChild(errore,id);
                     return false;
-                      }
+                    }
                     
                 }
             else{
@@ -71,23 +54,25 @@ function controlloData(campo){
                 var giorno_input = parti_input[0];
                 var mese_input= parti_input[1];
                 var anno_input = parti_input[2];
-                var data_input = Date.parse(anno_input+"-"+mese_input+"-"+giorno_input);
+				var data_input = new Date(anno_input, mese_input-1, giorno_input);
                 var oggi = new Date();
                 if(campo != 'dataNascita'){
                 if(data_input < oggi){
-                    if(!document.getElementById(campo+"errore")){
-                    var errore = document.createElement('div');
+					var errore = document.createElement('div');
                     errore.id = campo+'errore';
-                errore.setAttribute('class', 'error');
-                    var testoerrore = document.createTextNode("La data deve essere successiva alla data odierna");
-                    errore.appendChild(testoerrore);
+					errore.className = 'error';
+					errore.innerHTML = "La data deve essere successiva alla data odierna";
+					
+                    if(!document.getElementById(campo+"errore")){
                     var id = document.getElementById(campo);
                     id.parentElement.insertBefore(errore, id);
                     return false;
                     }
-                    else  { document.getElementById(campo+"errore").innerHTML = "La data deve essere successiva alla data odierna";
-                    return false;
-                      }
+                    else  { 
+						var id = document.getElementById(campo+"errore");
+						id.parentNode.replaceChild(errore,id);
+						return false;
+                    }
                 }
                 else{
                 if(document.getElementById(campo+"errore")){
@@ -99,33 +84,38 @@ function controlloData(campo){
             }
                 else{
                     if(data_input >= oggi){
-                        if(!document.getElementById(campo+"errore")){
                     var errore = document.createElement('div');
                     errore.id = campo+'errore';
-                errore.setAttribute('class', 'error');
-                    var testoerrore = document.createTextNode("La data di nascita non è valida");
-                    errore.appendChild(testoerrore);
+					errore.className = 'error';
+					errore.innerHTML = "La data di nascita non &egrave; valida";
+					
+					if(!document.getElementById(campo+"errore")){
                     var id = document.getElementById(campo);
                     id.parentElement.insertBefore(errore, id);
                     return false;
                     }
-                    else  { document.getElementById(campo+"errore").innerHTML = "La data di nascita non è valida";
-                    return false;
-                      }
+                    else  { 
+						var id = document.getElementById(campo+"errore");
+						id.parentNode.replaceChild(errore,id);
+						return false;
+                    }
                     }else{
-                if(oggi - data_input < 567600000000){
-                    if(!document.getElementById(campo+"errore")){
-                     var errore = document.createElement('div');
+					var eighteen = new Date(data_input).setFullYear(data_input.getFullYear()+18)-data_input;
+                if(oggi - data_input < eighteen ){
+					var errore = document.createElement('div');
                     errore.id = campo+'errore';
-                errore.setAttribute('class', 'error');
-                    var testoerrore = document.createTextNode("&Egrave; necessario avere pi&ugrave; di 18 anni");
-                    errore.appendChild(testoerrore);
+					errore.className = 'error';
+					errore.innerHTML = "&Egrave; necessario avere pi&ugrave; di 18 anni";
+                    
+					if(!document.getElementById(campo+"errore")){
                     var id = document.getElementById(campo);
                     id.parentElement.insertBefore(errore, id);
                     return false;
                     }
-                    else  { document.getElementById(campo+"errore").innerHTML = "&Egrave; necessario avere pi&ugrave; di 18 anni";
-                    return false;
+                    else  { 
+						var id = document.getElementById(campo+"errore");
+						id.parentNode.replaceChild(errore,id);
+						return false;
                       }
                     }
                     else{
@@ -136,7 +126,6 @@ function controlloData(campo){
                 }
                 }
         }
-    }
     }
     if(campo != 'dataNascita'){
     var arr = document.getElementById("dataArrivo").value;
@@ -152,32 +141,27 @@ function controlloData(campo){
         var mese_part= parti_part[1];
         var anno_part = parti_part[2];
         
-        var d1 = Date.parse(anno_arr+"-"+mese_arr+"-"+giorno_arr);
-        var d2 = Date.parse(anno_part+"-"+mese_part+"-"+giorno_part);
+		var d1 = new Date(anno_arr, mese_arr-1, giorno_arr);
+		var d2 = new Date(anno_part, mese_part-1, giorno_part);
         
         if (d1 >= d2){
-            if(!document.getElementById("confrontoerrore")){
-                var errore = document.createElement('div');
+			var errore = document.createElement('div');
                 errore.id = 'confrontoerrore';
+				errore.className = 'error';
                 if(d1>d2){
-                var testoerrore = document.createTextNode("La data di partenza deve essere successiva a quella di arrivo");
+                errore.innerHTML = "La data di partenza deve essere successiva a quella di arrivo";
                 }
-                else{
-                    
-                var testoerrore = document.createTextNode("La data di partenza e quella di arrivo non possono coincidere");
+                else{ 
+                errore.innerHTML = "La data di partenza e quella di arrivo non possono coincidere";
                 }
-                errore.appendChild(testoerrore);
+            if(!document.getElementById("confrontoerrore")){
                 var id = document.getElementById("dataPartenza");
-	           id.parentElement.insertBefore(errore, id);
+				id.parentElement.insertBefore(errore, id);
                 return false;
                 }
             else   {
-                 if(d1>d2){
-                     document.getElementById("confrontoerrore").innerHTML = "La data di partenza deve essere successiva a quella di arrivo";
-                 }
-                else{
-                    document.getElementById("confrontoerrore").innerHTML = "La data di partenza e quella di arrivo non possono coincidere";
-                }
+					var id = document.getElementById("confrontoerrore");
+					id.parentNode.replaceChild(errore,id);
                    return false;
                    }
         }
@@ -191,6 +175,8 @@ function controlloData(campo){
     }
     return true;
     }
+	}else 
+	return false;
 }
 
 function disattivaerrori(){
@@ -208,20 +194,20 @@ function controlloStringa(str){
         var stringa = document.getElementById(str).value;
         var controllo = stringa.match(/\d/g);
         if(controllo != null){
-           if(!document.getElementById(str+"errore")){
-                var errore = document.createElement('div');
-                errore.id = str+'errore';
-                errore.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Non sono consentiti caratteri numerici");
-                errore.appendChild(testoerrore);
-                var id = document.getElementById(str);
+			var errore = document.createElement('div');
+            errore.id = str+'errore';
+            errore.className = 'error';
+			errore.innerHTML = "Non sono consentiti caratteri numerici";
+			if(!document.getElementById(str+"errore")){
+               var id = document.getElementById(str);
 	           id.parentElement.insertBefore(errore, id);
+               return false;
+            }
+            else {
+				var id = document.getElementById(str+"errore");
+				id.parentNode.replaceChild(errore,id);
                 return false;
                 }
-                else   {document.getElementById(str+"errore").innerHTML = "Non sono consentiti caratteri numerici";
-                   return false;
-                   }
-           
            }
         else {
                 if(document.getElementById(str+"errore")){
@@ -239,19 +225,20 @@ function controlloNumeri(num){
         var numero = document.getElementById(num).value;
         var controllo = numero.match(/^[0-9]*$/);
         if(controllo == null){
-           if(!document.getElementById(num+"errore")){
-                var errore = document.createElement('div');
-                errore.id = num+'errore';
-                errore.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Il campo pu&ograve; contenere solo cifre");
-                errore.appendChild(testoerrore);
+			var errore = document.createElement('div');
+            errore.id = num+'errore';
+            errore.className = 'error';
+			errore.innerHTML = "Il campo pu&ograve; contenere solo cifre";
+			if(!document.getElementById(num+"errore")){
                 var id = document.getElementById(num);
-	           id.parentElement.insertBefore(errore, id);
+				id.parentElement.insertBefore(errore, id);
                 return false;
                 }
-                else   {document.getElementById(num+"errore").innerHTML = "Il campo pu&ograve; contenere solo cifre";
-                   return false;
-                   }
+                else {
+				var id = document.getElementById(num+"errore");
+				id.parentNode.replaceChild(errore,id);
+                return false;
+                }
            
            }
         else {
@@ -269,20 +256,20 @@ function controlloCarta(num,tip){
         var numero = document.getElementById(num).value;
         var controllo = numero.match(/^[0-9]*$/);
         if(controllo == null){
+		var errore = document.createElement('div');
+        errore.id = num+'errore';
+        errore.className = 'error';
+		errore.innerHTML = "Il campo pu&ograve; contenere solo cifre";
             if(!document.getElementById(num+"errore")){
-                var errore = document.createElement('div');
-                errore.id = num+'errore';
-                errore.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Il campo pu&ograve; contenere solo cifre");
-                errore.appendChild(testoerrore);
                 var id = document.getElementById(num);
-	           id.parentElement.insertBefore(errore, id);
+				id.parentElement.insertBefore(errore, id);
                 return false;
                 }
-                else   {document.getElementById(num+"errore").innerHTML = "Il campo pu&ograve; contenere solo cifre";
-                   return false;
-                   }
-           
+                else {
+				var id = document.getElementById(num+"errore");
+				id.parentNode.replaceChild(errore,id);
+                return false;
+                }
            }
         else {
             //var metodo = numero.match() //controllare se tipo pagamento è giusto
@@ -301,26 +288,25 @@ function controlloEmail(em){
         var email = document.getElementById(em).value;
         var controllo = email.match(/[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{1,63}/);
             if(controllo == null){
+			var error = document.createElement('div');
+                error.id = em+'errore';
+                error.className = 'error';
+				error.innerHTML = "Inserire un indirizzo email valido";
             if(!document.getElementById(em+"errore")){
-                var error = document.createElement('div');
-                error.id = email+'errore';
-                error.setAttribute('class', 'error');
-                var testoerrore = document.createTextNode("Inserire un indirizzo email valido");
-                error.appendChild(testoerrore);
                 var id = document.getElementById(em);
 	           id.parentElement.insertBefore(error, id);
                 return false;
                 }
-                else   {document.getElementById(em+"errore").innerHTML = "Inserire un indirizzo email valido";
-                   return false;
-                   }
-           
+                else {
+				var id = document.getElementById(em+"errore");
+				id.parentNode.replaceChild(error,id);
+                return false;
+                }
            }
         else {
                 if(document.getElementById(em+"errore")){
                     var rimuovere = document.getElementById(em+"errore");
                     rimuovere.parentNode.removeChild(rimuovere);
-                    return true;
                 }
             }
         var em1 = document.getElementById('email').value;
@@ -330,14 +316,22 @@ function controlloEmail(em){
                 if(!document.getElementById("confrontoemail")){
                 var error = document.createElement('div');
                 error.id = 'confrontoemail';
-                error.setAttribute('class', 'error');
+                error.className = 'error';
                 var testoerrore = document.createTextNode("Le email non coincidono");
                 error.appendChild(testoerrore);
                 var id = document.getElementById("email");
-	           id.parentElement.insertBefore(error, id);
+				id.parentElement.insertBefore(error, id);
+				}
                 return false;
+			}else{
+                if(document.getElementById("confrontoemail")){
+                    var rimuovere = document.getElementById("confrontoemail");
+                    rimuovere.parentNode.removeChild(rimuovere);
                 }
-                }
+				return true;
+			}
         }
-        }
+	}else{
+		return false;
+	}
 }
