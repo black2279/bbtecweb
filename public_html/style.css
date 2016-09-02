@@ -113,7 +113,8 @@ form > fieldset p{
 /* Menu */
 
 #menu {
-    width: 70%;
+    /*width: 70%;*/
+	width: 67%;
     float: right;
     margin-right: 1em;
 }
@@ -150,9 +151,12 @@ form > fieldset p{
 #menu ul li {
     float: left;
     text-align: center;
-    width: 14.1%;
-    /*width: calc(100% / 7);*/
-	border-left: 1px solid #fff;
+    width: 14.1%; /* For browser that not support calc */
+    width: calc(100% / 7);
+	/*border-left: 1px solid #fff;*/
+	border-left: 0.0625em solid #fff;
+    border-right: 0.0625em solid #ccc;
+    box-sizing: border-box;
 }
 
 #menu ul li:first-child {
@@ -361,7 +365,8 @@ input#dataNascita{
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
-	margin-right: auto;
+	margin-right: 2em;
+	/*margin-right: auto;*/
 	margin-bottom: 3em;
 	width:200px;
 	height:200px;

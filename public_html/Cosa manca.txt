@@ -1,2 +1,12 @@
-Galleria: centrare le immagini e il testo, parte javascript ingrandimento immagini.
-Chi siamo: possibilità di utilizzare <br>
+- Aggiunta icona del sito sulla barra, se volete cambiare immagine sostituite il file favicon.ico dentro img.
+
+- Ho risolto il problema del menù su edge ma manca da provarlo su opera vecchia versione
+
+- Le immagini che volete mandarmi per sostituirle a camere, esterni e ristorante sono semplici da sostituire ma devono essere ridimensionate.
+  La grandezza che mi è sembrata ideale è 640*480. In seguito è sufficiente sostituire il file in galleria.
+
+- Il pulsante indietro nella galleria non mi sembra molto opportuno ma se volete posso tranquillamente aggiungerlo. Ditemi però in quale posizione.
+
+- Non riesco a impostare la sottolineatura dei link visitati nel menù neanche forzando il css con !important, riesco solo a cambiare colore.
+
+- Ditemi dove volete posizionare link area riservata
