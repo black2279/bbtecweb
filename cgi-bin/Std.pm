@@ -28,6 +28,7 @@ sub HtmlCode{
     <meta name=\"language\" content=\"italian it\" />
     <meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
     <link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
+	<link rel=\"shortcut icon\" href=\"../img/favicon.ico\">
 
 
     </head>
@@ -71,7 +72,7 @@ my %valori= @_;
 print "<div id=\"centrale\">
     <h1>Prenotazioni</h1>
     
-    <script type=\"text/javascript\" src=\"registrazione.js\"> windows.onload = disattivaerrori();</script>
+    <script type=\"text/javascript\" src=\"registrazione.js\"> window.onload = disattivaerrori();</script>
 	<form class=\"FormPren\" action=\"disponibilita.pl\" method=\"post\">
 		<fieldset>
 			<!--<legend>Prenotazione</legend>-->
@@ -110,10 +111,18 @@ print "<div id=\"centrale\">
             </div>
             </div>
             <div id=\"elenco\">
-            <p><input type=\"checkbox\" name=\"parcheggio\" value=\"true\" $valori{'parcheggio'}/> Voglio usufruire del parcheggio coperto convenzionato (".Tariffe::getPrezzoParcheggio()."&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"pulizia\" value=\"true\" $valori{'pulizia'}/> Pulizia giornaliera della camera (".Tariffe::getPrezzoPulizie()."&euro;/giorno).</p>
-            <p><input type=\"checkbox\" name=\"navettaaereo\" value=\"true\" $valori{'navaereo'}/> Servizio navetta Fiumicino - Hotel : ".Tariffe::getPrezzoNavettaAeroporto()."&euro;</p>
-            <p><input type=\"checkbox\" name=\"navettatreno\" value=\"true\" $valori{'navtreno'}/> Servizio navetta Stazione Termini - Hotel : ".Tariffe::getPrezzoNavettaTreno()."&euro;</p>
+            <p>
+			<input type=\"checkbox\" name=\"parcheggio\" id=\"parcheggio\" value=\"true\" $valori{'parcheggio'}/> 
+			<label for=\"parcheggio\">Voglio usufruire del parcheggio coperto convenzionato (".Tariffe::getPrezzoParcheggio()."&euro;/giorno).</label></p>
+            <p>
+			<input type=\"checkbox\" name=\"pulizia\" id=\"pulizia\" value=\"true\" $valori{'pulizia'}/> 
+			<label for=\"pulizia\" >Pulizia giornaliera della camera (".Tariffe::getPrezzoPulizie()."&euro;/giorno).</label></p>
+            <p>
+			<input type=\"checkbox\" name=\"navettaaereo\" id=\"navettaaereo\" value=\"true\" $valori{'navaereo'}/> 
+			<label for=\"navettaaereo\" >Servizio navetta Fiumicino - Hotel : ".Tariffe::getPrezzoNavettaAeroporto()."&euro;</label></p>
+            <p>
+			<input type=\"checkbox\" name=\"navettatreno\" id=\"navettatreno\" value=\"true\" $valori{'navtreno'}/>	
+			<label for=\"navettatreno\" >Servizio navetta Stazione Termini - Hotel : ".Tariffe::getPrezzoNavettaTreno()."&euro;</label></p>
             </div>
             <!--<input type=\"reset\" value=\"Reset\" />&nbsp;--><input type=\"submit\" id=\"prenota\" value=\"Prenota\" />
 
@@ -144,7 +153,7 @@ print "<h2>La tua prenotazione</h2>";
 #print "<div id=\"centrale\">";
 print "<p>Numero prenotazione: $numeroprenotazione</p>";
 print "<div id=\"richiesta\">";
-print "<p>Data Arrivo: $arrivo</p>";
+print "<p>Data Arrivo $arrivo</p>";
 print "<p>Data Partenza $partenza</p>";
 print "<p>Ospiti $adulti</p>";
 print "<p>La tua prenotazione comprende:</p>";
@@ -381,7 +390,7 @@ print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i ca
                 if($valori{'ercemail'} ne undef){print "
                 <p><span class=\"error\">$valori{'ercemail'}</span></p>"};
                 print "
-                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"/ onblur=\"controlloEmail('cemail')\"></p>
+                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"/ onblur=\"controlloEmail('cemail')\" /></p>
                 <p><label for=\"telefono\">Numero di cellulare </label></p>";
                 if($valori{'ertel'} ne undef){print "
                 <p><span class=\"error\">$valori{'ertel'}</span></p>"};

@@ -45,7 +45,7 @@ my $navtreno = $childnodes[8];
 my $prezzo = $childnodes[9]->textContent;
 
 Std::PrintPren($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno);
-print "<div class=separatore></div>"; 
+print "<div class=\"separatore\" ></div>"; 
 #print "Data Arrivo ".$childnodes[0]->textContent."\n";
 #print "Notti ".$childnodes[1]->textContent."\n";
 #print "Adulti ".$childnodes[2]->textContent."\n";
