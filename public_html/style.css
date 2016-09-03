@@ -387,7 +387,7 @@ input#dataNascita{
 
 .imgGalleria{
 	border-width:medium;
-	border-color:#940315;;
+	border-color:#940315;
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
@@ -524,8 +524,29 @@ margin: 10px;
 
 }
 
-/*link visitati*/
-a:visited{
-	color:black !important;
-	text-decoration:underline !important;
+
+/*CSS parte mobile*/
+
+
+@media only screen and (min-width:150px) and (max-width:768px) 
+{
+	.imgGalleria{
+	border-width:medium;
+	border-color:#940315;;
+	border-style:solid;
+	margin-top: auto;
+	margin-left: auto;
+	margin-right: auto;
+	margin-bottom: 3em;
+	width:200px;
+	height:200px;
+	display:block;
 }
+
+}
+
+
+
+
+
+
