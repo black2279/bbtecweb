@@ -218,7 +218,7 @@ $valori{'erdoppie'} = "Limite camere doppie raggiunto";
 if(!$error){
     my $percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Disponibilit&agrave;";
     Std::Breadcrumb($percorso);
-    print "<h2>La tua prenotazione </h2>";
+    print "<h1>La tua prenotazione </h1>";
 
     Std::Disp($dataarrivo,$datapartenza,$adulti,$doppie,$singole);
 #    my $diff = Std::DiffData($dataarrivo,$datapartenza);

@@ -79,7 +79,6 @@ h1{
 
 #content {
     padding-left: 1em;
-	padding-bottom:auto; /* Height of the footer element */
 	padding-right: 1em;
 	padding-top:1em;
 	padding-bottom:6.875em;		
@@ -406,7 +405,7 @@ input#dataNascita{
 	margin-left:3em; 
 	padding-bottom:6.875em;	
 	display:block;
-	float:clear;
+	clear: right;
 } 
 
 #ristorante a{

@@ -377,24 +377,24 @@ sub PrintPren{
 my($id)=@_;
 my $prenotazione = Utils::ricercaPrenotazioneConId($id);
 if($prenotazione){
-my $arrivo = $prenotazione->findnodes("dataArrivo")->get_node(0);
-my $partenza = $prenotazione->findnodes("dataPartenza")->get_node(0);
-my $adulti = $prenotazione->findnodes("adulti")->get_node(0);
+my $arrivo = $prenotazione->findnodes("dataArrivo")->get_node(0)->textContent;
+my $partenza = $prenotazione->findnodes("dataPartenza")->get_node(0)->textContent;
+my $adulti = $prenotazione->findnodes("adulti")->get_node(0)->textContent;
 my $singole = $prenotazione->findnodes("singole")->get_node(0);
 my $doppie = $prenotazione->findnodes("doppie")->get_node(0);
 my $parcheggio = $prenotazione->findnodes("parcheggio")->get_node(0);
 my $pulizia = $prenotazione->findnodes("pulizia")->get_node(0);
 my $navaereo = $prenotazione->findnodes("navaereo")->get_node(0);
 my $navtreno = $prenotazione->findnodes("navtreno")->get_node(0);
-my $prezzo = $prenotazione->findnodes("totale")->get_node(0);
-my $nome = $prenotazione->findnodes("nome")->get_node(0);
-my $cognome = $prenotazione->findnodes("cognome")->get_node(0);
+my $prezzo = $prenotazione->findnodes("totale")->get_node(0)->textContent;
+my $nome = $prenotazione->findnodes("nome")->get_node(0)->textContent;
+my $cognome = $prenotazione->findnodes("cognome")->get_node(0)->textContent;
 my $email =  $prenotazione->findnodes("email")->get_node(0);
 my $numero =  $prenotazione->findnodes("numero")->get_node(0);
-my $datanascita = $prenotazione->findnodes("dataNascita")->get_node(0);
-my $citta = $prenotazione->findnodes("citta")->get_node(0);
+my $datanascita = $prenotazione->findnodes("dataNascita")->get_node(0)->textContent;
+my $citta = $prenotazione->findnodes("citta")->get_node(0)->textContent;
 
-print "<h2>La tua prenotazione</h2>";
+print "<h1>Dettaglio prenotazione</h1>";
 #print "<div id=\"centrale\">";
 print "<p>Numero prenotazione: $id</p>";
 print "<div id=\"richiesta\">";
@@ -430,9 +430,15 @@ print "<p><strong>Contatti</strong></p>";
 print "<p>Nome $nome</p>";
 print "<p>Cognome $cognome</p>";
 print "<p>Data nascita $datanascita</p>";
+if($email){
+$email = $email->textContent;
 print "<p>Email $email</p>";
+}
+if($numero){
+$numero = $numero->textContent;
 print "<p>Numero $numero</p>";
-print "<p>Citt&agrave $citta</p>";
+}
+print "<p>Citt&agrave; $citta</p>";
 #print "</div>";
 print "</div>";
 print "<div class=\"separatore\"></div>"

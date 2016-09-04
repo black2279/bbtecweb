@@ -20,6 +20,7 @@ sub HtmlCode{
 
     <head>
     <meta http-equiv=\"Content-Type\" content=\"text/html; charset=utf-8\" />
+	<meta http-equiv=\"Content-Script-Type\" content=\"text/javascript\" />
 
     <title>Bed and Breakfast Navona</title>
     <meta name=\"title\" content=\"Bed and Breakfast Navona\"/>
@@ -149,7 +150,7 @@ print "<div id=\"centrale\">
 
 sub PrintPren{
 my($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno)=@_;
-print "<h2>La tua prenotazione</h2>";
+print "<h1>La tua prenotazione</h1>";
 #print "<div id=\"centrale\">";
 print "<p>Numero prenotazione: $numeroprenotazione</p>";
 print "<div id=\"richiesta\">";
@@ -187,7 +188,7 @@ print "</div>";
 
 sub Disp{
 my($dataarrivo,$datapartenza,$adulti,$doppie,$singole,$exdoppie,$exsingole)=@_;
-#print "<h2>La tua prenotazione</h2>";
+#print "<h1>La tua prenotazione</h1>";
 print "<div id=\"richiesta\">";
 print "<p>Data Arrivo $dataarrivo</p>";
 print "<p>Data Partenza $datapartenza</p>";
@@ -390,7 +391,7 @@ print "<p>Compila i seguenti campi per procedere con la prenotazione. Tutti i ca
                 if($valori{'ercemail'} ne undef){print "
                 <p><span class=\"error\">$valori{'ercemail'}</span></p>"};
                 print "
-                <p><input type=\"text\" name=\"cemail\" id=\"cemail\"/ onblur=\"controlloEmail('cemail')\" /></p>
+                <p><input type=\"text\" name=\"cemail\" id=\"cemail\" onblur=\"controlloEmail('cemail')\" /></p>
                 <p><label for=\"telefono\">Numero di cellulare </label></p>";
                 if($valori{'ertel'} ne undef){print "
                 <p><span class=\"error\">$valori{'ertel'}</span></p>"};
