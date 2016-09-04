@@ -216,7 +216,8 @@ form > fieldset p{
 	padding-bottom: 1em;
 }
 
-#right p, h3{
+#right p, #right>strong{
+	display: block;
     padding-right: 2em;
 	margin: 0;
 	padding-top: 1em;

@@ -443,7 +443,7 @@ print "</div>
     </div>
 
     <div id=\"right\">
-        <h3> Contatti </h3>
+        <strong>Contatti</strong>
 		<p>Via delle Pertiche, 11
     	    04323 Latina
             Roma (RM)</p>
