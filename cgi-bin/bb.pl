@@ -1,5 +1,4 @@
-﻿#!/usr/bin/perl
-
+#!/usr/bin/perl
 use DateTime;
 use CGI;
 use CGI::Carp qw(fatalsToBrowser);
@@ -9,7 +8,6 @@ use StdAdmin;
 use Utils;
 use CGI::Session;
 binmode STDOUT, ":utf8";
-
 my $page = new CGI;
 my $session = Utils::start_session($page);
 
@@ -27,12 +25,12 @@ print $page->redirect("login.pl");
 		my $errsingole = undef;
 		my $errdoppie = undef;
 		my $errore = "";
-		if($nsingole =~ /\d/){
+		if($nsingole =~ /^\d+$/){
 				Utils::setNumeroCamere('SINGOLA',$nsingole);
 		}elsif($nsingole){
 				$errsingole="<p>Il campo singole deve essere un numero</p>";
 		}
-		if($ndoppie =~ /\d/){
+		if($ndoppie =~ /^\d+$/){
 			Utils::setNumeroCamere('DOPPIA',$ndoppie);
 		}elsif($ndoppie){
 				$errdoppie="<p>Il campo doppie deve essere un numero</p>";

@@ -2,35 +2,31 @@ html{
     height: 100%;
     margin: 0;
     padding: 0;
+	overflow: auto;
 }
+
 @font-face {
     font-family: Raleway;
     src: url(font/Raleway-SemiBold.woff);
 }
 
-
 body{
-    /*background-color: #f5f5f5;*/
-    /*background-color: #D0D9D6;*/
-    /*background-color: #9B96A3;*/
-    /*background-color: #66637A;*/
-    /*background-color: #A4A2B3;*/
-    /*background-color: #A8AFBD;*/
-    /*background-color: #BFB9C9;*/
-    /*background-color: #F7CBB8;*/
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0;
-    /*max-width: 59.375em;*/
     border: 0;
     font-family: Verdana, Helvetica, sans-serif;
     height: 100%;
 }
+
 h1{
   margin-top: 0;
+  margin-bottom: 0;
 }
+
+/*Aiuti screen-reader */
 
 #aiuti{
   position: absolute;
@@ -50,94 +46,133 @@ h1{
   color: black;
 }
 
+/* Wrapper */
+
 #wrapper {
 	min-height:100%;
 	position:relative;
 }
 
+/* Header */
+
 #header {
     margin-left: 1em;
     background-color: #ffffff;
-
 }
+
+.imgHome{
+    width: 50%;
+    height: auto;
+}
+
+#logo{
+	float: left;
+    width: 15.88675em;
+    height: 5.858375em;
+}
+
 #prenotazione{
     padding-left: 2em;
 }
-/*#content{
-    background-color: #ffffff;
-    padding: 10px;
-    padding-bottom: 12em;
-}*/
+
+/* Contenuto */
+
 #content {
-    margin-left: 1em;
-	padding-bottom:auto/*6.875em*/; /* Height of the footer element */
+    padding-left: 1em;
+	padding-bottom:auto; /* Height of the footer element */
+	padding-right: 1em;
+	padding-top:1em;
+	padding-bottom:6.875em;		
 }
 
 #centrale{
-    margin-left: 1em;
+    padding-left: 1em;
 	padding-bottom:6.875em; /* Height of the footer element */
 }
+
+/* Form */
+
+form {
+	margin: 0;
+	padding: 0;
+}
+
+fieldset{
+    background-color: #8F8DAD;
+    width: 60%;
+	padding: 2em;
+	margin: 0;
+}
+
 form > fieldset p{
-    padding-left: 2em;
+    padding-left: 0em;
+	padding-top: 0em;
+	margin-top: 0em;
 }
-/*
-li {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow: hidden;
+
+/* Menu */
+
+#menu {
+    /*width: 70%;*/
+	width: 67%;
+    float: right;
+    margin-right: 1em;
 }
-li:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: red;
-  height: 0.25em;
-  -webkit-transform: translateY(0.25em);
-  transform: translateY(0.25em);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-li:hover:before, li:focus:before, li:active:before {
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
-}
-*/
+
 #menu ul {
-    list-style-type: none;
-    margin: 0;
+    margin-top: 1em;
+	margin-left: 1em;
+	margin-bottom: 1em;
     padding: 0;
     overflow: hidden;
-    /*background-color: #ffa444;*/
     background-color: #940315;
 }
 
 #menu li {
     float: left;
+	padding-top: 0.3125em;
+}
+
+#menu li:hover{
+    background-color: #5C0009;
 }
 
 #menu li, #menu a, #menu > ul > li > span{
     display: inline-block;
-    /*color: #272727;*/
-    color: #ffffff;
     text-align: center;
     padding-top: 0.3125em;
     padding-bottom: 0.3125em;
-    text-decoration: none;
 }
+
+#menu > ul > li > a{
+    font-size: 1.2vw;
+}
+
+#menu ul li {
+    float: left;
+    text-align: center;
+    width: 14.1%; /* For browser that not support calc */
+    width: calc(100% / 7);
+	/*border-left: 1px solid #fff;*/
+	border-left: 0.0625em solid #fff;
+    border-right: 0.0625em solid #ccc;
+    box-sizing: border-box;
+}
+
+#menu ul li:first-child {
+    border-left: none;
+}
+
+#menu ul li a, #menu > ul > li > span{
+    display: block;
+    padding: 10px 0;
+}
+
+#currentLink:hover{
+    background-color: #5C0009;
+}
+
+/* Breadcrumb */
 
 #breadcrumb, #breadcrumb a{
     color: #ffffff;
@@ -145,24 +180,8 @@ li:hover:before, li:focus:before, li:active:before {
     padding-bottom: 0.3125em;
 }
 
-#menu li:hover{
-    background-color: #5C0009;
-}
-
-#menu li{
-    padding-top: 0.3125em;
-}
-
-
-#currentLink:hover{
-    background-color: #5C0009;
-}
-
 #breadcrumb{
-    /*background-color: #cccccc;*/
     background-color: #393845;
-    /*color: #333333;*/
-    color: #ffffff;
     padding-left: 1em;
     clear: both;
 }
@@ -170,20 +189,8 @@ li:hover:before, li:focus:before, li:active:before {
     margin-top: 0;
 }
 
-/*#container {
-   min-height:100%;
-    height: 100%;
-   position:relative;
-}*/
-/*#footer{
-    position: absolute;
-    bottom: 0;
-    width: 920px;
-    height: 6em;
-    padding: 1em 1em 1em 1em;
-    background-color: #333333;
-    color: #cccccc;
-}*/
+/* Footer */
+
 #footer {
 	background-color: #393845;
     color: #ffffff;
@@ -191,7 +198,6 @@ li:hover:before, li:focus:before, li:active:before {
 	height:6.875em;
 	position:absolute;
     padding-top: 0.25em;
-    /*padding: 0em 1em 0.5em 1em;*/
 	bottom:0;
 	left:0;
 }
@@ -204,12 +210,20 @@ li:hover:before, li:focus:before, li:active:before {
 #left p{
     text-align: left;
     font-size: 0.75em;
+	line-height: 1em;
+	margin: 0;
+	padding-top: 1em;
+	padding-bottom: 1em;
 }
 
 #right p, h3{
     padding-right: 2em;
+	margin: 0;
+	padding-top: 1em;
+	padding-bottom: 0em;
     text-align: right;
     font-size: 0.75em;
+	line-height: 1em;
 }
 
 #imm_servizi{
@@ -219,75 +233,21 @@ li:hover:before, li:focus:before, li:active:before {
   margin-bottom: 5em;
 }
 
-#logo{
-    float:left;
-}
-
-#menu {
-    width: 67%;
-    float: right;
-    /*background: #f0f0f0;*/
-    /*border: 1px solid #ccc;*/
-    border-right: none;
-    margin-right: 1em;
-}
-
-#menu ul {
-    overflow: hidden;
-    margin: 1em;
-    padding: 0;
-}
-
-#menu > ul > li > a{
-    /*font-size: 0.75em;*/
-    font-size: 1.2vw;
-}
-
-#menu ul li {
-    list-style: none;
-    float: left;
-    text-align: center;
-    border-left: 0.0625em solid #fff;
-    border-right: 0.0625em solid #ccc;
-    /*width: 16.6667%;*/
-    width: calc(100% / 7);
-    box-sizing: border-box;
-}
-
-#menu ul li:first-child {
-    border-left: none;
-}
-
-#menu ul li a, #menu > ul > li > span{
-    display: block;
-    color: #ffffff;
-    padding: 10px 0;
-}
-
-.imgHome{
-    width: 50%;
-    height: auto;
-}
-#logo{
-    width: 15.88675em;
-    height: 5.858375em;
-    /*width: 20%;
-    height: auto;*/
-}
-
-input[type="text"]{
-    font-family: Raleway, Verdana, Helvetica, sans-serif;
-}
-input{
-    margin-right: 1em;
-}
-
 /*@media (max-width: 1240){
    #menu {
     width: 50em;
     }
 }*/
 
+input{
+    margin-right: 1em;
+	margin-left:0em;
+}
+
+input[type="text"]{
+    font-family: Raleway, Verdana, Helvetica, sans-serif;
+	width: auto;
+}
 
 input[type="submit"], input[type="reset"] {
 	background-color:#940315;
@@ -295,40 +255,61 @@ input[type="submit"], input[type="reset"] {
 	display:inline-block;
 	cursor:pointer;
 	color:#ffffff;
-	font-family: Raleway, Verdana, Helvetica, sans-serif;;
+	font-family: Verdana, Helvetica, sans-serif;
 	font-size:0.75em;
 	padding:6px 12px;
 	text-decoration:none;
 	text-shadow:0px 1px 0px #54020C;
 }
+
 input[type="submit"]:hover, input[type="reset"]:hover {
 	background-color:#54020C;
     border:1px solid #940315;
 }
 
-fieldset{
-    background-color: #8F8DAD;
-    width: 60%;
+h2{
+	margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 #richiesta{
     width: 50%;
-    margin-left: 1em;
+    margin: 0;
+	margin-left: 1em;
+	margin-right: 1em;
+	float: left;
+	padding: 0;
+}
+
+#richiesta p{
+    margin-top: 1em;
+	margin-bottom: 1em;
 }
 
 #dettagli{
   float: left;
+  clear: left;
   width: 50%;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 0;
 }
 
 #dettprezzi {
-    float:right;
-    width: 50%;
+    /*float:right;*/
+    /*width: 50%;*/
+	margin: 0;
+	padding: 0;
+}
+
+.FormPren{
+	clear:both;
 }
 
 .dati{
     /*float: left;*/
     padding-bottom: 2em;
+	padding-left: 0em;
     width: 100%;
     overflow: hidden;
 }
@@ -342,11 +323,6 @@ input#dataNascita{
     width: 9em;
 }
 
-
-/*.dati fieldset{
-    width: 100%;
-}*/
-
 .nascosto{
     display: none;
     height: 0px;
@@ -358,8 +334,9 @@ input#dataNascita{
     float:left;
     position: relative;
 }
+
 .dati #destra{
-    width: 50%;
+    width: 49%;
     float: left;
     position: relative;
 }
@@ -373,10 +350,7 @@ input#dataNascita{
     font-weight: bold;
     padding-left: 2em;
     font-size: 0.75em;
-}
-
-.error{
-    background: url(Button-warning-icon.png);
+	background: url(Button-warning-icon.png);
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -387,11 +361,12 @@ input#dataNascita{
 
 .imgGalleria{
 	border-width:medium;
-	border-color:#940315;
+	border-color:#940315;;
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
 	margin-right: 2em;
+	/*margin-right: auto;*/
 	margin-bottom: 3em;
 	width:200px;
 	height:200px;
@@ -402,6 +377,8 @@ input#dataNascita{
 	margin-right:5em;
 	margin-left:5em; 
 	padding-bottom:6.875em;
+	
+	clear:right;
 }
 
 /*galleria*/
@@ -412,7 +389,7 @@ input#dataNascita{
 	margin-left:3em; 
 	padding-bottom:6.875em;
 	float:left;
-	diplay:block;
+	display:block;
 } 
 
 #esterni{
@@ -421,7 +398,7 @@ input#dataNascita{
 	margin-left:3em; 
 	padding-bottom:6.875em;
 	float:left;
-	diplay:block;
+	display:block;
 } 
 
 #ristorante{
@@ -429,7 +406,7 @@ input#dataNascita{
 	margin-right:3em;
 	margin-left:3em; 
 	padding-bottom:6.875em;	
-	diplay:block;
+	display:block;
 	float:clear;
 } 
 
@@ -468,10 +445,15 @@ input#dataNascita{
 	text-align:left;
 }
 
-#content{
-	margin-top:1em;
-	padding-bottom:6.875em;		
+/* Separatore */
+
+.separatore{
+clear: both;
 }
+
+/* Parte Amministratore */
+
+/* Login */
 
 #login  *{
  display:block;
@@ -483,70 +465,139 @@ input#dataNascita{
  width: 200px;
 }
 
+/* Logout */
+
 #logout{
  text-align:right;
  margin-right: 1em;
  display:block;
+ line-height: 1em;
 }
+
+/* Form per dimensione Bed & Breakfast */
 
 #bbForm *{
  margin-right: 1em;
  margin-top: 0.5em;
 }
 
-.prossima:nth-child(even){
- background:#0F6;
-}
-.prossima:nth-child(odd){
- background:#0E6;
+#bbForm > div{
+ margin: 0;
+ margin-top: 0.75em;
+ padding: 0;
+ vertical-align: top;
 }
 
+/* Form Stato Prenotazioni */
+#spForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+/* Form Tariffe */
+#tariffeForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+ /* Tabella Prenotazioni */
+ 
+#t_stato_pren{
+margin: 10px;
+}
+
+/* Prenotazioni successive alla data odierna */
+
+.prossima{
+ background: #0F6;
+}
+
+.prossima+.alternate {
+ background: #0E6;
+}
+
+.prossima:nth-child(even){
+ background: #0F6;
+}
+.prossima:nth-child(odd){
+ background: #0E6;
+}
+
+/* Prenotazioni in corso */
+
+.incorso{
+background: #DDD;
+}
+
+.incorso+.alternate {
+ background: #BBB;
+} 
+
 .incorso:nth-child(even){
- background:#DDD;
+ background: #DDD;
 }
 .incorso:nth-child(odd){
- background:#BBB;
+ background: #BBB;
 }
+
+/* Prenotazioni scadute */
 
 .scaduta{
 color:#666;
 }
 
+.scaduta{
+background: #EEE;
+}
+
+.scaduta+.alternate{
+ background: #CCC;
+} 
+
 .scaduta:nth-child(even) {
 background: #EEE;
 }
-.scaduta:nth-child(odd) {
+.scaduta:nth-child(odd){
 background: #CCC;
 }
 
-#t_stato_pren{
-margin: 10px;
-
+/* Link */
+#menu a:link{
+	color:white;
 }
 
+#menu a:visited{
+	color: orange;
+}
 
-/*CSS parte mobile*/
+#menu a:active{
+	color: yellow;
+}
 
+/*Pulsante indietro galleria*/
 
-@media only screen and (min-width:150px) and (max-width:768px) 
+#indietro
 {
-	.imgGalleria{
-	border-width:medium;
-	border-color:#940315;;
-	border-style:solid;
-	margin-top: auto;
-	margin-left: auto;
-	margin-right: auto;
-	margin-bottom: 3em;
-	width:200px;
-	height:200px;
+	margin-top:2em;
+	margin-bottom:2em;
 	display:block;
+	float:right;
 }
 
+#titleG
+{
+display:block;
+float:left;
+margin-top:1em;
+margin-left:1em;
 }
 
+#reserved
+{
+	display:block;
+	clear:left;
+	float:left;
+	padding-left: 2em;
+	padding-top: 1em;
 
-
-
-
-
+}

@@ -1,4 +1,4 @@
-﻿#!/usr/bin/perl
+#!/usr/bin/perl
 
 use DateTime;
 use CGI;
@@ -12,9 +12,9 @@ binmode STDOUT, ":utf8";
 
 my $page = new CGI;
 my $session = Utils::start_session($page);
-
+ 
 if($session->param("logged") == 0){
-print $page->redirect("login.pl");
+	print $page->redirect("login.pl");
 }elsif($session->param("logged") == 1){
 	StdAdmin::PrintHome($session->param("username"));
 }

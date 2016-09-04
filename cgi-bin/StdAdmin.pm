@@ -130,7 +130,7 @@ sub Logout{
 }
 
 sub CamereDisponibili{
-	print CGI::h2("Camere");
+	print CGI::h1("Camere");
 	#possibile lettura db e stampa di tutte le camere
 	print "<form id=\"bbForm\" method=\"post\" action=\"bb.pl\" >";
 	print CGI::div(CGI::span("Numero camere singole: ".Utils::getNumeroCamere('SINGOLA')).
@@ -148,8 +148,8 @@ sub CamereDisponibili{
 sub FormTariffe{
 	print CGI::h1("Tariffe");
 	#possibile lettura db e stampa di tutte le camere
-	print CGI::h2("Camere");
 	print "<form id=\"tariffeForm\" method=\"post\" action=\"tariffe.pl\" >";
+	print CGI::h2("Camere");
 	print CGI::div(CGI::span("Prezzo Singola ".Tariffe::getPrezzoCamera('SINGOLA')."&euro;").
 				"<input id=\"psingola\" name=\"psingola\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />"
@@ -202,6 +202,7 @@ sub Prenotazioni{
 	@prenotazioni = reverse @prenotazioni;
 	if(@prenotazioni){
 	print "<table id=\"t_stato_pren\">";
+	my $alternate = 0;
 	foreach my $prenotazione (@prenotazioni) {
 	  my $children = $prenotazione->nonBlankChildNodes();
 	  if(!($firstline)){
@@ -213,13 +214,18 @@ sub Prenotazioni{
 		print "</tr>";
 		$firstline = 1;
 	  }
-	  print "<tr class=".statoPrenotazione($prenotazione).">";
+	  if($alternate%2 == 0){
+	  print "<tr class=\"".statoPrenotazione($prenotazione)."\">";
+	  }else{
+	  print "<tr class=\"".statoPrenotazione($prenotazione)." alternate\">";
+	  }
 	  print "<td><a href=\"dettaglio_prenotazione.pl?id=".($prenotazione->attributes())[0]->getValue()."\">".
 	  ($prenotazione->attributes())[0]->getValue()."</a></td>";
 	  foreach my $child ($children->get_nodelist()){
 			print "<td>".$child->textContent."</td>";
 		}
 	  print "</tr>";
+	  $alternate++;
 	}
 	print "</table>";
 	}else{
@@ -247,7 +253,7 @@ sub statoPrenotazione{
 
 
 sub PrintFormRicerca{
-	print CGI::h2("Stato Prenotazioni");
+	print CGI::h1("Stato Prenotazioni");
 	#possibile lettura db e stampa di tutte le camere
 	print "<form id=\"spForm\" method=\"post\" action=\"stato_prenotazioni.pl\" >";
 	print CGI::div(
