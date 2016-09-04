@@ -355,13 +355,13 @@ input#dataNascita{
     background-size: contain;
 }
 
-/*galleria + pagine interne*/
+/*galleria   pagine interne*/
 
 /*pagine interne*/
 
 .imgGalleria{
 	border-width:medium;
-	border-color:#940315;;
+	border-color:#940315;
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
@@ -510,7 +510,7 @@ margin: 10px;
  background: #0F6;
 }
 
-.prossima+.alternate {
+.prossima .alternate {
  background: #0E6;
 }
 
@@ -527,7 +527,7 @@ margin: 10px;
 background: #DDD;
 }
 
-.incorso+.alternate {
+.incorso .alternate {
  background: #BBB;
 } 
 
@@ -548,7 +548,7 @@ color:#666;
 background: #EEE;
 }
 
-.scaduta+.alternate{
+.scaduta .alternate{
  background: #CCC;
 } 
 
@@ -571,3 +571,23 @@ background: #CCC;
 #menu a:active{
 	color: yellow;
 }
+
+/*CSS parte mobile*/
+
+@media only screen and (min-width:150px) and (max-width:768px) 
+{
+
+.imgGalleria{
+  	border-width:medium;
+  	border-color:#940315;
+  	border-style:solid;
+  	margin-top: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 3em;
+  	width:200px;
+  	height:200px;
+  	display:block;
+ }
+
+ }
