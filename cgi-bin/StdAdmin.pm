@@ -30,6 +30,7 @@ sub HtmlCode{
     <meta name=\"language\" content=\"italian it\" />
     <meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
     <link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
+	<link rel=\"shortcut icon\" href=\"../img/favicon.ico\" />
 
 
     </head>
@@ -62,8 +63,15 @@ my ($logged,@percorso) = @_;
 print "<div id=\"breadcrumb\">";
 if($logged){
 Logout();
+	if($percorso[0] eq "Home"){
+		print "Ti trovi qui: <span lang=\"en\">Home</span>";
+	}else{
+		print "Ti trovi qui: <a href=\"home.pl\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]";
+	}
+}else{
+print "Ti trovi qui: <span lang=\"en\">Login</span>";
 }
-print "Ti trovi qui: <a href=\"home.pl\"><span lang=\"en\">Home</span></a> &gt;&gt; $percorso[0]
+print "
 </div>
 <div id=\"content\">
 ";
@@ -99,11 +107,13 @@ my($esito)=@_;
 print"
 	<div id=\"login\">
 		<form id=\"formLogin\" method=\"post\" action=\"login.pl\" >
-		<span lang=\"en\">Username</span>
+		<div>
+		<label for=\"username\"><span lang=\"en\">Username</span></label>
 		<input id=\"username\" name=\"username\" type=\"text\"  />
-		<span lang=\"en\">Password</span>
+		<label for=\"psw\"><span lang=\"en\">Password</span></label>
 		<input id=\"psw\" name=\"psw\" type=\"password\" />
 		<input type=\"submit\" value=\"Login\"/> 
+		</div>
 		</form>";
 		if(!$esito){
 		print "<span>Username o Password non corretti</span>";
@@ -117,15 +127,15 @@ sub Benvenuto{
 	my($username)=@_;
 	print"
 	<h2>Ben ritornato $username</h2>
-	<p>Benvenuto nel Pannello di Amministrazione del <strong>Navona - Bed &amp; Breakfast</strong>.
-	<p>Qui potrai visualizzare e modificare le caratteristiche del tuo Bed &amp Breakfast, personalizzare le tariffe 
+	<p>Benvenuto nel Pannello di Amministrazione del <strong>Navona - Bed &amp; Breakfast</strong>.</p>
+	<p>Qui potrai visualizzare e modificare le caratteristiche del tuo Bed &amp; Breakfast, personalizzare le tariffe 
 	e vedere lo stato delle prenotazioni in corso.</p>
 	";
 }
 
 sub Logout{
 	print"
-	<a id=\"logout\" href=\"logout.pl\">Logout</a>
+	<a id=\"logout\" href=\"logout.pl\"><span lang=\"en\" >Logout</span></a>
 	";
 }
 
@@ -133,11 +143,11 @@ sub CamereDisponibili{
 	print CGI::h1("Camere");
 	#possibile lettura db e stampa di tutte le camere
 	print "<form id=\"bbForm\" method=\"post\" action=\"bb.pl\" >";
-	print CGI::div(CGI::span("Numero camere singole: ".Utils::getNumeroCamere('SINGOLA')).
+	print CGI::div(CGI::span("<label for=\"nsingole\" >Numero camere singole: ".Utils::getNumeroCamere('SINGOLA')."</label>").
 				"<input id=\"nsingole\" name=\"nsingole\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />"
 				);
-	print CGI::div(CGI::span("Numero camere doppie: ".Utils::getNumeroCamere('DOPPIA')).
+	print CGI::div(CGI::span("<label for=\"ndoppie\" >Numero camere doppie: ".Utils::getNumeroCamere('DOPPIA')."</label>").
 				"<input id=\"ndoppie\" name=\"ndoppie\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
@@ -150,28 +160,28 @@ sub FormTariffe{
 	#possibile lettura db e stampa di tutte le camere
 	print "<form id=\"tariffeForm\" method=\"post\" action=\"tariffe.pl\" >";
 	print CGI::h2("Camere");
-	print CGI::div(CGI::span("Prezzo Singola ".Tariffe::getPrezzoCamera('SINGOLA')."&euro;").
+	print CGI::div(CGI::span("<label for=\"psingola\">Prezzo Singola ".Tariffe::getPrezzoCamera('SINGOLA')."&euro;</label>").
 				"<input id=\"psingola\" name=\"psingola\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />"
 				);
-	print CGI::div(CGI::span("Prezzo Doppia: ".Tariffe::getPrezzoCamera('DOPPIA')."&euro;").
+	print CGI::div(CGI::span("<label for=\"pdoppie\">Prezzo Doppia: ".Tariffe::getPrezzoCamera('DOPPIA')."&euro;</label>").
 				"<input id=\"pdoppie\" name=\"pdoppia\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
 	print CGI::h2("Servizi");
-	print CGI::div(CGI::span("Prezzo Parcheggio: ".Tariffe::getPrezzoParcheggio()."&euro;").
+	print CGI::div(CGI::span("<label for=\"pparcheggio\">Prezzo Parcheggio: ".Tariffe::getPrezzoParcheggio()."&euro;</label>").
 				"<input id=\"pparcheggio\" name=\"pparcheggio\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
-	print CGI::div(CGI::span("Prezzo Pulizie: ".Tariffe::getPrezzoPulizie()."&euro;").
+	print CGI::div(CGI::span("<label for=\"ppulizie\">Prezzo Pulizie: ".Tariffe::getPrezzoPulizie()."&euro;</label>").
 				"<input id=\"ppulizie\" name=\"ppulizie\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
-	print CGI::div(CGI::span("Prezzo Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()."&euro;").
+	print CGI::div(CGI::span("<label for=\"pnavaereo\">Prezzo Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()."&euro;</label>").
 				"<input id=\"pnavaereo\" name=\"pnavaereo\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
-	print CGI::div(CGI::span("Prezzo Navetta per Treno: ".Tariffe::getPrezzoNavettaTreno()."&euro;").
+	print CGI::div(CGI::span("<label for=\"pnavtreno\">Prezzo Navetta per Treno: ".Tariffe::getPrezzoNavettaTreno()."&euro;</label>").
 				"<input id=\"pnavtreno\" name=\"pnavtreno\" type=\"text\" maxlength=\"3\" />
 				<input type=\"submit\" value=\"Modifica\" />
 				");
@@ -201,17 +211,21 @@ sub Prenotazioni{
 	@prenotazioni = sort ordinaPrenotazioni @prenotazioni;
 	@prenotazioni = reverse @prenotazioni;
 	if(@prenotazioni){
-	print "<table id=\"t_stato_pren\">";
+	my $summary = "Questa tabella presenta le prenotazioni presenti nel database per un dato intervallo di tempo. 
+	Le prenotazioni sono suddivise in tre categorie: le prenotazioni successive alla data odierna, le prenotazioni in corso e quelle scadute.";
+	print "<table id=\"t_stato_pren\" summary=\"$summary\">";
+	print "<caption>Prenotazioni presenti nel database</caption>";
 	my $alternate = 0;
+	my @intestazione = ("Data Arrivo","Data Partenza","Adulti","Email","Telefono","Nome","Cognome","Totale"); 
+	my @chiavi = ("dataArrivo", "dataPartenza", "adulti", "email", "telefono", "nome", "cognome", "totale");
 	foreach my $prenotazione (@prenotazioni) {
-	  my $children = $prenotazione->nonBlankChildNodes();
 	  if(!($firstline)){
-		print "<tr>";
-		print "<th>Codice</th>";
-		foreach my $child ($children->get_nodelist()){
-			print "<th>".$child->localname."</th>";
+		print "<thead><tr>";
+		print "<th scope=\"col\" >Codice</th>";
+		foreach my $header (@intestazione){
+			print "<th scope=\"col\">".$header."</th>";
 		}
-		print "</tr>";
+		print "</tr></thead><tbody>";
 		$firstline = 1;
 	  }
 	  if($alternate%2 == 0){
@@ -221,15 +235,15 @@ sub Prenotazioni{
 	  }
 	  print "<td><a href=\"dettaglio_prenotazione.pl?id=".($prenotazione->attributes())[0]->getValue()."\">".
 	  ($prenotazione->attributes())[0]->getValue()."</a></td>";
-	  foreach my $child ($children->get_nodelist()){
-			print "<td>".$child->textContent."</td>";
+	  foreach my $chiave (@chiavi){
+			print "<td>".$prenotazione->findnodes($chiave)->get_node(0)->textContent."</td>";
 		}
 	  print "</tr>";
 	  $alternate++;
 	}
-	print "</table>";
+	print "</tbody></table>";
 	}else{
-		print "Nessuna prenotazione presente";
+		print "<p>Nessuna prenotazione presente</p>";
 	}
 }
 
@@ -257,8 +271,8 @@ sub PrintFormRicerca{
 	#possibile lettura db e stampa di tutte le camere
 	print "<form id=\"spForm\" method=\"post\" action=\"stato_prenotazioni.pl\" >";
 	print CGI::div(
-				"<span>Da</span><input id=\"da\" name=\"da\" type=\"text\" maxlength=\"10\" />
-				<span>A</span><input id=\"a\" name=\"a\" type=\"text\" maxlength=\"10\" />
+				"<span><label for=\"da\">Da </label></span><input id=\"da\" name=\"da\" type=\"text\" maxlength=\"10\" />
+				<span><label for=\"a\">A </label></span><input id=\"a\" name=\"a\" type=\"text\" maxlength=\"10\" />
 				<input type=\"submit\" value=\"Ricerca\" />"
 				);
 	print "</form>";
@@ -357,6 +371,83 @@ sub ControlloDate{
 			return 0;
 		}
 	}
+}
+
+sub PrintPren{
+my($id)=@_;
+my $prenotazione = Utils::ricercaPrenotazioneConId($id);
+if($prenotazione){
+my $arrivo = $prenotazione->findnodes("dataArrivo")->get_node(0);
+my $partenza = $prenotazione->findnodes("dataPartenza")->get_node(0);
+my $adulti = $prenotazione->findnodes("adulti")->get_node(0);
+my $singole = $prenotazione->findnodes("singole")->get_node(0);
+my $doppie = $prenotazione->findnodes("doppie")->get_node(0);
+my $parcheggio = $prenotazione->findnodes("parcheggio")->get_node(0);
+my $pulizia = $prenotazione->findnodes("pulizia")->get_node(0);
+my $navaereo = $prenotazione->findnodes("navaereo")->get_node(0);
+my $navtreno = $prenotazione->findnodes("navtreno")->get_node(0);
+my $prezzo = $prenotazione->findnodes("totale")->get_node(0);
+my $nome = $prenotazione->findnodes("nome")->get_node(0);
+my $cognome = $prenotazione->findnodes("cognome")->get_node(0);
+my $email =  $prenotazione->findnodes("email")->get_node(0);
+my $numero =  $prenotazione->findnodes("numero")->get_node(0);
+my $datanascita = $prenotazione->findnodes("dataNascita")->get_node(0);
+my $citta = $prenotazione->findnodes("citta")->get_node(0);
+
+print "<h2>La tua prenotazione</h2>";
+#print "<div id=\"centrale\">";
+print "<p>Numero prenotazione: $id</p>";
+print "<div id=\"richiesta\">";
+print "<p>Data Arrivo $arrivo</p>";
+print "<p>Data Partenza $partenza</p>";
+print "<p>Ospiti $adulti</p>";
+print "<p>La tua prenotazione comprende:</p>";
+if($singole->textContent != 0){
+$singole = $singole->textContent;
+print "<p>Camere singole $singole</p>";
+}
+if($doppie->textContent  != 0){
+$doppie = $doppie->textContent;
+print "<p>Camere doppie $doppie</p>";
+}
+if($parcheggio->textContent eq "true" || $pulizia->textContent eq "true" || $navaereo->textContent eq "true" || $navtreno->textContent eq "true"){
+print"<p>La tua prenotazione comprende anche i seguenti servizi</p>";
+ if($parcheggio->textContent eq "true"){
+   print "<p>- Parcheggio</p>";
+   }
+   if($pulizia->textContent eq "true"){
+   print "<p>- Pulizia Quotidiana</p>";
+   }
+   if($navaereo->textContent eq "true"){
+   print "<p>- Navetta dall'Aeroporto</p>";
+   }
+   if($navtreno->textContent eq "true"){
+   print "<p>- Navetta dalla Stazione</p>";
+   }
+}
+print "<p>Totale &euro; $prezzo</p>";
+print "<p><strong>Contatti</strong></p>";
+print "<p>Nome $nome</p>";
+print "<p>Cognome $cognome</p>";
+print "<p>Data nascita $datanascita</p>";
+print "<p>Email $email</p>";
+print "<p>Numero $numero</p>";
+print "<p>Citt&agrave $citta</p>";
+#print "</div>";
+print "</div>";
+print "<div class=\"separatore\"></div>"
+}else{
+print "<p>Nessuna prenotazione presente</p>";
+}
+}
+
+sub DettaglioPrenotazione{
+	my($id)=@_;
+	 HtmlCode();
+	 Menu();
+	 Breadcrumb(1,"Dettaglio Prenotazione");
+	 PrintPren($id);
+	 EndHtml();
 }
 
 sub isvaliddate {

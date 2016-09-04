@@ -28,7 +28,7 @@ sub HtmlCode{
     <meta name=\"language\" content=\"italian it\" />
     <meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
     <link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
-	<link rel=\"shortcut icon\" href=\"../img/favicon.ico\">
+	<link rel=\"shortcut icon\" href=\"../img/favicon.ico\" />
 
 
     </head>

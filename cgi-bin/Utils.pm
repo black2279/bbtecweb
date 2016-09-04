@@ -38,6 +38,14 @@ sub ricercaPrenotazioni{
 	}
 }
 
+sub ricercaPrenotazioneConId{
+	my ($id)=@_;
+	my $file = "../data/prenotazioni.xml";
+	my $parser = XML::LibXML->new();
+	my $doc=$parser->parse_file($file);
+	return $doc->findnodes("//prenotazione[\@id=\'$id\']")->get_node(0);
+}
+
 sub getNumeroCamerePrenotate{
 	my($prenotazioni,$tipo)=@_;
 	my $nodo='unknown';
