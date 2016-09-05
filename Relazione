@@ -1,0 +1,89 @@
+Informazioni generali
+Come tema del progetto abbiamo scelto un Bed & Breakfast, come modello invece ci siamo ispirati ad uno realmente esistente e presente a questo indirizzo:
+http://www.inandout-rome.com/piazza_navona_gallery.html
+Per quanto riguarda la realizzazione del sito, sono state completamente seguite le indicazioni presenti sul sito del corso di Tecnologie Web.
+La prima fondamentale indicazione da osservare è quella di attuare una netta divisione tra contenuto, comportamento e presentazione che porta a grandissimi vantaggi tra cui spicca sicuramente quello di un notevole miglioramento di posizione tra i risultati dei motori di ricerca.
+Per quanto riguarda lo standard, abbiamo adottato per il codice XHTML 1.0 Strict mentre per i fogli di stile è stato utilizzato CSS2 (parte mobile CSS3). Il comportamento del sito è stato definito completamente in Perl/CGI, con l’aggiunta di alcuni elementi in Javascript.
+PARTE DI COMPORTAMENTO E DATABASE  (XML schema e modello utilizzato)
+La directory del sito web presenta la seguente struttura:
+-	Cgi-bin, in cui sono presenti tutti gli script Perl/CGI e i file di template da popolare;
+-	Data, in cui risiedono tutti i file XML e i loro schemi associati;
+-	Public-html, in cui ci sono tutte le pagine statiche, i fogli di stile, gli script Javascript e le immagini
+-	Relazione, che contiene il suddetto documento
+Abstract
+La decisione di scegliere un Bed & Breakfast come oggetto del nostro progetto è stata presa in comune accordo dopo aver analizzato approfonditamente le possibilità che questa offre, in quanto, in questo tipo di realtà si possono applicare al meglio tutte le conoscenze apprese durante il corso di tecnologie web, soffermandosi in particolare sulla parte di accessibilità del sito. 
+I vantaggi che una migliore accessibilità al sito porta sono numerosi e decisamente rilevanti, oltre al già citato miglioramento di posizione nei motori di ricerca, il sito è anche usufruibile da un maggior numero di utenti e quindi il target dei potenziali clienti aumenta in maniera considerevole. Si è cercata di migliorare l’esperienza di navigazione per ogni tipo di utente e anche per chi non soffre di particolari disturbi viene offerta un’esperienza più confortevole attraverso contenuti ordinati e facilmente reperibili. Per questo motivo i menù e le pagine sono ben strutturate e suddivise in modo tale da permettere ad ogni tipo di utilizzatore una piacevole navigazione senza intoppi di alcun tipo.
+Analisi dell’utenza
+Quando ci si riferisce all’utenza bisogna prestare particolare attenzione a chi si approccerà con il nostro sito e quindi cercare di soddisfare ogni tipo di bisogno.
+Gran parte delle persone oggi, fruiscono alle risorse web tramite tablet o smartphone e questo comporta che un sito deve presentarsi ottimamente anche per questi dispositivi che ormai da qualche anno si stanno dimostrando il sistema di navigazione preferito per molte categorie di utenti. Nel nostro caso è quindi di fondamentale importanza soddisfare al meglio ogni possibile soggetto interessato al nostro B&B.
+Esempio immagine pagina SMARTPHONE
+Un altro aspetto importante da non sottovalutare all’interno del nostro sito è l’area riservata, semplice ed immediata da utilizzare ed allo stesso tempo permettere ogni tipo di modifica necessaria all’amministratore.  Per questo motivo, in questo frangente non abbiamo prestato particolare attenzione alla parte grafica.
+Suddivisione dei ruoli
+Il gruppo ha inizialmente cercato di fare un’analisi dettagliata di quello che sarebbe dovuto essere il lavoro da svolgere, a questo è seguita una fase di progettazione del sito dove tutti i membri hanno cercato di lavorare insieme per far rendere al meglio sia le pagine statiche che quelle dinamiche presenti all’interno del sito. In seguito il lavoro è stato svolto in contemporanea per usufruire e sfruttare al meglio il tempo a disposizione. In particolare i compiti per ciascun componente sono stati:
+Alba Matteo:
+-
+-
+-
+Cristian Andrighetto
+-
+-
+-
+Zoso Leonardo
+-
+-
+-
+Progettazione
+In seguito vengono riportate tutte le scelte degne di nota, suddivise per categoria apportate all’interno del sito.
+HTML
+-	I breadcrumb sono stati implementati in ogni livello del sito e permettono sempre di capire in quale posizione di ci trova e in caso, tornare alle pagine precedenti. In alcuni casi (pagine interne galleria) sono stati anche implementati dei link che permettono di tornare alla pagina precedente e che possono essere ritenuti più comodi da una buona parte di utenza.
+-	Il footer, presente in tutte le pagine, presenta tutti i dati fondamentali del B&B per poter dare all’utente sempre tutti i dati di cui ha bisogno in maniera chiara e funzionale.
+-	Il link che permette di accedere all’area riservata è posizionato nel footer perché viene utilizzato da una ristretta parte di utenza e non necessità di particolare visibilità.
+-	Le immagini presenti nel sito e in particolare nella galleria sono state compresse per evitare un grande dispendio di spazio che comporta una maggiore pesantezza all’interno del sito.
+-	Nel footer sono state inserite le icone di validazione di CSS e XHTML 1 in quanto il sito è interamente validato per queste due tecnologie.
+ALTRE
+CSS
+-	Sono stati utilizzati volutamente pochi colori e visualizzabili da tutti i tipi di utenti per permettere a tutti la stessa esperienza all’interno del sito.
+-	 Il codice CSS può a prima vista sembrare disordinato in quanto tutti abbiamo lavorato simultaneamente ma in seguito è stato sistemato il più possibile.
+-	E’ presente un secondo foglio di stile per quanto riguarda la parte Javascript della galleria per evitare eccessiva confusione all’interno del CSS e permettere una modifica più semplice e veloce da parte nostra.
+PERL/CGI
+-
+-
+-
+Javascript
+-	Tutte le sezioni che utilizzano Javascript funzionano perfettamente anche se questo viene disattivato. Questo permette una perfetta integrazione anche con browser molto vecchi.
+DA SISTEMARE NELLA GALLERIA
+-	Quando vengono selezionate le immagini all’interno della galleria con javascript attivo sono visualizzate ad una dimensione di 640x480 per permettere ad ogni tipo di utente la migliore esperienza possibile.
+-	
+
+XML e XML schema
+-
+-
+
+
+MOBILE
+
+
+Accessibilità
+Il font scelto è Verdana, considerato il migliore per quanto riguarda l’utilizzo sul web, è chiaro e semplice ma principalmente è stato utilizzato perché supportato da qualsiasi tipo di browser.
+Colore scelto
+…. E problemi per i daltonici ecc
+Colore dei link
+ESEMPI CON IMMAGINI
+
+Parole straniere
+All’interno del sito sono presenti numerose parole inglesi ed ognuna di esse è stata opportunamente indicata con l’attributo xml:lang, in questo modo viene notevolmente favorita la lettura da parte degli screen reader.
+Accessibilità da tastiera
+Abbiamo prestato particolare attenzione anche alla possibilità di navigare nel sito utilizzando solamente la tastiera, questo permette a particolari categorie di utenti una facile e veloce navigazione.
+PARTI NON NAVIGABILI DA TASTIERA
+Accessibilità tramite Screen Reader (utilizzo Lynx)
+????
+Compatibilità con i Browser
+Browser testati:
+-
+-
+-
+Istruzioni per l’utilizzo su altri server
+
+
+
+
