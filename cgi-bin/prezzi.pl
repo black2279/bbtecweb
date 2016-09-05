@@ -15,6 +15,7 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
+Std::MenuPrezzi();
 my $pagina = "Tariffe";
 Std::Breadcrumb($pagina);
 Std::Tariffe();

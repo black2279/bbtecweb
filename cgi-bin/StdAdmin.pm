@@ -110,8 +110,8 @@ print "</div>
 	
     <div id=\"right\">
         <strong>Contatti</strong>
-		<p>Via delle Pertiche, 11
-    	    04323 Latina
+		<p>Vicolo del Fico, 15
+         00100
             Roma (RM)</p>
 
         <p>Telefono 0093412534</p>

@@ -15,6 +15,7 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
+Std::Menu();
 my $percorso = "Prenotazioni";
 
 sub ricercaDatiXML{

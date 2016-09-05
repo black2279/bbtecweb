@@ -11,6 +11,7 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
+Std::MenuPren();
 
 my $pagina = "Prenotazioni";
 

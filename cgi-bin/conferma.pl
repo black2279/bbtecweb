@@ -15,7 +15,7 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
-
+Std::Menu();
 
 
 my $page = new CGI;
