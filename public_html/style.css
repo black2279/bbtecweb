@@ -574,10 +574,55 @@ background: #CCC;
 
 /*CSS parte mobile*/
 
-@media only screen and (min-width:150px) and (max-width:768px) 
+@media only screen and (min-width:150px) and (max-width:1024px) 
 {
+ 
+ #logo{
+ float : none;
+ width: 100%;
+ height: 20em;
+ }
+ 
+ #menu , #menu ul{
+ width: 100%;
+ float: none;
+ margin: 0;
+ }
 
-.imgGalleria{
+#menu li{
+ float: none;
+}
+ 
+ #menu ul li{
+display: block;
+float :none;
+clear: both;
+width: 100%;
+height: 8em;
+border-right: none;
+border-left: none;
+border-top: 0.0625em solid #fff;
+border-bottom: 0.0625em solid #ccc;
+ }
+ 
+ #menu ul li a {
+  font-size: 3em;
+ }
+ 
+ #hamburger-bar{
+ width: 100%;
+ height: 8em;
+ background: url('img/menu-ham.png');
+ background-repeat: no-repeat;
+ border-right: none;
+ border-left: none;
+ border-top: 0.0625em solid #fff; 
+ border-bottom: 0.0625em solid #ccc;
+ background-color: #940315;
+ background-size: contain;
+ }
+ 
+ .imgGalleria{
   	border-width:medium;
   	border-color:#940315;
   	border-style:solid;
@@ -589,5 +634,5 @@ background: #CCC;
   	height:200px;
   	display:block;
  }
-
+ 
  }
