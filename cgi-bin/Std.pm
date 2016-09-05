@@ -445,7 +445,7 @@ print "</div>
     </div>
 
 	<div id=\"reserved\">
-    <a href=\"cgi-bin/login.pl\">Area riservata</a>
+    <a href=\"login.pl\">Area riservata</a>
     </div>
 	
     <div id=\"right\">
