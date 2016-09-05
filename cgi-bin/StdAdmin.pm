@@ -31,10 +31,11 @@ sub HtmlCode{
     <meta name=\"author\" content=\"Alba Matteo, Andrighetto Cristian, Zoso Leonardo\" />
     <link href=\"../style.css\" rel=\"stylesheet\" type=\"text/css\" />
 	<link rel=\"shortcut icon\" href=\"../img/favicon.ico\" />
+	<script type=\"text/javascript\" src=\"../Javascript/menu-mobile.js\" ></script>
 
+	</head>
 
-    </head>
-    <body>
+	<body onload=\"menuMobile()\">
     <div id=\"wrapper\">
     <div id=\"header\">
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
@@ -85,7 +86,7 @@ print "</div>
 	<img class=\"imgValidCode\" src=\"../img/XMLvalido.png\" alt=\"XHTML valido\"/>
 	<img class=\"imgValidCode\" src=\"../img/CSSvalido.gif\" alt=\"CSS valido\"/>
     </div>
-
+	
     <div id=\"right\">
         <strong>Contatti</strong>
 		<p>Via delle Pertiche, 11
