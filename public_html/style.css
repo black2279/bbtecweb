@@ -786,7 +786,7 @@ border-bottom: 2px solid #999;
  
  input[type="submit"] {
 	width: 100%;
-	font-size: 3em;
+	font-size: 1em;
  }
 
  
@@ -799,4 +799,85 @@ border-bottom: 2px solid #999;
  float: none;
  }
  
+ #login{
+ width: 100%;
+  font-size: 3em;
  }
+ 
+ #login input{
+ margin-top: 1em;
+ line-height: 2em;
+ }
+ 
+  #login input[type="submit"]{
+  padding: 0.5em;
+ }
+ #bbForm * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #bbForm {
+ font-size: 3em;
+ }
+ 
+ #bbForm input {
+ margin-top: 1em;
+ margin-bottom: 1em;
+  line-height: 2em;
+  width: 100%;
+ }
+ 
+ #bbForm input[type="submit"]{
+  padding: 0.5em;
+ }
+ 
+ #spForm  * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #spForm{
+  font-size: 3em;
+ }
+  #spForm input {
+  width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 1em;
+  }
+  
+  #t_stato_pren{
+  width: 100%;
+  }
+  #t_stato_pren caption{
+  font-size: 3em;
+  }
+  
+  #t_stato_pren tr {
+  height: 3em;
+  }
+   
+ #tariffeForm  * {
+ margin: 0;
+ padding: 0;
+ }
+  #tariffeForm input {
+   width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 0.5em;
+  font-size: 3em;
+ }
+ #tariffeForm label{
+ font-size: 3em;
+  line-height: 2em;
+ }
+ 
+ 
+  
+  
+  }
+  
