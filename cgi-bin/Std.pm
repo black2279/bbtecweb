@@ -40,7 +40,11 @@ sub HtmlCode{
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
     <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
     </div>
+"
+}
 
+Std::MenuPren{
+print"
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -51,9 +55,49 @@ sub HtmlCode{
 
             <li><a href=\"../servizi.html\">Servizi</a></li>
 
-            <li><a href=\"../tariffe.html\">Tariffe</a></li>
+            <li><a href=\"../cgi-bin/prezzi.pl\">Tariffe</a></li>
 
-            <li id=\"currentLink\"><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
+            <li><a href=\"#\">Prenotazioni</a></li>
+
+            <li><a href=\"../contatti.html\">Contatti</a></li>
+        </ul>
+    </div>
+"}
+Std::Menu{
+print"
+    <div id=\"menu\">
+        <ul>
+            <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
+
+            <li><a href=\"../chisiamo.html\">Chi siamo</a></li>
+
+            <li><a href=\"../galleria.html\">Galleria</a></li>
+
+            <li><a href=\"../servizi.html\">Servizi</a></li>
+
+            <li><a href=\"../cgi-bin/prezzi.pl\">Tariffe</a></li>
+
+            <li><a href=\"../cgi-bin/Prenotazioni.pl\">Prenotazioni</a></li>
+
+            <li><a href=\"../contatti.html\">Contatti</a></li>
+        </ul>
+    </div>
+"}
+Std::MenuPrezzi{
+print"
+    <div id=\"menu\">
+        <ul>
+            <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
+
+            <li><a href=\"../chisiamo.html\">Chi siamo</a></li>
+
+            <li><a href=\"../galleria.html\">Galleria</a></li>
+
+            <li><a href=\"../servizi.html\">Servizi</a></li>
+
+            <li><a href=\"#\">Tariffe</a></li>
+
+            <li><a href=\"../cgi-bin/Prenotazioni.pl\">Prenotazioni</a></li>
 
             <li><a href=\"../contatti.html\">Contatti</a></li>
         </ul>
@@ -445,13 +489,13 @@ print "</div>
     </div>
 
 	<div id=\"reserved\">
-    <a href=\"login.pl\">Area riservata</a>
+    <a href=\"cgi-bin/login.pl\">Area riservata</a>
     </div>
 	
     <div id=\"right\">
         <strong>Contatti</strong>
-		<p>Via delle Pertiche, 11
-    	    04323 Latina
+		<p>Vicolo del Fico, 15
+         00100
             Roma (RM)</p>
 
         <p>Telefono 0093412534</p>
@@ -462,4 +506,38 @@ print "</div>
 </div>
 </body>
 </html>";
+}
+
+sub Tariffe{
+print "<div id=\"title\">
+	<h1>
+    Tariffe
+  	</h1>
+</div>
+
+<div id=\"content\">
+
+	<p>
+    	Nel prezzo del nostro <span lang=\"en\">Bed and Breakfast</span> sono compresi la prima colazione,
+        la pulizia delle camere ed un asciugacapelli.
+    </p>
+    <p>
+		Inoltre a richiesta &egrave; possibile utilizzare gratuitamente <span lang=\"en\">Wi-Fi</span>, frigorifero e aria condizionata.
+    </p>
+
+    <p>
+    	I prezzi a notte per le camere sono:
+    </p>
+    	<ul>
+        	<li>Camera singola: ".Tariffe::getPrezzoCamera('SINGOLA')." &euro;</li>
+            <li>Camera doppia: ".Tariffe::getPrezzoCamera('DOPPIA')." &euro;</li>
+        </ul>
+	<p> Sono disponibili servizi aggiuntivi:</p>
+        <ul>
+            <li>Parcheggio: ".Tariffe::getPrezzoParcheggio()." &euro; al giorno.</li>
+            <li>Pulizia: ".Tariffe::getPrezzoPulizie()." &euro; al giorno.</li>
+            <li>Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()." &euro;.</li>
+            <li>Navetta per Stazione: ".Tariffe::getPrezzoNavettaTreno()." &euro;.</li>
+        </ul>
+</div>"
 }

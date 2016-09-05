@@ -1,5 +1,9 @@
 #!/usr/bin/perl
+
 #print "Content type: text/html; charset=UTF-8\n\n";
+
+#possibile modifica per gestire auto_increment,
+#creare attributo su tag prenotazioni con contatore prenotazioni;
 
 use DateTime;
 use CGI;
@@ -11,13 +15,9 @@ use Std;
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
-Std::MenuPren();
-
-my $pagina = "Prenotazioni";
-
+Std::MenuPrezzi();
+my $pagina = "Tariffe";
 Std::Breadcrumb($pagina);
-
-Std::FormPren();
+Std::Tariffe();
 
 Std::EndHtml();
-
