@@ -488,5 +488,13 @@ print "<div id=\"title\">
         	<li>Camera singola: ".Tariffe::getPrezzoCamera('SINGOLA')." &euro;</li>
             <li>Camera doppia: ".Tariffe::getPrezzoCamera('DOPPIA')." &euro;</li>
         </ul>
+          
+        <p> Sono disponibili servizi aggiuntivi:</p>
+        <ul>
+            <li>Parcheggio: ".Tariffe::getPrezzoParcheggio()." &euro; al giorno.</li>
+            <li>Pulizia: ".Tariffe::getPrezzoPulizie()." &euro; al giorno.</li>
+            <li>Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()." &euro;.</li>
+            <li>Navetta per Stazione: ".Tariffe::getPrezzoNavettaTreno()." &euro;.</li>
+        </ul>
 </div>"
 }
