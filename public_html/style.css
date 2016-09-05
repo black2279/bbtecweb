@@ -420,6 +420,24 @@ input#dataNascita{
 	float:left;
 } 
 
+/*Pulsante indietro galleria*/
+
+#indietro
+{
+	margin-top:2em;
+	margin-bottom:2em;
+	display:block;
+	float:right;
+}
+
+#titleG
+{
+display:block;
+float:left;
+margin-top:1em;
+margin-left:1em;
+}
+
 /*Chi siamo*/
 
 #title
@@ -570,6 +588,18 @@ background: #CCC;
 
 #menu a:active{
 	color: yellow;
+}
+
+/*Area Riservata*/
+
+#reserved
+{
+	display:block;
+	clear:left;
+	float:left;
+	padding-left: 2em;
+	padding-top: 1em;
+
 }
 
 /*CSS parte mobile*/
