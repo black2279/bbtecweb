@@ -377,6 +377,7 @@ input#dataNascita{
 	margin-right:5em;
 	margin-left:5em; 
 	padding-bottom:6.875em;
+	clear: right;
 }
 
 /*galleria*/
