@@ -15,18 +15,20 @@
 <link href="style.css" rel="stylesheet" type="text/css" />
 
 <link rel="shortcut icon" href="img/favicon.ico" />
+<script type="text/javascript" src="Javascript/menu-mobile.js" ></script>
 
 </head>
 
-<body>
+<body onload="menuMobile()">
 <div id="wrapper">
 <div id="header">
+<a id="aiuti" href="#content">Salta la navigazione</a>
     <a href="index.html">
     	<img src="img/Logo-bn.png" alt="logo B&amp;B" id="logo"/>
 	</a>
 </div>
 
-<a id="aiuti" href="#content">Salta la navigazione</a>
+
 <div id="menu">
 	<ul>
 		<li id="currentLink"><a href="#"><span lang="en">Home</span></a></li>
@@ -86,9 +88,9 @@ Ti trovi qui: <span lang="en">Home</span>
     </div>
 
     <div id="right">
-        <h3> Contatti </h3>
+		<strong>Contatti</strong>
 		<p>Vicolo del Fico, 15
-    	    00100
+    	    00100        
             Roma (RM)</p>
 
         <p>Telefono 0093412534</p>

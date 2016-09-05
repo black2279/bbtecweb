@@ -82,7 +82,6 @@ h1{
 
 #content {
     padding-left: 1em;
-	padding-bottom:auto; /* Height of the footer element */
 	padding-right: 1em;
 	padding-top:auto;
 	padding-bottom:6.875em;	
@@ -117,7 +116,7 @@ form > fieldset p{
 
 #menu {
     /*width: 70%;*/
-	width: 67%;
+	width: 70%;
     float: right;
     margin-right: 1em;
 }
@@ -154,7 +153,7 @@ form > fieldset p{
 #menu ul li {
     float: left;
     text-align: center;
-    width: 14.1%; /* For browser that not support calc */
+    width: 14%; /* For browser that not support calc */
     width: calc(100% / 7);
 	/*border-left: 1px solid #fff;*/
 	border-left: 0.0625em solid #fff;
@@ -219,7 +218,8 @@ form > fieldset p{
 	padding-bottom: 1em;
 }
 
-#right p, h3{
+#right p, #right>strong{
+	display: block;
     padding-right: 2em;
 	margin: 0;
 	padding-top: 1em;
@@ -358,13 +358,13 @@ input#dataNascita{
     background-size: contain;
 }
 
-/*galleria + pagine interne*/
+/*galleria   pagine interne*/
 
 /*pagine interne*/
 
 .imgGalleria{
 	border-width:medium;
-	border-color:#940315;;
+	border-color:#940315;
 	border-style:solid;
 	margin-top: auto;
 	margin-left: 2em;
@@ -380,8 +380,8 @@ input#dataNascita{
 	margin-right:5em;
 	margin-left:5em; 
 	padding-bottom:6.875em;
-	
-	clear:right;
+
+	clear: both;
 }
 
 /*galleria*/
@@ -410,7 +410,8 @@ input#dataNascita{
 	margin-left:3em; 
 	padding-bottom:6.875em;	
 	display:block;
-	float:clear;
+	clear: right;
+
 } 
 
 #ristorante a{
@@ -424,6 +425,24 @@ input#dataNascita{
 #esterni a{
 	float:left;
 } 
+
+/*Pulsante indietro galleria*/
+
+#indietro
+{
+	margin-top:2em;
+	margin-bottom:2em;
+	display:block;
+	float:right;
+}
+
+#titleG
+{
+display:block;
+float:left;
+margin-top:1em;
+margin-left:1em;
+}
 
 /*Chi siamo*/
 
@@ -515,7 +534,7 @@ margin: 10px;
  background: #0F6;
 }
 
-.prossima+.alternate {
+.prossima .alternate {
  background: #0E6;
 }
 
@@ -532,7 +551,7 @@ margin: 10px;
 background: #DDD;
 }
 
-.incorso+.alternate {
+.incorso .alternate {
  background: #BBB;
 } 
 
@@ -553,7 +572,7 @@ color:#666;
 background: #EEE;
 }
 
-.scaduta+.alternate{
+.scaduta .alternate{
  background: #CCC;
 } 
 
@@ -570,30 +589,15 @@ background: #CCC;
 }
 
 #menu a:visited{
-	color: white;
+
+color: white;
 }
 
 #menu a:active{
 	color: yellow;
 }
 
-/*Pulsante indietro galleria*/
-
-#indietro
-{
-	margin-top:2em;
-	margin-bottom:2em;
-	display:block;
-	float:right;
-}
-
-#titleG
-{
-display:block;
-float:left;
-margin-top:1em;
-margin-left:1em;
-}
+/*Area Riservata*/
 
 #reserved
 {
@@ -635,3 +639,279 @@ a:active
 {
 	link-color:yellow;	
 }
+
+/*CSS parte mobile*/
+
+@media only screen and (min-width:150px) and (max-width:1024px) 
+{
+ 
+ #logo{
+ float : none;
+ width: 100%;
+ height: 20em;
+ }
+ 
+ #menu , #menu ul{
+ width: 100%;
+ float: none;
+ margin: 0;
+ }
+
+#menu li{
+ float: none;
+}
+ 
+ #menu ul li{
+display: block;
+float :none;
+clear: both;
+width: 100%;
+height: 8em;
+border-right: none;
+border-left: none;
+border-top: 0.0625em solid #fff;
+border-bottom: 0.0625em solid #ccc;
+ }
+ 
+ #menu ul li a {
+  font-size: 3em;
+ }
+ 
+ #hamburger-bar{
+ width: 100%;
+ height: 8em;
+ background: url('img/menu-ham.png');
+ background-repeat: no-repeat;
+ border-right: none;
+ border-left: none;
+ border-top: 0.0625em solid #fff; 
+ border-bottom: 0.0625em solid #ccc;
+ background-color: #940315;
+ background-size: contain;
+ }
+ 
+ .imgGalleria{
+  	border-width:medium;
+  	border-color:#940315;
+  	border-style:solid;
+  	margin-top: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 3em;
+  	width:200px;
+  	height:200px;
+  	display:block;
+ }
+ 
+ #footer{
+ clear: both;
+ height: auto;
+ width: 100%;
+ position : static;
+ font-size: 2em;
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #left, #left p{
+ text-align: left;
+ display: block;
+ text-align: center;
+ margin: 0;
+ padding: 0;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+ font-size: 1em;
+ }
+ #left p{
+  font-size: 0.3em;
+ }
+ 
+ #right, #right p, #right strong{
+ text-align: center;
+ margin: 0;
+ padding: 0;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+ }
+ 
+ #right{
+ float: none;
+ }
+ 
+ #left{
+ float: none;
+border-bottom: 2px solid #999;
+ }
+ 
+ #breadcrumb {
+	font-size: 2em;
+ }
+ 
+ #content p {
+	font-size: 3em;
+ }
+ 
+ #content .imgchisiamo{
+ float: none;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+ height: auto;
+ 
+ }
+ 
+ h1{
+ font-size: 6em;
+ }
+ 
+ h2 {
+  font-size: 4em;
+ }
+ 
+ #richiesta {
+ float: none;
+ }
+ 
+ 
+ .imgValidCode{
+ height: 1.5em;
+ float: none;
+ margin-top: 0.5em;
+ 
+ }
+ 
+ #titleG{
+ float: none;
+ }
+ 
+ #indietro {
+  float: none;
+  text-align: right;
+  padding-right: 1em;
+  font-size: 2em;
+ }
+ 
+ .imgGalleria {
+ width: 100%;
+ height: auto;
+ 
+ }
+ 
+ #reserved {
+ float: none;
+ text-align: center;
+ padding: 0;
+ margin: 0;
+ padding-top: 1em;
+ padding-bottom: 1em;
+ font-size: 0.5em;
+border-bottom: 2px solid #999;
+ }
+ 
+ fieldset{
+ width: auto;
+ }
+ 
+ input{
+ font-size: 1em;
+ }
+ 
+ input[type="submit"] {
+	width: 100%;
+	font-size: 1em;
+ }
+
+ 
+ select {
+ width: 100%;
+ font-size: 1em;
+ }
+ 
+ .dati #sinistra{
+ float: none;
+ }
+ 
+ #login{
+ width: 100%;
+  font-size: 3em;
+ }
+ 
+ #login input{
+ margin-top: 1em;
+ line-height: 2em;
+ }
+ 
+  #login input[type="submit"]{
+  padding: 0.5em;
+ }
+ #bbForm * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #bbForm {
+ font-size: 3em;
+ }
+ 
+ #bbForm input {
+ margin-top: 1em;
+ margin-bottom: 1em;
+  line-height: 2em;
+  width: 100%;
+ }
+ 
+ #bbForm input[type="submit"]{
+  padding: 0.5em;
+ }
+ 
+ #spForm  * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #spForm{
+  font-size: 3em;
+ }
+  #spForm input {
+  width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 1em;
+  }
+  
+  #t_stato_pren{
+  width: 100%;
+  }
+  #t_stato_pren caption{
+  font-size: 3em;
+  }
+  
+  #t_stato_pren tr {
+  height: 3em;
+  }
+   
+ #tariffeForm  * {
+ margin: 0;
+ padding: 0;
+ }
+  #tariffeForm input {
+   width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 0.5em;
+  font-size: 3em;
+ }
+ #tariffeForm label{
+ font-size: 3em;
+  line-height: 2em;
+ }
+ 
+ 
+  
+  
+  }
+  
+>>>>>>> origin/v0.2

@@ -21,19 +21,28 @@
 <xsd:complexType name="TPrenotazione">
 	<xsd:sequence>
 		<xsd:element name="dataArrivo" type="xsd:string"/>
-		<xsd:element name="notti" type="xsd:integer"/>
+		<xsd:element name="dataPartenza" type="xsd:string"/>
 		<xsd:element name="adulti" type="xsd:integer" />
-		<xsd:element name="tipoCamera" type="xsd:string" />
-        <xsd:element name="prezzo" type="PrezzoT"/>
+		<xsd:element name="singole" type="xsd:integer" />
+		<xsd:element name="doppie" type="xsd:integer" />
+		<xsd:element name="parcheggio" type="xsd:boolean" />
+		<xsd:element name="pulizia" type="xsd:boolean" />
+		<xsd:element name="navaereo" type="xsd:boolean" />
+		<xsd:element name="navtreno" type="xsd:boolean" />
+        <xsd:element name="totale" type="xsd:integer"/>
+		<xsd:element name="nome" type="xsd:string"/>
+		<xsd:element name="cognome" type="xsd:string"/>
+		<xsd:element name="dataNascita" type="xsd:string"/>
+		<xsd:element name="citta" type="xsd:string"/>
+		<xsd:element name="email" type="xsd:string"/>
+		<xsd:element name="telefono" type="xsd:integer"/>
+		<xsd:element name="pagamento" type="xsd:string"/>
+		<xsd:element name="numerocarta" type="xsd:string"/>
+		<xsd:element name="cvc" type="xsd:string"/>
+		<xsd:element name="intestatario" type="xsd:string" />
 	</xsd:sequence>
 	<xsd:attribute name="id" type="xsd:integer" use="required"/>
 </xsd:complexType>
 
-<xsd:complexType name="PrezzoT">
-        <xsd:choice>
-            <xsd:element name="singola" type="xsd:integer"/>
-            <xsd:element name="doppia" type="xsd:integer"/>
-    </xsd:choice>    
-</xsd:complexType>
 
 </xsd:schema>
