@@ -458,7 +458,7 @@ margin-left:1em;
 	float:left;
 	margin-right:1em;
 	border-width:medium;
-	border-color:#940315;;
+	border-color:#940315;
 	border-style:solid;	
 }
 
@@ -649,6 +649,10 @@ a:active
  float : none;
  width: 100%;
  height: 20em;
+ }
+ 
+ .imgHome{
+ height: 500px;
  }
  
  #menu , #menu ul{
@@ -913,5 +917,3 @@ border-bottom: 2px solid #999;
   
   
   }
-  
->>>>>>> origin/v0.2
