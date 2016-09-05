@@ -61,10 +61,11 @@ h1{
 }
 
 .imgHome{
-    width: 85%;
+    width: 100%;
 	display:block;
 	margin:auto;
 	margin-top:1em;
+	margin-bottom:1em;
 }
 
 #logo{
@@ -83,7 +84,7 @@ h1{
     padding-left: 1em;
 	padding-bottom:auto; /* Height of the footer element */
 	padding-right: 1em;
-	padding-top:1em;
+	padding-top:auto;
 	padding-bottom:6.875em;	
 }
 
@@ -169,10 +170,10 @@ form > fieldset p{
     display: block;
     padding: 10px 0;
 }
-
+/*
 #currentLink:hover{
     background-color: #5C0009;
-}
+}*/
 
 /* Breadcrumb */
 
@@ -565,15 +566,15 @@ background: #CCC;
 
 /* Link */
 #menu a:link{
-	color:white;
+	color:#72FAD2;
 }
 
 #menu a:visited{
-	color: #A9A9A9;
+	color: white;
 }
 
 #menu a:active{
-	color: white;
+	color: yellow;
 }
 
 /*Pulsante indietro galleria*/
@@ -601,7 +602,36 @@ margin-left:1em;
 	float:left;
 	padding-left: 2em;
 	padding-top: 1em;
-	
-
 }
 
+/*link*/
+
+a:link
+{
+	color:#000080;
+}
+
+a:visited
+{
+	color:#940315;
+}
+
+a:active 
+{
+	color:0000CD;	
+}
+
+#breadcrumb, #reserved a:link
+{
+	color:#72FAD2;
+}
+
+#breadcrumb, #reserved a:visited
+{
+	color:white;
+}
+
+#breadcrumb, #reserved a:active
+{
+	link-color:yellow;	
+}
