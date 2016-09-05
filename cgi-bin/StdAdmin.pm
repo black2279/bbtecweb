@@ -41,7 +41,10 @@ sub HtmlCode{
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
     <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
     </div>
-    
+"}
+
+sub MenuGuest{
+print"
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -58,8 +61,8 @@ sub HtmlCode{
 
             <li><a href=\"../contatti.html\">Contatti</a></li>
         </ul>
-    </div>
-"}
+    </div>"
+}
 
 sub Menu {
 
@@ -300,6 +303,7 @@ sub PrintFormRicerca{
 sub PrintLogin{
  my($esito)=@_;
  HtmlCode();
+ MenuGuest();
  Breadcrumb();
  Login($esito);
  EndHtml();
