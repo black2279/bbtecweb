@@ -51,7 +51,7 @@ sub HtmlCode{
 
             <li><a href=\"../servizi.html\">Servizi</a></li>
 
-            <li><a href=\"../tariffe.html\">Tariffe</a></li>
+            <li><a href=\"../cgi-bin/prezzi.pl\">Tariffe</a></li>
 
             <li id=\"currentLink\"><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
 
@@ -445,7 +445,7 @@ print "</div>
     </div>
 
 	<div id=\"reserved\">
-    <a href=\"login.pl\">Area riservata</a>
+    <a href=\"cgi-bin/login.pl\">Area riservata</a>
     </div>
 	
     <div id=\"right\">
@@ -462,4 +462,31 @@ print "</div>
 </div>
 </body>
 </html>";
+}
+
+sub Tariffe{
+print "<div id=\"title\">
+	<h1>
+    Tariffe
+  	</h1>
+</div>
+
+<div id=\"content\">
+
+	<p>
+    	Nel prezzo del nostro <span lang=\"en\">Bed and Breakfast</span> sono compresi la prima colazione,
+        la pulizia delle camere ed un asciugacapelli.
+    </p>
+    <p>
+		Inoltre a richiesta &egrave; possibile utilizzare gratuitamente <span lang=\"en\">Wi-Fi</span>, frigorifero e aria condizionata.
+    </p>
+
+    <p>
+    	I prezzi a notte per le camere sono:
+    </p>
+    	<ul>
+        	<li>Camera singola: ".Tariffe::getPrezzoCamera('SINGOLA')." &euro;</li>
+            <li>Camera doppia: ".Tariffe::getPrezzoCamera('DOPPIA')." &euro;</li>
+        </ul>
+</div>"
 }

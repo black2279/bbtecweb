@@ -1,4 +1,4 @@
-﻿#!/usr/bin/perl
+#!/usr/bin/perl
 
 use strict;
 use warnings;
@@ -40,6 +40,24 @@ sub HtmlCode{
     <div id=\"header\">
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
     <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
+    </div>
+    
+    <div id=\"menu\">
+        <ul>
+            <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
+
+            <li><a href=\"../chisiamo.html\">Chi siamo</a></li>
+
+            <li><a href=\"../galleria.html\">Galleria</a></li>
+
+            <li><a href=\"../servizi.html\">Servizi</a></li>
+
+            <li><a href=\"../cgi-bin/prezzi.pl\">Tariffe</a></li>
+
+            <li id=\"currentLink\"><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
+
+            <li><a href=\"../contatti.html\">Contatti</a></li>
+        </ul>
     </div>
 "}
 
