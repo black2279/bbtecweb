@@ -42,8 +42,7 @@ sub HtmlCode{
     </div>
 "
 }
-
-Std::MenuPren{
+sub MenuPren{
 print"
     <div id=\"menu\">
         <ul>
@@ -63,7 +62,7 @@ print"
         </ul>
     </div>
 "}
-Std::Menu{
+sub Menu{
 print"
     <div id=\"menu\">
         <ul>
@@ -83,7 +82,7 @@ print"
         </ul>
     </div>
 "}
-Std::MenuPrezzi{
+sub MenuPrezzi{
 print"
     <div id=\"menu\">
         <ul>
