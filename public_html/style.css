@@ -354,7 +354,7 @@ input#dataNascita{
     font-weight: bold;
     padding-left: 2em;
     font-size: 0.75em;
-	background: url(Button-warning-icon.png);
+	background: url('Javascript/warning-icon.png');
     background-repeat: no-repeat;
     background-size: contain;
 }
@@ -685,7 +685,7 @@ border-bottom: 0.0625em solid #ccc;
  #hamburger-bar{
  width: 100%;
  height: 8em;
- background: url('img/menu-ham.png');
+ background: url('Javascript/menu-ham.png');
  background-repeat: no-repeat;
  border-right: none;
  border-left: none;
