@@ -269,10 +269,6 @@ my $dataNascita = "\n\t\t<dataNascita>$prenotazione{'dataNascita'}</dataNascita>
 my $citta = "\n\t\t<citta>$prenotazione{'citta'}</citta>";
 my $email = "\n\t\t<email>$prenotazione{'email'}</email>";
 my $telefono = "\n\t\t<telefono>$prenotazione{'telefono'}</telefono>";
-my $pagamento = "\n\t\t<pagamento>$prenotazione{'pagamento'}</pagamento>";
-my $numerocarta = "\n\t\t<numerocarta>$prenotazione{'numerocarta'}</numerocarta>";
-my $cvc = "\n\t\t<cvc>$prenotazione{'cvc'}</cvc>";
-my $intestatario = "\n\t\t<intestatario>$prenotazione{'intcarta'}</intestatario>";
 
 
 if(my $lastnode = $doc->findnodes("//prenotazione[last()]")->get_node(1)){
@@ -282,7 +278,7 @@ $id = $pren;
 $id=0;
 }
 
-my $pren_el="\n\t<prenotazione id=\"$id\" >$dataarrivo$datapartenza$adulti$singole$doppie$parcheggio$pulizia$navaereo$navtreno$totale$nome$cognome$dataNascita$citta$email$telefono$pagamento$numerocarta$cvc$intestatario\n\t</prenotazione>\n";
+my $pren_el="\n\t<prenotazione id=\"$id\" >$dataarrivo$datapartenza$adulti$singole$doppie$parcheggio$pulizia$navaereo$navtreno$totale$nome$cognome$dataNascita$citta$email$telefono\n\t</prenotazione>\n";
 
 my $frammento = $parser->parse_balanced_chunk($pren_el) or die("nodo non ben formato");
 

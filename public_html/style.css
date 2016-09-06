@@ -72,6 +72,7 @@ h1{
 	float: left;
     width: 15.88675em;
     height: 5.858375em;
+	border: none;
 }
 
 #prenotazione{
@@ -534,7 +535,7 @@ margin: 10px;
  background: #0F6;
 }
 
-.prossima .alternate {
+.prossima+.alternate {
  background: #0E6;
 }
 
@@ -551,7 +552,7 @@ margin: 10px;
 background: #DDD;
 }
 
-.incorso .alternate {
+.incorso+.alternate {
  background: #BBB;
 } 
 
@@ -572,7 +573,7 @@ color:#666;
 background: #EEE;
 }
 
-.scaduta .alternate{
+.scaduta+.alternate{
  background: #CCC;
 } 
 

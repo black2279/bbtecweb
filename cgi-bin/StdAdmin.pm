@@ -38,13 +38,16 @@ sub HtmlCode{
 	<body onload=\"menuMobile()\">
     <div id=\"wrapper\">
     <div id=\"header\">
+	<a href=\"../index.html\">
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
+	</a>
     <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
     </div>
 "}
 
 sub MenuGuest{
 print"
+	<a id=\"aiuti\" href=\"#content\">Salta la navigazione</a>
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -67,6 +70,7 @@ print"
 sub Menu {
 
  print"
+ <a id=\"aiuti\" href=\"#content\">Salta la navigazione</a>
  <div id=\"menu\">
         <ul>
             <li><a href=\"home.pl\"><span lang=\"en\">Home</span></a></li>

@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+<xsd:element name="admins" type="TLista">
+			<xsd:unique name="username-unico">
+			  <xsd:selector xpath=".//*" /> <!-- Seleziona il nodo corrente e controlla tutti i nodi con attributo id al fine di essere univoci -->
+			  <xsd:field xpath="username" />
+		    </xsd:unique>	
+</xsd:element>
+    
+<xsd:complexType name="TLista" >
+	<xsd:sequence>
+		<xsd:element name="admin" minOccurs="1" maxOccurs="unbounded" type="TAdmin" />
+	</xsd:sequence>
+</xsd:complexType>
+
+<xsd:complexType name="TAdmin">
+	<xsd:sequence>
+		<xsd:element name="username" type="TCampo"/>
+		<xsd:element name="password" type="TCampo"/>
+	</xsd:sequence>
+</xsd:complexType>
+	
+	<xsd:simpleType name="TCampo">
+        <xsd:restriction base="xsd:string">
+            <xsd:minLength value="3" />
+			<xsd:maxLength value="15" />
+        </xsd:restriction>
+   </xsd:simpleType>
+
+</xsd:schema>

@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
-    xmlns="http://www.bb.com"
-    targetNamespace="http://www.bb.com"
     elementFormDefault="qualified">
 	
 	
@@ -20,29 +18,69 @@
 
 <xsd:complexType name="TPrenotazione">
 	<xsd:sequence>
-		<xsd:element name="dataArrivo" type="xsd:string"/>
-		<xsd:element name="dataPartenza" type="xsd:string"/>
-		<xsd:element name="adulti" type="xsd:integer" />
-		<xsd:element name="singole" type="xsd:integer" />
-		<xsd:element name="doppie" type="xsd:integer" />
-		<xsd:element name="parcheggio" type="xsd:boolean" />
-		<xsd:element name="pulizia" type="xsd:boolean" />
-		<xsd:element name="navaereo" type="xsd:boolean" />
-		<xsd:element name="navtreno" type="xsd:boolean" />
+		<xsd:element name="dataArrivo" type="TData"/>
+		<xsd:element name="dataPartenza" type="TData"/>
+		<xsd:element name="adulti" type="TAdulti" />
+		<xsd:element name="singole" type="TCamera" />
+		<xsd:element name="doppie" type="TCamera" />
+		<xsd:element name="parcheggio" type="TServizio" />
+		<xsd:element name="pulizia" type="TServizio" />
+		<xsd:element name="navaereo" type="TServizio" />
+		<xsd:element name="navtreno" type="TServizio" />
         <xsd:element name="totale" type="xsd:integer"/>
 		<xsd:element name="nome" type="xsd:string"/>
 		<xsd:element name="cognome" type="xsd:string"/>
-		<xsd:element name="dataNascita" type="xsd:string"/>
+		<xsd:element name="dataNascita" type="TData"/>
 		<xsd:element name="citta" type="xsd:string"/>
-		<xsd:element name="email" type="xsd:string"/>
-		<xsd:element name="telefono" type="xsd:integer"/>
-		<xsd:element name="pagamento" type="xsd:string"/>
-		<xsd:element name="numerocarta" type="xsd:string"/>
-		<xsd:element name="cvc" type="xsd:string"/>
-		<xsd:element name="intestatario" type="xsd:string" />
+		<xsd:element name="email" type="TEmail"/>
+		<xsd:element name="telefono" type="TTelefono" />
 	</xsd:sequence>
-	<xsd:attribute name="id" type="xsd:integer" use="required"/>
+	<xsd:attribute name="id" type="TCodice" use="required"/>
 </xsd:complexType>
+	
+	<xsd:simpleType name="TCodice">
+        <xsd:restriction base="xsd:string">
+            <xsd:length value="6" />
+        </xsd:restriction>
+   </xsd:simpleType>
+	
+   <xsd:simpleType name="TData">
+        <xsd:restriction base="xsd:string">
+            <xsd:pattern value="[0-3][0-9]/[01][0-9]/[0-9]{4}" />
+        </xsd:restriction>
+   </xsd:simpleType>
 
+  <xsd:simpleType name="TAdulti">
+      <xsd:restriction base="xsd:string">
+           <xsd:length value="1"/>
+		   <xsd:pattern value="\d" /> 
+      </xsd:restriction>
+  </xsd:simpleType>
+	
+ <xsd:simpleType name="TTelefono">
+    <xsd:restriction base="xsd:string">
+      <xsd:length value="10"/>
+	  <xsd:pattern value="[0-9]{10}" />
+    </xsd:restriction>
+  </xsd:simpleType>
+
+  <xsd:simpleType name="TEmail"> 
+    <xsd:restriction base="xsd:string"> 
+      <xsd:pattern value="[^@]+@[^\.]+\..+"/> 
+    </xsd:restriction> 
+  </xsd:simpleType>
+  
+  <xsd:simpleType name="TCamera"> 
+    <xsd:restriction base="xsd:string"> 
+      <xsd:length value="1"/> 
+	  <xsd:pattern value="\d"/> 
+    </xsd:restriction> 
+  </xsd:simpleType>
+  
+   <xsd:simpleType name = "TServizio">
+   <xsd:restriction base="xsd:string"> 
+      <xsd:pattern value="true|false|"/> 
+    </xsd:restriction>
+  </xsd:simpleType>
 
 </xsd:schema>

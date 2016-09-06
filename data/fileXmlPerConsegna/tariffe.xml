@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tariffe xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+		xsi:noNamespaceSchemaLocation="tariffe.xsd">
+    <singola>50</singola>
+    <doppia>80</doppia>
+	<parcheggio>5</parcheggio>
+	<pulizie>2</pulizie>
+	<navettaaeroporto>30</navettaaeroporto>
+	<navettatreno>30</navettatreno>
+</tariffe>

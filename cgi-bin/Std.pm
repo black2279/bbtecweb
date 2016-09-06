@@ -37,13 +37,16 @@ sub HtmlCode{
 	<body onload=\"menuMobile()\">
     <div id=\"wrapper\">
     <div id=\"header\">
+	<a href=\"../index.html\">
         <img src=\"../img/Logo-bn.png\" alt=\"logo B&amp;B\" id=\"logo\"/>
+	</a>
     <!--<h1>Bed and Breakfast Navona - Roma</h1>-->
     </div>
 "
 }
 sub MenuPren{
 print"
+	<a id=\"aiuti\" href=\"#content\">Salta la navigazione</a>
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -64,6 +67,7 @@ print"
 "}
 sub Menu{
 print"
+	<a id=\"aiuti\" href=\"#content\">Salta la navigazione</a>
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -84,6 +88,7 @@ print"
 "}
 sub MenuPrezzi{
 print"
+	<a id=\"aiuti\" href=\"#content\">Salta la navigazione</a>
     <div id=\"menu\">
         <ul>
             <li><a href=\"../index.html\"><span lang=\"en\">Home</span></a></li>
@@ -96,7 +101,7 @@ print"
 
             <li><a href=\"#\">Tariffe</a></li>
 
-            <li><a href=\"../cgi-bin/Prenotazioni.pl\">Prenotazioni</a></li>
+            <li><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
 
             <li><a href=\"../contatti.html\">Contatti</a></li>
         </ul>
