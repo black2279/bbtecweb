@@ -519,8 +519,6 @@ print "<div id=\"title\">
   	</h1>
 </div>
 
-<div id=\"content\">
-
 	<p>
     	Nel prezzo del nostro <span lang=\"en\">Bed and Breakfast</span> sono compresi la prima colazione,
         la pulizia delle camere ed un asciugacapelli.
@@ -543,5 +541,5 @@ print "<div id=\"title\">
             <li>Navetta per Aeroporto: ".Tariffe::getPrezzoNavettaAeroporto()." &euro;.</li>
             <li>Navetta per Stazione: ".Tariffe::getPrezzoNavettaTreno()." &euro;.</li>
         </ul>
-</div>"
+"
 }
