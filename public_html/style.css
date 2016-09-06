@@ -636,10 +636,6 @@ a:active
 	color:white;
 }
 
-#breadcrumb, #reserved a:active
-{
-	color:yellow;	
-}
 
 /*CSS parte mobile*/
 
