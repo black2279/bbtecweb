@@ -76,7 +76,7 @@ print"
 
             <li><a href=\"../cgi-bin/prezzi.pl\">Tariffe</a></li>
 
-            <li><a href=\"../cgi-bin/Prenotazioni.pl\">Prenotazioni</a></li>
+            <li><a href=\"../cgi-bin/prenotazioni.pl\">Prenotazioni</a></li>
 
             <li><a href=\"../contatti.html\">Contatti</a></li>
         </ul>
