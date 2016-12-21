@@ -13,38 +13,52 @@
 <meta name="author" content="Alba Matteo, Andrighetto Cristian, Zoso Leonardo" />
 
 <link href="style.css" rel="stylesheet" type="text/css" />
-
+<link rel="shortcut icon" href="img/favicon.ico" />
+<script type="text/javascript" src="Javascript/menu-mobile.js" ></script>
 </head>
 
-<body>
+<body onload="menuMobile()">
 <div id="wrapper">
 <div id="header">
-<h1>Bed and Breakfast Navona - Roma</h1>
+<a id="aiuti" href="#content">Salta la navigazione</a>
+    <a href="index.html">
+    	<img src="img/Logo-bn.png" alt="logo B&amp;B" id="logo"/>
+	</a>
 </div>
 
 <div id="menu">
 	<ul>
 		<li><a href="index.html"><span lang="en">Home</span></a></li>
 
-    	<li id="currentLink"><a href="chisiamo.html">Chi siamo</a></li>
+    	<li id="currentLink"><a href="#">Chi siamo</a></li>
 
     	<li><a href="galleria.html">Galleria</a></li>
 
     	<li><a href="servizi.html">Servizi</a></li>
 
-    	<li><a href="tariffe.html">Tariffe</a></li>
+    	<li><a href="cgi-bin/prezzi.pl">Tariffe</a></li>
 
-    	<li><a href="prenotazioni.html">Prenotazioni</a></li>
+    	<li><a href="cgi-bin/prenotazioni.pl">Prenotazioni</a></li>
 
     	<li><a href="contatti.html">Contatti</a></li>
 	</ul>
 </div>
 
 <div id="breadcrumb">
-Ti trovi qui &gt;&gt;<a href="index.html"><span lang="en">Home</span></a>&gt;&gt; Chi siamo
+Ti trovi qui: <a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Chi siamo
 </div>
 
-<div id="content">
+<div id="title">
+	<h1>
+    	Chi siamo
+	</h1>
+ 
+ </div>
+
+<div id="content"> 	
+
+<img class="imgchisiamo" src="img/chisiamo.jpg" alt="chisiamo"/>
+     
 	<p>
     Benvenuti al <span lang="en">Bed and Breakfast</span> Navona, ideale per soggiorni sia di affari che di piacere.
     Offriamo una calorosa ed elegante accoglienza che unita all'ambiente familiare ne fanno la sistemazione
@@ -60,6 +74,7 @@ Ti trovi qui &gt;&gt;<a href="index.html"><span lang="en">Home</span></a>&gt;&gt
 
     <p>
     Vi auguriamo una buona permanenza nel nostro <span lang="en">Bed and Breakfast</span>.
+    </p>
 </div>
 
 <div id="footer">
@@ -68,11 +83,15 @@ Ti trovi qui &gt;&gt;<a href="index.html"><span lang="en">Home</span></a>&gt;&gt
 	<img class="imgValidCode" src="img/XMLvalido.png" alt="XHTML valido"/>
 	<img class="imgValidCode" src="img/CSSvalido.gif" alt="CSS valido"/>
     </div>
+    
+    <div id="reserved">
+    <a href="cgi-bin/login.pl">Area riservata</a>
+    </div>
 
     <div id="right">
-        <h3> Contatti </h3>
-		<p>Via delle Pertiche, 11
-    	    04323 Latina
+		<strong>Contatti</strong>
+		<p>Vicolo del Fico, 15
+    	    00100        
             Roma (RM)</p>
 
         <p>Telefono 0093412534</p>

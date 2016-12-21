@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+<xsd:element name="tariffe" type="TTariffe"></xsd:element>
+    
+<xsd:complexType name="TTariffe" >
+	<xsd:sequence>
+		<xsd:element name="singola" type="TTariffa" />
+		<xsd:element name="doppia" type="TTariffa" />
+		<xsd:element name="parcheggio" type="TTariffa" />
+		<xsd:element name="pulizie" type="TTariffa" />
+		<xsd:element name="navettaaeroporto" type="TTariffa" />
+		<xsd:element name="navettatreno" type="TTariffa" />
+	</xsd:sequence>
+</xsd:complexType>
+	
+   <xsd:simpleType name="TTariffa">
+        <xsd:restriction base="xsd:positiveInteger">
+        </xsd:restriction>
+   </xsd:simpleType>
+
+</xsd:schema>

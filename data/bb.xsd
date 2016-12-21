@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xsd:schema xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+    elementFormDefault="qualified">
+
+<xsd:element name="bb" type="TBBreakfast"></xsd:element>
+    
+<xsd:complexType name="TBBreakfast" >
+	<xsd:sequence>
+		<xsd:element name="singole" type="TNumeroCamere" />
+		<xsd:element name="doppie" type="TNumeroCamere" />
+	</xsd:sequence>
+</xsd:complexType>
+	
+	<xsd:simpleType name="TNumeroCamere">
+        <xsd:restriction base="xsd:positiveInteger">
+			<xsd:maxInclusive value="50" />
+        </xsd:restriction>
+   </xsd:simpleType>
+
+</xsd:schema>

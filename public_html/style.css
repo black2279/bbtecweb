@@ -2,177 +2,163 @@ html{
     height: 100%;
     margin: 0;
     padding: 0;
+	overflow: auto;
 }
+
+@font-face {
+    font-family: Raleway;
+    src: url(font/Raleway-SemiBold.woff);
+}
+
 body{
-    background-color: #f5f5f5;
     margin-left: auto;
     margin-right: auto;
     margin-bottom: 0;
     margin-top: 0;
     padding: 0;
-    max-width: 59.375em;
     border: 0;
     font-family: Verdana, Helvetica, sans-serif;
     height: 100%;
 }
+
 h1{
   margin-top: 0;
+  margin-bottom: 0;
 }
+
+/*Aiuti screen-reader */
+
+#aiuti{
+  position: absolute;
+  height: 0;
+  left: -9999em;
+  overflow: hidden;
+}
+
+#aiuti:hover{
+  left:0em;
+  overflow: visible;
+  color: black;
+}
+#aiuti:focus{
+  left:0em;
+  overflow: visible;
+  color: black;
+}
+
+/* Wrapper */
+
 #wrapper {
 	min-height:100%;
 	position:relative;
 }
 
-#header {
-    text-align: center;
-    background-color: #ffffff;
+/* Header */
 
+#header {
+    margin-left: 1em;
+    background-color: #ffffff;
 }
+
+.imgHome{
+    width: 100%;
+	display:block;
+	margin:auto;
+	margin-top:1em;
+	margin-bottom:1em;
+}
+
+#logo{
+	float: left;
+    width: 15.88675em;
+    height: 5.858375em;
+	border: none;
+}
+
 #prenotazione{
     padding-left: 2em;
 }
-/*#content{
-    background-color: #ffffff;
-    padding: 10px;
-    padding-bottom: 12em;
-}*/
+
+/* Contenuto */
+
 #content {
+    padding-left: 1em;
+	padding-right: 1em;
+	padding-top:1em;
+	padding-bottom:6.875em;	
+}
+
+#centrale{
+    padding-left: 1em;
 	padding-bottom:6.875em; /* Height of the footer element */
 }
 
-li {
-  display: inline-block;
-  vertical-align: middle;
-  -webkit-transform: translateZ(0);
-  transform: translateZ(0);
-  box-shadow: 0 0 1px rgba(0, 0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -moz-osx-font-smoothing: grayscale;
-  position: relative;
-  overflow: hidden;
-}
-li:before {
-  content: "";
-  position: absolute;
-  z-index: -1;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: red;
-  height: 0.25em;
-  -webkit-transform: translateY(0.25em);
-  transform: translateY(0.25em);
-  -webkit-transition-property: transform;
-  transition-property: transform;
-  -webkit-transition-duration: 0.3s;
-  transition-duration: 0.3s;
-  -webkit-transition-timing-function: ease-out;
-  transition-timing-function: ease-out;
-}
-li:hover:before, li:focus:before, li:active:before {
-  -webkit-transform: translateY(0);
-  transform: translateY(0);
+/* Form */
+
+form {
+	margin: 0;
+	padding: 0;
 }
 
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #ffa444;
+fieldset{
+    background-color: #8F8DAD;
+    width: 60%;
+	padding: 2em;
+	margin: 0;
 }
 
-li {
-    float: left;
+form > fieldset p{
+    padding-left: 0em;
+	padding-top: 0em;
+	margin-top: 0em;
 }
 
-li, a, #menu > ul > li > span{
-    display: inline-block;
-    color: #272727;
-    text-align: center;
-    padding: 0.3125em 1.125em;
-    text-decoration: none;
-}
-
-li:hover{
-    background-color: #ff8706;
-}
-
-li{
-    padding-top: 0.3125em;
-}
-
-#currentLink:hover{
-    background-color: #ff8706;
-}
-
-#breadcrumb{
-    background-color: #cccccc;
-    color: #333333;
-    padding-left: 1em;
-}
-
-/*#container {
-   min-height:100%;
-    height: 100%;
-   position:relative;
-}*/
-/*#footer{
-    position: absolute;
-    bottom: 0;
-    width: 920px;
-    height: 6em;
-    padding: 1em 1em 1em 1em;
-    background-color: #333333;
-    color: #cccccc;
-}*/
-#footer {
-	background:#ffab62;
-	width:100%;
-	height:6.875em;
-	position:absolute;
-  padding: 0em 1em 0.5em 1em;
-	bottom:0;
-	left:0;
-}
-
-#left{
-    float: left;
-}
-
-#left p{
-    text-align: left;
-    font-size: 0.75em;
-}
-
-#right p, h3{
-    text-align: right;
-    font-size: 0.75em;
-}
-
+/* Menu */
 
 #menu {
-    width: 100%;
-    background: #f0f0f0;
-    border: 1px solid #ccc;
-    border-right: none;
+    /*width: 70%;*/
+	width: 70%;
+    float: right;
+    margin-right: 1em;
 }
 
 #menu ul {
-    overflow: hidden;
-    margin: 0;
+    margin-top: 1em;
+	margin-left: 1em;
+	margin-bottom: 1em;
     padding: 0;
+    overflow: hidden;
+    background-color: #940315;
+}
+
+#menu li {
+    float: left;
+	padding-top: 0.3125em;
+}
+
+#menu li:hover{
+    background-color: #5C0009;
+}
+
+#menu li, #menu a, #menu > ul > li > span{
+    display: inline-block;
+    text-align: center;
+    padding-top: 0.3125em;
+    padding-bottom: 0.3125em;
+}
+
+#menu > ul > li > a{
+    font-size: 1.2vw;
 }
 
 #menu ul li {
-    list-style: none;
     float: left;
     text-align: center;
-    border-left: 0.0625em solid #fff;
-    border-right: 0.0625em solid #ccc;
-    /*width: 16.6667%;*/
+    width: 14%; /* For browser that not support calc */
     width: calc(100% / 7);
+	/*border-left: 1px solid #fff;*/
+	border-left: 0.0625em solid #fff;
+    border-right: 0.0625em solid #ccc;
     box-sizing: border-box;
 }
 
@@ -182,12 +168,749 @@ li{
 
 #menu ul li a, #menu > ul > li > span{
     display: block;
-    text-decoration: none;
-    color: #000000;
     padding: 10px 0;
 }
+/*
+#currentLink:hover{
+    background-color: #5C0009;
+}*/
 
-.imgHome{
-    width: 50%;
-    height: auto;
+/* Breadcrumb */
+
+#breadcrumb, #breadcrumb a{
+    color: #ffffff;
+    padding-top: 0.3125em;
+    padding-bottom: 0.3125em;
 }
+
+#breadcrumb{
+    background-color: #393845;
+    padding-left: 1em;
+    clear: both;
+}
+#breadcrumb > p{
+    margin-top: 0;
+}
+
+/* Footer */
+
+#footer {
+	background-color: #393845;
+    color: #ffffff;
+	width:100%;
+	height:6.875em;
+	position:absolute;
+    padding-top: 0.25em;
+	bottom:0;
+	left:0;
+}
+
+#left{
+    float: left;
+    padding-left: 2em;
+}
+
+#left p{
+    text-align: left;
+    font-size: 0.75em;
+	line-height: 1em;
+	margin: 0;
+	padding-top: 1em;
+	padding-bottom: 1em;
+}
+
+#right p, #right>strong{
+	display: block;
+    padding-right: 2em;
+	margin: 0;
+	padding-top: 1em;
+	padding-bottom: 0em;
+    text-align: right;
+    font-size: 0.75em;
+	line-height: 1em;
+}
+
+#imm_servizi{
+  float: left;
+  margin-top: 3em;
+  margin-right: 2em;
+  margin-bottom: 5em;
+}
+
+/*@media (max-width: 1240){
+   #menu {
+    width: 50em;
+    }
+}*/
+
+input{
+    margin-right: 1em;
+	margin-left:0em;
+}
+
+input[type="text"]{
+    font-family: Raleway, Verdana, Helvetica, sans-serif;
+	width: auto;
+}
+
+input[type="submit"], input[type="reset"] {
+	background-color:#940315;
+	border:1px solid #54020C;
+	display:inline-block;
+	cursor:pointer;
+	color:#ffffff;
+	font-family: Verdana, Helvetica, sans-serif;
+	font-size:0.75em;
+	padding:6px 12px;
+	text-decoration:none;
+	text-shadow:0px 1px 0px #54020C;
+}
+
+input[type="submit"]:hover, input[type="reset"]:hover {
+	background-color:#54020C;
+    border:1px solid #940315;
+}
+
+h2{
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#richiesta{
+    width: 50%;
+    margin: 0;
+	margin-left: 1em;
+	margin-right: 1em;
+	float: left;
+	padding: 0;
+}
+
+#richiesta p{
+    margin-top: 1em;
+	margin-bottom: 1em;
+}
+
+#dettagli{
+  float: left;
+  clear: left;
+  width: 50%;
+  margin-left: 1em;
+  margin-right: 1em;
+  padding: 0;
+}
+
+#dettprezzi {
+    /*float:right;*/
+    /*width: 50%;*/
+	margin: 0;
+	padding: 0;
+}
+
+.FormPren{
+	clear:both;
+}
+
+.dati{
+    /*float: left;*/
+    padding-bottom: 2em;
+	padding-left: 0em;
+    width: 100%;
+    overflow: hidden;
+}
+.dati input:not(#prenota):not(#dataNascita):not(#cvc){
+    width: 16em;
+}
+input#cvc{
+    width: 3.125em;
+}
+input#dataNascita{
+    width: 9em;
+}
+
+.nascosto{
+    display: none;
+    height: 0px;
+    
+}
+
+.dati #sinistra{
+    width: 50%;
+    float:left;
+    position: relative;
+}
+
+.dati #destra{
+    width: 49%;
+    float: left;
+    position: relative;
+}
+
+#elenco{
+    padding-top: 1em;
+}
+
+.error{
+    color: red;
+    font-weight: bold;
+    padding-left: 2em;
+    font-size: 0.75em;
+	background: url('Javascript/warning-icon.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+}
+
+/*galleria   pagine interne*/
+
+/*pagine interne*/
+
+.imgGalleria{
+	border-width:medium;
+	border-color:#940315;
+	border-style:solid;
+	margin-top: auto;
+	margin-left: 2em;
+	margin-right: 2em;
+	/*margin-right: auto;*/
+	margin-bottom: 3em;
+	width:200px;
+	height:200px;
+}
+
+#galleria{
+	margin-top:auto;	
+	margin-right:5em;
+	margin-left:5em; 
+	padding-bottom:6.875em;
+
+	clear: both;
+}
+
+/*galleria*/
+
+#camere{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;
+	float:left;
+	display:block;
+} 
+
+#esterni{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;
+	float:left;
+	display:block;
+} 
+
+#ristorante{
+	margin-top:auto;	
+	margin-right:3em;
+	margin-left:3em; 
+	padding-bottom:6.875em;	
+	display:block;
+	clear: right;
+
+} 
+
+#ristorante a{
+	float:left;
+} 
+
+#camere a{
+	float:left;
+} 
+
+#esterni a{
+	float:left;
+} 
+
+/*Pulsante indietro galleria*/
+
+#indietro
+{
+	margin-top:2em;
+	margin-bottom:2em;
+	display:block;
+	float:right;
+}
+
+#titleG
+{
+display:block;
+float:left;
+margin-top:1em;
+margin-left:1em;
+}
+
+/*Chi siamo*/
+
+#title
+{
+	margin-top:1em;
+	margin-left:1em;
+}
+
+#content .imgchisiamo{
+	width:250px;
+	height:250px;
+	float:left;
+	margin-right:1em;
+	border-width:medium;
+	border-color:#940315;
+	border-style:solid;	
+}
+
+#content p
+{
+	text-align:left;
+}
+
+/* Separatore */
+
+.separatore{
+clear: both;
+}
+
+/* Parte Amministratore */
+
+/* Login */
+
+#login  *{
+ display:block;
+ margin-top:5px;
+ width:100%;
+}
+
+#login{
+ width: 200px;
+}
+
+/* Logout */
+
+#logout{
+ text-align:right;
+ margin-right: 1em;
+ display:block;
+ line-height: 1em;
+}
+
+/* Form per dimensione Bed & Breakfast */
+
+#bbForm *{
+ margin-right: 1em;
+ margin-top: 0.5em;
+}
+
+#bbForm > div{
+ margin: 0;
+ margin-top: 0.75em;
+ padding: 0;
+ vertical-align: top;
+}
+
+/* Form Stato Prenotazioni */
+#spForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+/* Form Tariffe */
+#tariffeForm>div{
+margin-top: 1em;
+margin-bottom: 1em;
+}
+
+ /* Tabella Prenotazioni */
+ 
+#t_stato_pren{
+margin: 10px;
+}
+
+/* Prenotazioni successive alla data odierna */
+
+.prossima{
+ background: #0F6;
+}
+
+.prossima+.alternate {
+ background: #0E6;
+}
+
+.prossima:nth-child(even){
+ background: #0F6;
+}
+.prossima:nth-child(odd){
+ background: #0E6;
+}
+
+/* Prenotazioni in corso */
+
+.incorso{
+background: #DDD;
+}
+
+.incorso+.alternate {
+ background: #BBB;
+} 
+
+.incorso:nth-child(even){
+ background: #DDD;
+}
+.incorso:nth-child(odd){
+ background: #BBB;
+}
+
+/* Prenotazioni scadute */
+
+.scaduta{
+color:#666;
+}
+
+.scaduta{
+background: #EEE;
+}
+
+.scaduta+.alternate{
+ background: #CCC;
+} 
+
+.scaduta:nth-child(even) {
+background: #EEE;
+}
+.scaduta:nth-child(odd){
+background: #CCC;
+}
+
+/* Link */
+#menu a:link{
+	color:#72FAD2;
+}
+
+#menu a:visited{
+
+color: white;
+}
+
+#menu a:active{
+	color: yellow;
+}
+
+/*Area Riservata*/
+
+#reserved
+{
+	display:block;
+	clear:left;
+	float:left;
+	padding-left: 2em;
+	padding-top: 1em;
+}
+
+/*link*/
+
+a:link
+{
+	color:#000080;
+}
+
+a:visited
+{
+	color:#940315;
+}
+
+a:active 
+{
+	color:#0000CD;	
+}
+
+#breadcrumb, #reserved a:link
+{
+	color:#72FAD2;
+}
+
+#breadcrumb, #reserved a:visited
+{
+	color:white;
+}
+
+
+/*CSS parte mobile*/
+
+@media only screen and (min-width:150px) and (max-width:1024px) 
+{
+ 
+ #logo{
+ float : none;
+ width: 100%;
+ height: 20em;
+ }
+ 
+ .imgHome{
+ height: 500px;
+ }
+ 
+ #menu , #menu ul{
+ width: 100%;
+ float: none;
+ margin: 0;
+ }
+
+#menu li{
+ float: none;
+}
+ 
+ #menu ul li{
+display: block;
+float :none;
+clear: both;
+width: 100%;
+height: 8em;
+border-right: none;
+border-left: none;
+border-top: 0.0625em solid #fff;
+border-bottom: 0.0625em solid #ccc;
+ }
+ 
+ #menu ul li a {
+  font-size: 3em;
+ }
+ 
+ #hamburger-bar{
+ width: 100%;
+ height: 8em;
+ background: url('Javascript/menu-ham.png');
+ background-repeat: no-repeat;
+ border-right: none;
+ border-left: none;
+ border-top: 0.0625em solid #fff; 
+ border-bottom: 0.0625em solid #ccc;
+ background-color: #940315;
+ background-size: contain;
+ }
+ 
+ .imgGalleria{
+  	border-width:medium;
+  	border-color:#940315;
+  	border-style:solid;
+  	margin-top: auto;
+  	margin-left: auto;
+  	margin-right: auto;
+  	margin-bottom: 3em;
+  	width:200px;
+  	height:200px;
+  	display:block;
+ }
+ 
+ #footer{
+ clear: both;
+ height: auto;
+ width: 100%;
+ position : static;
+ font-size: 2em;
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #left, #left p{
+ text-align: left;
+ display: block;
+ text-align: center;
+ margin: 0;
+ padding: 0;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+ font-size: 1em;
+ }
+ #left p{
+  font-size: 0.3em;
+ }
+ 
+ #right, #right p, #right strong{
+ text-align: center;
+ margin: 0;
+ padding: 0;
+ padding-top: 0.5em;
+ padding-bottom: 0.5em;
+ }
+ 
+ #right{
+ float: none;
+ }
+ 
+ #left{
+ float: none;
+border-bottom: 2px solid #999;
+ }
+ 
+ #breadcrumb {
+	font-size: 2em;
+ }
+ 
+ #content p {
+	font-size: 3em;
+ }
+ 
+ #content .imgchisiamo{
+ float: none;
+ width: 100%;
+ margin: 0;
+ padding: 0;
+ height: auto;
+ 
+ }
+ 
+ h1{
+ font-size: 6em;
+ }
+ 
+ h2 {
+  font-size: 4em;
+ }
+ 
+ #richiesta {
+ float: none;
+ }
+ 
+ 
+ .imgValidCode{
+ height: 1.5em;
+ float: none;
+ margin-top: 0.5em;
+ 
+ }
+ 
+ #titleG{
+ float: none;
+ }
+ 
+ #indietro {
+  float: none;
+  text-align: right;
+  padding-right: 1em;
+  font-size: 2em;
+ }
+ 
+ .imgGalleria {
+ width: 100%;
+ height: auto;
+ 
+ }
+ 
+ #reserved {
+ float: none;
+ text-align: center;
+ padding: 0;
+ margin: 0;
+ padding-top: 1em;
+ padding-bottom: 1em;
+ font-size: 0.5em;
+border-bottom: 2px solid #999;
+ }
+ 
+ fieldset{
+ width: auto;
+ }
+ 
+ input{
+ font-size: 1em;
+ }
+ 
+ input[type="submit"] {
+	width: 100%;
+	font-size: 1em;
+ }
+
+ 
+ select {
+ width: 100%;
+ font-size: 1em;
+ }
+ 
+ .dati #sinistra{
+ float: none;
+ }
+ 
+ #login{
+ width: 100%;
+  font-size: 3em;
+ }
+ 
+ #login input{
+ margin-top: 1em;
+ line-height: 2em;
+ }
+ 
+  #login input[type="submit"]{
+  padding: 0.5em;
+ }
+ #bbForm * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #bbForm {
+ font-size: 3em;
+ }
+ 
+ #bbForm input {
+ margin-top: 1em;
+ margin-bottom: 1em;
+  line-height: 2em;
+  width: 100%;
+ }
+ 
+ #bbForm input[type="submit"]{
+  padding: 0.5em;
+ }
+ 
+ #spForm  * {
+ margin: 0;
+ padding: 0;
+ }
+ 
+ #spForm{
+  font-size: 3em;
+ }
+  #spForm input {
+  width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 1em;
+  }
+  
+  #t_stato_pren{
+  width: 100%;
+  }
+  #t_stato_pren caption{
+  font-size: 3em;
+  }
+  
+  #t_stato_pren tr {
+  height: 3em;
+  }
+   
+ #tariffeForm  * {
+ margin: 0;
+ padding: 0;
+ }
+  #tariffeForm input {
+   width: 100%;
+  display: block;
+  clear: right;
+  line-height: 2em;
+  margin-top: 0.5em;
+  font-size: 3em;
+ }
+ #tariffeForm label{
+ font-size: 3em;
+  line-height: 2em;
+ }
+ 
+ 
+  
+  
+  }

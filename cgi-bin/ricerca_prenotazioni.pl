@@ -11,59 +11,83 @@ use CGI::Carp qw(fatalsToBrowser);
 use strict;
 use warnings;
 use Std;
+
 binmode STDOUT, ":utf8";
 
 Std::HtmlCode();
+Std::Menu();
+my $percorso = "Prenotazioni";
 
 sub ricercaDatiXML{
+my %valori;
+my $error = 0;
 use XML::LibXML;
 my $file = '../data/prenotazioni.xml';
 my $parser = XML::LibXML->new();
-
-if(-e($file)){
-
-my $doc=$parser->parse_file($file);
-
 my %prenotazione = @_;
 my $numeroprenotazione = $prenotazione{'numeroPrenotazione'};
 
-if(my $node = $doc->findnodes("//prenotazione[\@id=".$numeroprenotazione."]")->get_node(1)){
+if(-e($file)){
+my $doc=$parser->parse_file($file);
+$valori{'npren'} = $numeroprenotazione;
+if(my $node = $doc->findnodes("//prenotazione[\@id=\"$numeroprenotazione\"]")->get_node(1)){
+$percorso = "<a href=\"prenotazioni.pl\">Prenotazioni</a> &gt;&gt; Ricerca Prenotazione";
+Std::Breadcrumb($percorso);
 my @childnodes = $node->nonBlankChildNodes();
-my $arrivo = $childnodes[0];
-my $notti = $childnodes[1];
-my $adulti = $childnodes[2];
-my $camera = $childnodes[3];
+my $arrivo = $childnodes[0]->textContent;
+my $partenza = $childnodes[1]->textContent;
+my $adulti = $childnodes[2]->textContent;
+my $singole = $childnodes[3];
+my $doppie = $childnodes[4];
+my $parcheggio = $childnodes[5];
+my $pulizia = $childnodes[6];
+my $navaereo = $childnodes[7];
+my $navtreno = $childnodes[8];
+my $prezzo = $childnodes[9]->textContent;
 
-Std::PrintPren($arrivo,$notti,$adulti,$camera,$numeroprenotazione);
+Std::PrintPren($arrivo,$partenza,$adulti,$singole,$doppie,$prezzo,$numeroprenotazione,$parcheggio,$pulizia,$navaereo,$navtreno);
+print "<div class=\"separatore\" ></div>"; 
 #print "Data Arrivo ".$childnodes[0]->textContent."\n";
 #print "Notti ".$childnodes[1]->textContent."\n";
 #print "Adulti ".$childnodes[2]->textContent."\n";
 #print "Tipo Camera ".$childnodes[3]->textContent."\n";
 }else{
-print "Il numero di prenotazione non corrisponde";
+Std::Breadcrumb($percorso);
+if($numeroprenotazione eq undef){
+    $valori{'erpren'} = "Inserire il codice della prenotazione da cercare."
+}
+else{
+$valori{'erpren'} = "Nessuna prenotazione trovata";
+}
+Std::FormPren(%valori);
 }
 Std::EndHtml();
 }else{
-
-print "Nessuna prenotazione trovata\n";
-
+Std::Breadcrumb($percorso);
+if($numeroprenotazione eq undef){
+    $valori{'erpren'} = "Inserire il codice della prenotazione da cercare."
+}
+else{
+$valori{'erpren'} = "Nessuna prenotazione trovata";
+}
+Std::FormPren(%valori);
 }
 
 }
 
 my $page = new CGI;
-my $numeroprenotazione = $page->param("numeroPrenotazione");
+#my $numeroprenotazione = $page->param("numeroPrenotazione");
 
 my $error=0;
 
-if($numeroprenotazione !~ /\d/ ){
-$error=1;
-print "Il numero di prenotazione non pu� contenere caratteri\n";
-}
+#if($numeroprenotazione !~ /\d/ ){
+#$error=1;
+#print "Il numero di prenotazione non pu� contenere #caratteri\n";
+#}
 
 
-if ($error){
-	print "Dati non corretti";
-}else{
+#if ($error){
+#	print "<p>Dati non corretti</p>";
+#}else{
 	ricercaDatiXML($page->Vars);
-}
+#}

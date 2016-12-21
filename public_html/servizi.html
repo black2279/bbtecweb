@@ -13,13 +13,17 @@
 <meta name="author" content="Alba Matteo, Andrighetto Cristian, Zoso Leonardo" />
 
 <link href="style.css" rel="stylesheet" type="text/css" />
-
+<link rel="shortcut icon" href="img/favicon.ico" />
+<script type="text/javascript" src="Javascript/menu-mobile.js" ></script>
 </head>
 
-<body>
+<body onload="menuMobile()">
 <div id="wrapper">
 <div id="header">
-<h1>Bed and Breakfast Navona - Roma</h1>
+<a id="aiuti" href="#content">Salta la navigazione</a>
+    <a href="index.html">
+    	<img src="img/Logo-bn.png" alt="logo B&amp;B" id="logo"/>
+	</a>
 </div>
 
 <div id="menu">
@@ -30,31 +34,40 @@
 
     	<li><a href="galleria.html">Galleria</a></li>
 
-    	<li id="currentLink"><a href="servizi.html">Servizi</a></li>
+    	<li id="currentLink"><a href="#">Servizi</a></li>
 
-    	<li><a href="tariffe.html">Tariffe</a></li>
+    	<li><a href="cgi-bin/prezzi.pl">Tariffe</a></li>
 
-    	<li><a href="prenotazioni.html">Prenotazioni</a></li>
+    	<li><a href="cgi-bin/prenotazioni.pl">Prenotazioni</a></li>
 
     	<li><a href="contatti.html">Contatti</a></li>
 	</ul>
 </div>
 
 <div id="breadcrumb">
-Ti trovi qui &gt;&gt;<a href="index.html"><span lang="en">Home</span></a>&gt;&gt; Servizi
+Ti trovi qui: <a href="index.html"><span lang="en">Home</span></a> &gt;&gt; Servizi
 </div>
 
+<div id="title">
+
+ <h1>
+    Servizi
+  </h1>
+ 
+ </div>
+
 <div id="content">
-	<p>
+ 
+  <p>
     	Il Bed and Breakfast offre diversi servizi per soddisfare le esigenze di ogni cliente. Tra questi vi sono:
     </p>
 
         <ul>
-        	<li>Parcheggio convenzionato in garage privato nelle vicinanze</li>
+        	 <li>Parcheggio convenzionato in garage privato nelle vicinanze</li>
             <li>Pulizia giornaliera della camera</li>
             <li>Aria condizionata</li>
             <li>Servizio di navetta</li>
-            <li>Nolleggio di automobili o biciclette</li>
+            <li>Noleggio di automobili o biciclette</li>
             <li>Disponibilità ad ospitare animali di piccola taglia</li>
             <li>Connessione <span lang="en">Wi-Fi</span> o postazione con <span lang="en">PC</span></li>
             <li>TV satellitare</li>
@@ -67,11 +80,15 @@ Ti trovi qui &gt;&gt;<a href="index.html"><span lang="en">Home</span></a>&gt;&gt
 	<img class="imgValidCode" src="img/XMLvalido.png" alt="XHTML valido"/>
 	<img class="imgValidCode" src="img/CSSvalido.gif" alt="CSS valido"/>
     </div>
+    
+    <div id="reserved">
+    <a href="cgi-bin/login.pl">Area riservata</a>
+    </div>
 
     <div id="right">
-        <h3> Contatti </h3>
-		<p>Via delle Pertiche, 11
-    	    04323 Latina
+		<strong>Contatti</strong>
+		<p>Vicolo del Fico, 15
+    	    00100        
             Roma (RM)</p>
 
         <p>Telefono 0093412534</p>
