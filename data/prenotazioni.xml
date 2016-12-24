@@ -11,11 +11,125 @@
 		<navaereo/>
 		<navtreno/>
 		<totale>50</totale>
-		<nome>A</nome>
-		<cognome>a</cognome>
+		<nome>Leonardo</nome>
+		<cognome>Verdi</cognome>
 		<dataNascita>02/02/1990</dataNascita>
-		<citta>a</citta>
-		<email>leo-94@hotmail.it</email>
+		<citta>Padova</citta>
+		<email>leonardo.verdi@hotmail.it</email>
 		<telefono>3331234564</telefono>
+	</prenotazione>
+
+	<prenotazione id="QMIB78">
+		<dataArrivo>02/02/2017</dataArrivo>
+		<dataPartenza>15/02/2017</dataPartenza>
+		<adulti>2</adulti>
+		<singole>0</singole>
+		<doppie>1</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno/>
+		<totale>1473</totale>
+		<nome>Alberto</nome>
+		<cognome>Rossi</cognome>
+		<dataNascita>12/06/1960</dataNascita>
+		<citta>Monza</citta>
+		<email>alberto.rossi@gmail.com</email>
+		<telefono>3231258996</telefono>
+	</prenotazione>
+
+	<prenotazione id="P6QIR8">
+		<dataArrivo>11/01/2017</dataArrivo>
+		<dataPartenza>15/01/2017</dataPartenza>
+		<adulti>3</adulti>
+		<singole>2</singole>
+		<doppie>1</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>866</totale>
+		<nome>Marco</nome>
+		<cognome>Bianchi</cognome>
+		<dataNascita>11/08/1975</dataNascita>
+		<citta>Milano</citta>
+		<email>marcobianchi@live.com</email>
+		<telefono>3351248996</telefono>
+	</prenotazione>
+
+	<prenotazione id="S1SQ3N">
+		<dataArrivo>15/03/2017</dataArrivo>
+		<dataPartenza>22/03/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno/>
+		<totale>513</totale>
+		<nome>Anna</nome>
+		<cognome>Grandi</cognome>
+		<dataNascita>18/08/1988</dataNascita>
+		<citta>Genova</citta>
+		<email>angrandi@yahoo.com</email>
+		<telefono>3481188546</telefono>
+	</prenotazione>
+
+	<prenotazione id="PPJ2U2">
+		<dataArrivo>11/02/2017</dataArrivo>
+		<dataPartenza>17/02/2017</dataPartenza>
+		<adulti>2</adulti>
+		<singole>0</singole>
+		<doppie>1</doppie>
+		<parcheggio/>
+		<pulizia>true</pulizia>
+		<navaereo>true</navaereo>
+		<navtreno/>
+		<totale>582</totale>
+		<nome>Giorgio</nome>
+		<cognome>Sarri</cognome>
+		<dataNascita>12/12/1955</dataNascita>
+		<citta>Siracusa</citta>
+		<email>gsarri@gmail.com</email>
+		<telefono>3291455845</telefono>
+	</prenotazione>
+
+	<prenotazione id="WDSXGV">
+		<dataArrivo>20/02/2017</dataArrivo>
+		<dataPartenza>24/02/2017</dataPartenza>
+		<adulti>3</adulti>
+		<singole>1</singole>
+		<doppie>1</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia>true</pulizia>
+		<navaereo/>
+		<navtreno/>
+		<totale>604</totale>
+		<nome>Maria</nome>
+		<cognome>Tartara</cognome>
+		<dataNascita>12/05/1990</dataNascita>
+		<citta>Ancona</citta>
+		<email>mariatartara@gmail.com</email>
+		<telefono>3298855147</telefono>
+	</prenotazione>
+
+	<prenotazione id="FJLX84">
+		<dataArrivo>06/03/2017</dataArrivo>
+		<dataPartenza>10/03/2017</dataPartenza>
+		<adulti>1</adulti>
+		<singole>1</singole>
+		<doppie>0</doppie>
+		<parcheggio>true</parcheggio>
+		<pulizia/>
+		<navaereo/>
+		<navtreno>true</navtreno>
+		<totale>250</totale>
+		<nome>Marco</nome>
+		<cognome>Sandri</cognome>
+		<dataNascita>11/08/1984</dataNascita>
+		<citta>Roma</citta>
+		<email>marcosandri@gmail.com</email>
+		<telefono>3318554699</telefono>
 	</prenotazione>
 </prenotazioni>
