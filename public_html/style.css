@@ -350,7 +350,7 @@ input#dataNascita{
 }
 
 .error{
-    color: red;
+    color: black;
     font-weight: bold;
     padding-left: 2em;
     font-size: 0.75em;
